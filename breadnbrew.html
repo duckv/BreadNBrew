@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bread N' Brew - Berkeley Heights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .menu-item-img, .gallery-img {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        .cart {
+            transition: transform 0.3s ease-in-out;
+        }
+        .cart-hidden {
+            transform: translateX(110%);
+        }
+        .floating-cart-btn {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: scale(0);
+            opacity: 0;
+        }
+        .floating-cart-btn.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .toast-wrapper {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(200%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .toast-wrapper.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .time-slot-btn.selected, .filter-btn.selected, .custom-btn.selected, .tip-btn.selected {
+            background-color: #78350f; /* amber-900 */
+            color: white;
+            border-color: #78350f;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<!-- Header & Navigation -->
+<header id="header" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#" class="text-3xl font-bold text-pink-500 font-display">
+            <div>
+                Bread N' Br☕︎w
+                <span class="block text-xs font-normal text-gray-500 tracking-wider">Artisan Breads, Perfect Brews, & Fine Patisseries</span>
+            </div>
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#menu" class="text-gray-600 hover:text-pink-500 transition text-lg">Menu</a>
+            <a href="#catering" class="text-gray-600 hover:text-pink-500 transition text-lg">Catering</a>
+            <a href="#location" class="text-gray-600 hover:text-pink-500 transition text-lg">Location</a>
+            <a href="#menu" class="hidden lg:inline-block bg-pink-500 text-white font-bold py-2 px-6 rounded-full hover:bg-pink-500 transition">Order Online</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+        <a href="#menu" class="block py-2 text-gray-600 hover:text-pink-500">Menu</a>
+        <a href="#catering" class="block py-2 text-gray-600 hover:text-pink-500">Catering</a>
+        <a href="#location" class="block py-2 text-gray-600 hover:text-pink-500">Location</a>
+        <a href="#menu" class="block mt-4 bg-pink-500 text-white font-bold py-2 px-6 rounded-full text-center">Order Online</a>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-bg text-white h-[70vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg">Perfect Brews, Fine Patisseries</h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">Freshly baked pastries and specialty coffee in the heart of Berkeley Heights.</p>
+        <a href="#menu" class="bg-white text-amber-800 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition">Start Your Order</a>
+    </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+    <!-- Menu Section -->
+    <section id="menu" class="my-16">
+        <h2 class="text-5xl font-bold text-center mb-4 font-display">Our Menu</h2>
+
+        <!-- Menu Filters & Search -->
+        <div class="flex flex-col md:flex-row gap-4 items-center mb-12 sticky top-[88px] bg-gray-100 py-4 z-30">
+            <div class="relative w-full md:w-auto md:flex-grow">
+                <input type="text" id="search-bar" placeholder="Search for an item..." class="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-amber-600">
+                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+            </div>
+            <div id="filter-container" class="flex-shrink-0 flex gap-2 overflow-x-auto pb-2">
+                <!-- Filter buttons will be generated by JS -->
+            </div>
+        </div>
+
+        <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Menu items will be generated here by JS -->
+        </div>
+    </section>
+
+    <!-- Catering Section -->
+    <section id="catering" class="my-24">
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+                <h2 class="text-5xl font-bold mb-6 font-display">Catering for Any Event</h2>
+                <p class="text-xl text-gray-600 mb-6">Bring the taste of Bread N' Brew to your next meeting, party, or special event. We offer customizable platters of our finest pastries, breads, and coffee service.</p>
+                <p class="text-lg text-gray-600">Fill out the form to get started, and our catering specialist will get in touch with you shortly.</p>
+            </div>
+            <div class="bg-white p-10 rounded-lg shadow-lg">
+                <form id="catering-form">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-bold mb-2">Full Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-lg" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-lg" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="date" class="block text-gray-700 font-bold mb-2">Event Date</label>
+                        <input type="date" id="date" name="date" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-lg" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-bold mb-2">Tell Us About Your Event</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-lg" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-amber-800 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-900 transition text-xl">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="reviews" class="my-24">
+        <h2 class="text-5xl font-bold text-center mb-16 font-display">What Our Customers Are Saying</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4 text-yellow-500">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
+                <p class="font-bold text-amber-800">- Developer</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4 text-yellow-500">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
+                <p class="font-bold text-amber-800">- Developer</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4 text-yellow-500">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
+                <p class="font-bold text-amber-800">- Developer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section id="gallery" class="my-24">
+        <h2 class="text-5xl font-bold text-center mb-16 font-display">A Glimpse Inside</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid gap-4">
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Cafe interior"></div>
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Latte art close-up"></div>
+            </div>
+            <div class="grid gap-4">
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Coffee beans"></div>
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Pastry display case"></div>
+            </div>
+            <div class="grid gap-4">
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Barista making coffee"></div>
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Loaf of bread"></div>
+            </div>
+            <div class="grid gap-4">
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Customers enjoying coffee"></div>
+                <div><img class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform" src="UPDATE WHEN IMAGE" alt="Espresso machine"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="my-24">
+        <h2 class="text-5xl font-bold text-center mb-16 font-display">Visit Us</h2>
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
+            <div class="rounded-lg overflow-hidden shadow-lg h-full">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.471988894957!2d-74.3808189845963!3d40.66360327933718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3b88b0b54131b%3A0x5f3f0e1f0e2d3d3!2s512%20Springfield%20Ave%2C%20Berkeley%20Heights%2C%20NJ%2007922!5e0!3m2!1sen!2sus!4v1626815320508!5m2!1sen!2sus" width="100%" height="100%" style="border:0; min-height: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="bg-white p-10 rounded-lg shadow-lg flex flex-col justify-center">
+                <h3 class="text-4xl font-bold font-display mb-6">Contact & Hours</h3>
+                <div class="text-xl text-gray-700 mb-6 flex flex-col space-y-4">
+                    <a href="tel:908-933-0123" class="flex items-center hover:text-amber-800">
+                        <i data-lucide="phone" class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0"></i>
+                        <span>(908) 933-0123</span>
+                    </a>
+                    <a href="mailto:breadnbrew512@gmail.com" class="flex items-center hover:text-amber-800">
+                        <i data-lucide="mail" class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0"></i>
+                        <span>breadnbrew512@gmail.com</span>
+                    </a>
+                    <a href="https://www.google.com/maps/place/512+Springfield+Ave,+Berkeley+Heights,+NJ+07922/@40.6833573,-74.4471183,17z/data=!3m1!4b1!4m6!3m5!1s0x89c3badcdf66fd51:0x96ba1541f304b640!8m2!3d40.6833533!4d-74.4422474!16s%2Fg%2F11f4ln2ss9?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="flex items-start hover:text-amber-800">
+                        <i data-lucide="map-pin" class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0 mt-1"></i>
+                        <span>512 Springfield Ave<br>Berkeley Heights, NJ 07922</span>
+                    </a>
+                </div>
+                <div class="text-xl text-gray-700 flex items-start">
+                    <i data-lucide="clock" class="w-6 h-6 mr-4 mt-1 text-amber-800 flex-shrink-0"></i>
+                    <div>
+                        <p class="mb-2"><span class="font-bold">Hours:</span> TBD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-10">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram" class="w-7 h-7"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook" class="w-7 h-7"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="twitter" class="w-7 h-7"></i></a>
+        </div>
+        <p class="font-display text-2xl mb-2">Bread N' Br☕︎w</p>
+        <p>&copy; 2025. All Rights Reserved. </p>
+    </div>
+</footer>
+
+<!-- Floating Cart Button -->
+<button id="floating-cart-btn" class="floating-cart-btn fixed bottom-6 right-6 bg-amber-800 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center z-40">
+    <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+    <span id="cart-item-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold">0</span>
+</button>
+
+
+<!-- Shopping Cart -->
+<div id="cart" class="cart cart-hidden fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 flex flex-col">
+    <!-- Cart will be rendered here by JS -->
+</div>
+
+<!-- "Added to Cart" Toast Notification -->
+<div id="toast-wrapper" class="toast-wrapper fixed bottom-6 left-0 right-0 text-center z-50">
+    <div id="toast-message" class="inline-block bg-gray-900 text-white py-3 px-6 rounded-full shadow-lg">
+        Item added to your cart!
+    </div>
+</div>
+
+
+<!-- Custom Modal for Alerts and Customizations -->
+<div id="custom-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm mx-auto">
+        <div id="modal-content">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 font-display">Alert</h3>
+            <div id="modal-body" class="text-gray-700 mb-6">Message here.</div>
+            <div id="modal-actions">
+                <button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- DATA ---
+    const menuItems = [
+        // Pastries
+        { id: 1, name: 'Butter Croissant', price: 4.50, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691220668252201/crossiant.jpg?ex=684fb65e&is=684e64de&hm=5bdd4b747ef554c8039517f54f3c72ace18fe91a36bd6bd043c9c7f8e8a61954&=&format=webp&width=704&height=704', description: 'Flaky, buttery, and baked to golden perfection. A classic favorite.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        { id: 3, name: 'Cinnamon Bun', price: 5.50, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219783254066/cinnamon.jpg?ex=684fb65e&is=684e64de&hm=438a302406c57b668859321e0e0e2aaa50b3962de71d79603c26bc119f3f47cf&=&format=webp&width=704&height=704', description: 'Sweet, gooey, and topped with a decadent cream cheese frosting.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        { id: 4, name: 'Chocolate Muffin', price: 4.00, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219531599902/chocolate.jpg?ex=684fb65e&is=684e64de&hm=2865dad7a85b970cf99605477b589d374dc048d0b39bff9d05ad8c4fdedd9c92&=&format=webp&width=704&height=704', description: 'A rich, moist chocolate muffin packed with semi-sweet chocolate chips.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'] } ,
+        { id: 9, name: 'Almond Croissant', price: 5.25, category: 'Pastries', img: 'https://i.ibb.co/gZQQBFXd/Almondcros.jpg', description: 'Filled with a sweet almond paste and topped with toasted almonds.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Tree Nuts'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        { id: 10, name: 'Pain au Chocolat', price: 5.00, category: 'Pastries', img: 'https://i.ibb.co/rRrTXJmy/Painauchocolat.jpg', description: 'A classic French pastry with two sticks of dark chocolate.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        { id: 11, name: 'Blueberry Scone', price: 4.25, category: 'Pastries', img: 'https://i.ibb.co/bgz2DNxL/blueberry.jpg', description: 'A tender, crumbly scone bursting with fresh blueberries.', allergens: ['Wheat', 'Dairy', 'Eggs'] },
+        // Breads
+        { id: 2, name: 'Sourdough', price: 17.00, category: 'Breads', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691220106350642/sourdough.jpg?ex=684fb65e&is=684e64de&hm=5e7fefbfba4465f47dd23f13d8bda91a98f0673be367755d64d8dabdf45e635e&=&format=webp&width=704&height=704', description: 'Our signature loaf with a crispy crust and a soft, chewy interior.', allergens: ['Wheat'], customizations: { slice: [{name: 'Loaf', price: 0}, {name: 'Slice', price: -14.50}]} },
+        // Brews & Coffee
+        { id: 5, name: 'Artisan Latte', price: 5.00, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219153981512/artisan.jpg?ex=684fb65e&is=684e64de&hm=438a32e3463de1c3c9dd9732fa1462e9f5797393669ffcbbe1639f464aa6c41f&=&format=webp&width=704&height=704', description: 'Rich espresso with perfectly steamed milk and a touch of latte art.', allergens: ['Dairy'] },
+        { id: 6, name: 'Signature Cold Brew', price: 5.25, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218890002533/coldbrew.jpg?ex=684fb65e&is=684e64de&hm=4bbf54e70fc6f307e5ae4ccfc1a3761d365de941f7bf9d9e4df79992b10c4a82&=&format=webp&width=704&height=704', description: 'Slow-steeped for 18 hours for a smooth, bold, and refreshing taste.', allergens: [] },
+        { id: 7, name: 'Classic Cappuccino', price: 4.75, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218537545839/cappucino.jpg?ex=684fb65e&is=684e64de&hm=f8b3ea4b02483ea0149d66c4c11f88bd159f512720b6b567eb847d3dca900264&=&format=webp&width=704&height=704', description: 'A perfect balance of espresso, steamed milk, and a thick layer of foam.', allergens: ['Dairy'] },
+        { id: 8, name: 'Americano', price: 3.75, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218260852766/esperro.jpg?ex=684fb65e&is=684e64de&hm=a0aa94dc266e87bb0a6255100358110652ac8035ad70677920838556aaae4b8c&=&format=webp&width=704&height=704', description: 'A shot of our signature espresso, softened with hot water.', allergens: [] },
+        // Tea
+        { id: 12, name: 'Earl Grey Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/Hf6ZhbZ7/Earlgrey.jpg', description: 'A classic black tea blend, fragrant with bergamot.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+        { id: 13, name: 'Chamomile Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/xtPyRd9w/Chamomile.jpg', description: 'A soothing herbal tea with a delicate, floral aroma.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+        { id: 14, name: 'Green Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/SDHkcTjR/Greentea.jpg', description: 'A refreshing and vibrant green tea full of antioxidants.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+        // Seasonal Drinks
+        { id: 15, name: 'Fresh Lemonade', price: 4.50, category: 'Seasonal', img: 'https://i.ibb.co/Kcjj58b8/Lemonade.jpg', description: 'Made in-house with freshly squeezed lemons. Perfectly sweet and tart.', allergens: [] },
+        { id: 16, name: 'Matcha Latte', price: 5.75, category: 'Seasonal', img: 'https://i.ibb.co/gZsZj1TW/latte.jpg', description: 'Earthy ceremonial grade matcha, lightly sweetened.', allergens: ['Dairy'], customizations: { temperature: ['Hot', 'Cold'] } },
+        { id: 17, name: 'Strawberry Acai', price: 5.50, category: 'Seasonal', img: 'https://i.ibb.co/4RJF4wmz/Strawberryacai.jpg', description: 'A vibrant and fruity refresher with notes of strawberry and acai.', allergens: [] },
+        // Breakfast
+        { id: 18, name: 'Bacon, Egg & Cheese', price: 8.50, category: 'Breakfast', img: 'https://i.ibb.co/kgc9xzrm/BEC.jpg', description: 'Crispy bacon, fluffy egg, and melted cheese on a fresh brioche bun.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        { id: 19, name: 'Avocado Toast', price: 9.50, category: 'Breakfast', img: 'https://i.ibb.co/cKzs0GNt/AvocadoT.jpg', description: 'Smashed avocado on our signature sourdough, topped with everything seasoning.', allergens: ['Wheat', 'Sesame'], customizations: { toppings: [{ name: 'Add Bacon', price: 2.00, img: 'https://i.ibb.co/hxBK09RP/Bacon-Avocado.jpg' }] } },
+        // Lunch
+        { id: 20, name: 'Turkey & Swiss', price: 12.00, category: 'Lunch', img: 'https://i.ibb.co/JRBSS1c3/Turk-Swiss.jpg', description: 'Roasted turkey, Swiss cheese, lettuce, and tomato on sourdough.', allergens: ['Wheat', 'Dairy'], customizations: { toast: ['Untoasted', 'Toasted'], toppings: [{ name: 'Add Bacon', price: 1.50 }, { name: 'Add Avocado', price: 2.50 }] } },
+        { id: 21, name: 'Caprese Sandwich', price: 11.50, category: 'Lunch', img: 'https://i.ibb.co/Fqw9f190/Caprese.jpg', description: 'Fresh mozzarella, ripe tomatoes, basil, and balsamic glaze on focaccia.', allergens: ['Wheat', 'Dairy'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+        // Pizza
+        { id: 22, name: 'Margherita Pizza', price: 21.00, category: 'Pizza', img: 'https://i.ibb.co/G4SQQ4wD/Margherita.jpg', description: 'Classic pizza with fresh mozzarella, San Marzano tomatoes, and basil.', allergens: ['Wheat', 'Dairy'] },
+        { id: 23, name: 'Classic Pizza', price: 14.00, category: 'Pizza', img: 'https://placehold.co/400x400/d3d3d3/ffffff?text=Classic+Pizza', description: 'A simple cheese pizza. Add pepperoni for $2.00.', allergens: ['Wheat', 'Dairy'], customizations: { toppings: [{ name: 'Add Pepperoni', price: 2.00 }] } },
+        { id: 24, name: 'Spicy Brooklyn Pizza', price: 24.00, category: 'Pizza', img: 'https://i.ibb.co/cSDF23QJ/Spicy-Brooklyn.jpg', description: 'Tomato sauce, mozzarella, pepperoni, pickled long hots, and hot honey.', allergens: ['Wheat', 'Dairy'] },
+        // Sweets
+        { id: 25, name: 'Cake Pop', price: 3.00, category: 'Sweets', img: 'https://i.ibb.co/C51QZ50G/Cakepop.jpg', description: 'A bite-sized treat of vanilla or chocolate cake dipped in icing.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'] },
+        { id: 26, name: 'Assorted Macarons', price: 3.50, category: 'Sweets', img: 'https://i.ibb.co/VpgsSqMn/Macarons.jpg', description: 'Delicate French almond cookies. Flavors change daily.', allergens: ['Tree Nuts', 'Dairy', 'Eggs'] },
+        { id: 27, name: 'Cannoli', price: 4.50, category: 'Sweets', img: 'https://i.ibb.co/Rkg5z023/Cannoli.jpg', description: 'A crispy pastry shell filled with a sweet, creamy ricotta filling.', allergens: ['Wheat', 'Dairy', 'Eggs'] },
+    ];
+
+    // --- STATE ---
+    let cartItems = [];
+    const NJ_SALES_TAX_RATE = 0.06625;
+    let selectedPickupDay = 'today';
+    let selectedPickupTime = '';
+    let currentFilter = 'All';
+    let tipInfo = { type: 'percent', value: 0 };
+    const storeHours = { open: 7, close: 17 };
+    let toastTimer;
+
+    // --- DOM ELEMENTS ---
+    const menuGrid = document.getElementById('menu-grid');
+    const filterContainer = document.getElementById('filter-container');
+    const searchBar = document.getElementById('search-bar');
+    const cartElement = document.getElementById('cart');
+    const floatingCartBtn = document.getElementById('floating-cart-btn');
+    const cartItemCount = document.getElementById('cart-item-count');
+    const toastWrapper = document.getElementById('toast-wrapper');
+    const toastMessage = document.getElementById('toast-message');
+    const modal = document.getElementById('custom-modal');
+
+    // --- HELPER FUNCTIONS ---
+    function calculateAndRoundPickupTime() {
+        const now = new Date();
+        const earliestPickup = new Date(now.getTime() + 15 * 60000);
+        const minutes = earliestPickup.getMinutes();
+        const remainder = minutes % 15;
+        if (remainder !== 0) {
+            earliestPickup.setMinutes(earliestPickup.getMinutes() + (15 - remainder));
+        }
+        earliestPickup.setSeconds(0, 0);
+        return earliestPickup;
+    }
+
+    function generateTimeSlotButtons(day, showAll = false) {
+        const timeSlotContainer = document.getElementById('time-slot-container');
+        const laterButtonContainer = document.getElementById('later-button-container');
+        if (!timeSlotContainer) return;
+        timeSlotContainer.innerHTML = '';
+        if (laterButtonContainer) laterButtonContainer.innerHTML = '';
+
+        let startHour, startMinute;
+        if (day === 'today') {
+            const earliestTime = calculateAndRoundPickupTime();
+            startHour = earliestTime.getHours();
+            startMinute = earliestTime.getMinutes();
+            if (startHour >= storeHours.close) {
+                timeSlotContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full">Sorry, ordering for today is closed.</p>';
+                return;
+            }
+            if (startHour < storeHours.open) {
+                startHour = storeHours.open;
+                startMinute = 0;
+            }
+        } else { // tomorrow
+            startHour = storeHours.open;
+            startMinute = 0;
+        }
+
+        let slotsGenerated = 0, moreSlotsAvailable = false;
+        const maxInitialSlots = 5;
+
+        const nowButton = document.createElement('button');
+        nowButton.className = "time-slot-btn p-2 border-2 border-amber-600 rounded-lg hover:bg-amber-100 selected";
+        nowButton.dataset.time = 'Now';
+        const nowTime = new Date();
+        nowTime.setHours(startHour, startMinute);
+        nowButton.textContent = `Now (${nowTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`;
+        timeSlotContainer.appendChild(nowButton);
+        selectedPickupTime = 'Now';
+        slotsGenerated++;
+
+
+        for (let h = startHour; h < storeHours.close; h++) {
+            for (let m = 0; m < 60; m += 15) {
+                if (h === startHour && m < startMinute) continue;
+                if (slotsGenerated > maxInitialSlots && !showAll) {
+                    moreSlotsAvailable = true;
+                    break;
+                }
+
+                const tempDate = new Date();
+                tempDate.setHours(h, m, 0);
+                const timeString = tempDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                if (slotsGenerated === 1 && day === 'today') {
+                    if (h === startHour && m === startMinute) continue;
+                }
+
+                const button = document.createElement('button');
+                button.className = "time-slot-btn p-2 border-2 border-amber-600 rounded-lg hover:bg-amber-100";
+                button.dataset.time = timeString;
+                button.textContent = timeString;
+
+                timeSlotContainer.appendChild(button);
+                slotsGenerated++;
+            }
+            if (moreSlotsAvailable) break;
+        }
+
+        if (moreSlotsAvailable && laterButtonContainer) {
+            const laterButton = document.createElement('button');
+            laterButton.className = "show-later-btn text-amber-800 font-bold hover:underline mt-2";
+            laterButton.textContent = "Show Later Times";
+            laterButtonContainer.appendChild(laterButton);
+        }
+    }
+
+    function showToast(message) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMessage.textContent = message;
+        toastWrapper.classList.add('visible');
+        toastTimer = setTimeout(() => {
+            toastWrapper.classList.remove('visible');
+        }, 3000);
+    }
+
+    function showModal(title, body, actions) {
+        modal.querySelector('#modal-title').textContent = title;
+        modal.querySelector('#modal-body').innerHTML = body;
+        modal.querySelector('#modal-actions').innerHTML = actions;
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+    }
+
+    function hideModal() {
+        modal.classList.add('hidden');
+    }
+
+    function appendMenuItem(item) {
+        const itemEl = document.createElement('div');
+        itemEl.className = "bg-white rounded-lg shadow-lg overflow-hidden flex flex-col";
+        itemEl.dataset.itemId = item.id;
+
+        let optionsHTML = '';
+        if (item.customizations) {
+            optionsHTML += '<div class="px-6 pt-4 space-y-2">';
+            if (item.customizations.temperature) {
+                optionsHTML += `<div class="flex items-center space-x-2">
+                        <i data-lucide="thermometer" class="w-5 h-5 text-gray-500"></i>
+                        <div class="flex-grow flex border border-gray-300 rounded-lg overflow-hidden">
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm selected" data-type="temperature" data-value="Cold">Cold</button>
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm border-l" data-type="temperature" data-value="Hot">Hot</button>
+                        </div>
+                    </div>`;
+            }
+            if (item.customizations.slice) {
+                optionsHTML += `<div class="flex items-center space-x-2">
+                        <i data-lucide="scaling" class="w-5 h-5 text-gray-500"></i>
+                        <div class="flex-grow flex border border-gray-300 rounded-lg overflow-hidden">
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm selected" data-type="slice" data-value="Loaf">Loaf</button>
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm border-l" data-type="slice" data-value="Slice">Slice</button>
+                        </div>
+                    </div>`;
+            }
+            if (item.customizations.toast) {
+                optionsHTML += `<div class="flex items-center space-x-2">
+                        <i data-lucide="toast" class="w-5 h-5 text-gray-500"></i>
+                        <div class="flex-grow flex border border-gray-300 rounded-lg overflow-hidden">
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm selected" data-type="toast" data-value="Untoasted">Untoasted</button>
+                            <button class="custom-btn flex-1 py-1 px-2 text-sm border-l" data-type="toast" data-value="Toasted">Toasted</button>
+                        </div>
+                    </div>`;
+            }
+            optionsHTML += '</div>';
+        }
+
+        itemEl.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null;this.src='https://placehold.co/400x400/ccc/ffffff?text=Image+Not+Found';" class="w-full h-56 menu-item-img">
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-xl font-bold">${item.name}</h4>
+                        <span class="text-lg font-bold text-amber-800">${item.price.toFixed(2)}</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-grow">${item.description}</p>
+                    <div class="flex text-sm text-gray-500 justify-between">
+                         <button class="allergens-btn hover:underline" data-item-id="${item.id}">Allergens</button>
+                         ${item.customizations && item.customizations.toppings ? `<button class="customize-btn font-bold text-amber-800 hover:underline" data-item-id="${item.id}">Customize</button>` : ''}
+                    </div>
+                </div>
+                 ${optionsHTML}
+                <div class="p-6 pt-4 flex items-center justify-between mt-auto">
+                    <div class="flex items-center border border-gray-300 rounded-lg">
+                        <button class="quantity-change p-2" data-item-id="${item.id}" data-change="-1">-</button>
+                        <input type="text" id="quantity-${item.id}" value="1" class="w-12 text-center border-l border-r border-gray-300" readonly>
+                        <button class="quantity-change p-2" data-item-id="${item.id}" data-change="1">+</button>
+                    </div>
+                    <button class="add-to-cart-btn bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition" data-item-id="${item.id}">Add</button>
+                </div>
+            `;
+        menuGrid.appendChild(itemEl);
+    }
+
+    // --- RENDER FUNCTIONS ---
+    function renderFilters() {
+        const categories = ['All', ...new Set(menuItems.map(item => item.category))];
+        filterContainer.innerHTML = '';
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = `filter-btn px-4 py-2 border-2 rounded-full font-semibold whitespace-nowrap ${currentFilter === category ? 'selected' : 'border-amber-600 text-amber-800'}`;
+            button.textContent = category;
+            button.dataset.category = category;
+            filterContainer.appendChild(button);
+        });
+    }
+
+    function renderMenu() {
+        const searchTerm = searchBar.value.toLowerCase();
+        menuGrid.innerHTML = '';
+
+        const itemsMatchingSearch = menuItems.filter(item =>
+            item.name.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm)
+        );
+
+        if (currentFilter === 'All') {
+            const categories = {};
+            itemsMatchingSearch.forEach(item => {
+                if (!categories[item.category]) categories[item.category] = [];
+                categories[item.category].push(item);
+            });
+
+            const categoryOrder = Array.from(filterContainer.querySelectorAll('.filter-btn'))
+                .map(btn => btn.dataset.category)
+                .filter(cat => cat !== 'All');
+
+            let isFirstCategory = true;
+            categoryOrder.forEach(categoryName => {
+                if (categories[categoryName] && categories[categoryName].length > 0) {
+                    const categoryTitle = document.createElement('h3');
+                    const marginTopClass = isFirstCategory ? '' : 'mt-16';
+                    categoryTitle.className = `text-4xl font-bold ${marginTopClass} mb-8 font-display text-amber-900 col-span-full`;
+                    categoryTitle.textContent = categoryName;
+                    menuGrid.appendChild(categoryTitle);
+
+                    isFirstCategory = false;
+
+                    categories[categoryName].forEach(item => appendMenuItem(item));
+                }
+            });
+
+            if (menuGrid.children.length === 0) {
+                menuGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 text-xl">No items found matching your search.</p>`;
+            }
+
+        } else {
+            const filteredItems = itemsMatchingSearch.filter(item => item.category === currentFilter);
+            if (filteredItems.length === 0) {
+                menuGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 text-xl">No items found.</p>`;
+                return;
+            }
+            filteredItems.forEach(item => appendMenuItem(item));
+        }
+        lucide.createIcons();
+    }
+
+    function renderCart() {
+        updateFloatingCartButton();
+        if (cartItems.length === 0) {
+            cartElement.classList.add('cart-hidden');
+            return;
+        }
+
+        cartElement.innerHTML = '';
+
+        const header = document.createElement('div');
+        header.className = "p-4 border-b flex justify-between items-center flex-shrink-0";
+        header.innerHTML = `<h3 class="text-2xl font-bold font-display">Your Order</h3><button id="close-cart" class="p-2"><i data-lucide="x"></i></button>`;
+        cartElement.appendChild(header);
+
+        const itemsContainer = document.createElement('div');
+        itemsContainer.className = "p-4 flex-grow overflow-y-auto";
+        let subtotal = 0;
+        cartItems.forEach(cartItem => {
+            const menuItem = menuItems.find(mi => mi.id === cartItem.id);
+            const itemTotal = cartItem.price * cartItem.quantity;
+            subtotal += itemTotal;
+
+            let customText = Object.entries(cartItem.customizations)
+                .map(([key, value]) => Array.isArray(value) && value.length > 0 ? value.join(', ') : (typeof value === 'string' && value !== 'Untoasted' && value !== 'Loaf' ? value : null))
+                .filter(Boolean)
+                .join(', ');
+
+            itemsContainer.innerHTML += `
+                    <div class="flex items-center justify-between mb-4">
+                        <img src="${menuItem.img}" class="w-16 h-16 rounded-md object-cover mr-4">
+                        <div class="flex-grow">
+                            <p class="font-bold">${menuItem.name}</p>
+                            ${customText ? `<p class="text-sm text-gray-500">${customText}</p>` : ''}
+                            <span class="font-bold text-lg text-amber-800">$${itemTotal.toFixed(2)}</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="cart-quantity-change p-1" data-unique-id="${cartItem.uniqueId}" data-change="-1"><i data-lucide="minus-circle" class="w-5 h-5 text-gray-500 hover:text-red-500"></i></button>
+                            <span class="font-bold w-6 text-center">${cartItem.quantity}</span>
+                            <button class="cart-quantity-change p-1" data-unique-id="${cartItem.uniqueId}" data-change="1"><i data-lucide="plus-circle" class="w-5 h-5 text-gray-500 hover:text-green-500"></i></button>
+                            <button class="cart-remove-item p-1" data-unique-id="${cartItem.uniqueId}"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                        </div>
+                    </div>
+                `;
+        });
+        cartElement.appendChild(itemsContainer);
+
+        const tax = subtotal * NJ_SALES_TAX_RATE;
+        const tipAmount = tipInfo.type === 'percent' ? subtotal * (tipInfo.value / 100) : tipInfo.value;
+        const total = subtotal + tax + tipAmount;
+
+        const footer = document.createElement('div');
+        footer.className = "p-4 border-t flex-shrink-0";
+        footer.innerHTML = `
+                <div class="text-sm text-gray-500 mb-4">Orders over $150 must be placed by calling the store.</div>
+                <div class="space-y-2 mb-4">
+                    <div class="flex justify-between"><span class="text-gray-600">Subtotal:</span> <span id="cart-subtotal">$${subtotal.toFixed(2)}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-600">NJ Sales Tax (6.625%):</span> <span id="cart-tax">$${tax.toFixed(2)}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-600">Tip:</span> <span id="cart-tip">$${tipAmount.toFixed(2)}</span></div>
+                    <div class="flex justify-between text-xl font-bold"><span class="font-display">Total:</span> <span id="cart-total">$${total.toFixed(2)}</span></div>
+                </div>
+
+                <div id="checkout-view">
+                     <div class="mb-4">
+                        <label class="font-bold font-display text-xl mb-2 block">Add a Tip:</label>
+                        <div class="grid grid-cols-5 gap-2">
+                             <button class="tip-btn p-2 border-2 border-amber-600 rounded-lg ${tipInfo.type === 'percent' && tipInfo.value === 15 ? 'selected' : ''}" data-tip="15">15%</button>
+                             <button class="tip-btn p-2 border-2 border-amber-600 rounded-lg ${tipInfo.type === 'percent' && tipInfo.value === 18 ? 'selected' : ''}" data-tip="18">18%</button>
+                             <button class="tip-btn p-2 border-2 border-amber-600 rounded-lg ${tipInfo.type === 'percent' && tipInfo.value === 20 ? 'selected' : ''}" data-tip="20">20%</button>
+                             <button class="tip-btn p-2 border-2 border-amber-600 rounded-lg ${tipInfo.type === 'percent' && tipInfo.value === 25 ? 'selected' : ''}" data-tip="25">25%</button>
+                             <button class="tip-btn p-2 border-2 border-amber-600 rounded-lg ${tipInfo.isCustom ? 'selected' : ''}" data-tip="custom">Custom</button>
+                        </div>
+                        <div id="custom-tip-container" class="${tipInfo.isCustom ? '' : 'hidden'} mt-2 relative">
+                             <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                             <input type="number" id="custom-tip-input" min="5" placeholder="Percent" class="w-full p-2 pr-8 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" value="${tipInfo.isCustom ? tipInfo.value : ''}">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="font-bold font-display text-xl mb-2 block">Choose an option:</label>
+                        <div class="flex space-x-2">
+                             <button class="delivery-btn flex-1 p-2 border-2 border-amber-800 text-amber-800 rounded-lg font-bold">Delivery</button>
+                             <button class="pickup-btn flex-1 p-2 border-2 border-amber-800 bg-amber-800 text-white rounded-lg font-bold">Pickup</button>
+                        </div>
+                    </div>
+                    <div id="delivery-options" class="hidden text-center space-y-2">
+                         <p class="text-sm">Order delivery through one of our partners:</p>
+                         <div class="grid grid-cols-3 gap-2">
+                            <a href="#" class="p-2 border rounded-lg hover:bg-gray-100">DoorDash</a>
+                            <a href="#" class="p-2 border rounded-lg hover:bg-gray-100">UberEats</a>
+                            <a href="#" class="p-2 border rounded-lg hover:bg-gray-100">GrubHub</a>
+                         </div>
+                         <p class="text-xs text-gray-500 pt-2">Rates may increase/decrease (we don't control these).</p>
+                    </div>
+                    <div id="pickup-options">
+                        <div class="text-center mb-4">
+                             <label class="font-bold">Pickup Date & Time:</label>
+                            <div class="flex justify-center items-center space-x-2 mt-1">
+                               <div class="flex space-x-1 border border-gray-300 rounded-lg p-1">
+                                    <button data-day="today" class="date-btn flex-1 px-3 py-1 rounded ${selectedPickupDay === 'today' ? 'bg-amber-800 text-white' : ''}">Today</button>
+                                    <button data-day="tomorrow" class="date-btn flex-1 px-3 py-1 rounded ${selectedPickupDay === 'tomorrow' ? 'bg-amber-800 text-white' : ''}">Tomorrow</button>
+                               </div>
+                            </div>
+                            <div id="time-slot-container" class="grid grid-cols-3 gap-2 max-h-32 overflow-y-auto mt-2 p-2 border rounded-lg"></div>
+                            <div id="later-button-container" class="mt-2"></div>
+                        </div>
+                        <button class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 text-xl checkout-continue-btn">Continue to Payment</button>
+                    </div>
+                </div>
+
+                <div id="payment-view" class="hidden">
+                     <h4 class="font-bold font-display text-xl mb-2 block">Select Payment</h4>
+                     <div class="space-y-3">
+                        <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100"><i data-lucide="credit-card" class="mr-2"></i> Debit/Credit Card</button>
+                        <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100"><i data-lucide="apple" class="mr-2"></i> Apple/Google Pay</button>
+                     </div>
+                     <button class="mt-4 text-sm text-gray-600 hover:underline back-to-checkout-btn">Back to Order Options</button>
+                </div>
+            `;
+        cartElement.appendChild(footer);
+
+        generateTimeSlotButtons(selectedPickupDay);
+
+        lucide.createIcons();
+    }
+
+    function updateFloatingCartButton() {
+        const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        if (totalQuantity > 0) {
+            cartItemCount.textContent = totalQuantity;
+            floatingCartBtn.classList.add('visible');
+        } else {
+            floatingCartBtn.classList.remove('visible');
+        }
+    }
+
+    // --- EVENT HANDLERS & LOGIC ---
+    function addToCart(item, quantity, customizations) {
+
+        let price = item.price;
+        if (customizations.toppings) {
+            customizations.toppings.forEach(toppingName => {
+                const topping = item.customizations.toppings.find(t => t.name === toppingName);
+                if(topping) price += topping.price;
+            });
+        }
+        if (customizations.slice === 'Slice') {
+            const sliceOption = item.customizations.slice.find(s => s.name === 'Slice');
+            if(sliceOption) price += sliceOption.price;
+        }
+
+        showToast('Item added to your cart!');
+        const uniqueId = `${item.id}-${JSON.stringify(customizations)}`;
+        const existingItem = cartItems.find(cartItem => cartItem.uniqueId === uniqueId);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cartItems.push({ id: item.id, uniqueId, quantity, customizations, price });
+        }
+        renderCart();
+    }
+
+    menuGrid.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (!button) return;
+
+        const card = e.target.closest('.bg-white');
+
+        if (button.classList.contains('quantity-change')) {
+            const itemId = parseInt(button.dataset.itemId);
+            const change = parseInt(button.dataset.change);
+            const input = document.getElementById(`quantity-${itemId}`);
+            let currentValue = parseInt(input.value);
+            currentValue = Math.max(1, currentValue + change);
+            input.value = currentValue;
+        } else if (button.classList.contains('add-to-cart-btn')) {
+            const itemId = parseInt(button.dataset.itemId);
+            const item = menuItems.find(i => i.id === itemId);
+            const quantity = parseInt(document.getElementById(`quantity-${itemId}`).value);
+            const customizations = { toppings: [] };
+
+            card.querySelectorAll('.custom-btn.selected').forEach(btn => {
+                customizations[btn.dataset.type] = btn.dataset.value;
+            });
+
+            const cardImage = card.querySelector('.menu-item-img');
+            if (customizations.toppings && customizations.toppings.includes('Add Bacon') && item.customizations.toppings[0].img) {
+                cardImage.src = item.customizations.toppings[0].img;
+            }
+
+            addToCart(item, quantity, customizations);
+        } else if (button.classList.contains('custom-btn')) {
+            const type = button.dataset.type;
+            const parent = button.parentElement;
+            parent.querySelectorAll(`.custom-btn[data-type="${type}"]`).forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        } else if (button.classList.contains('allergens-btn')) {
+            const item = menuItems.find(i => i.id == button.dataset.itemId);
+            const allergensList = item.allergens.length > 0 ? item.allergens.join(', ') : 'No common allergens listed.';
+            showModal('Allergen Information', `Contains: ${allergensList}`, '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full">OK</button>');
+        } else if (button.classList.contains('customize-btn')) {
+            const item = menuItems.find(i => i.id == button.dataset.itemId);
+            let modalBody = '<div class="space-y-2 text-left">';
+            item.customizations.toppings.forEach(topping => {
+                modalBody += `<label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
+                                    <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
+                                 </label>`;
+            });
+            modalBody += '</div>';
+            const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full">Cancel</button>
+                                 <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full">Add to Cart</button>`;
+            showModal(`Customize ${item.name}`, modalBody, actions);
+        }
+    });
+
+    modal.addEventListener('click', e => {
+        if (e.target.classList.contains('modal-close-btn')) {
+            hideModal();
+        } else if (e.target.id === 'save-customizations-btn') {
+            const itemId = parseInt(e.target.dataset.itemId);
+            const item = menuItems.find(i => i.id === itemId);
+            const quantity = 1;
+            const customizations = { toppings: [] };
+
+            document.querySelectorAll('.topping-checkbox:checked').forEach(checkbox => {
+                customizations.toppings.push(checkbox.dataset.name);
+            });
+
+            addToCart(item, quantity, customizations);
+            hideModal();
+        }
+    });
+
+    cartElement.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (!button) return;
+
+        if (button.closest('#close-cart')) {
+            cartElement.classList.add('cart-hidden');
+        } else if (button.classList.contains('cart-quantity-change')) {
+            const uniqueId = button.dataset.uniqueId;
+            const change = parseInt(button.dataset.change);
+            const itemInCart = cartItems.find(item => item.uniqueId === uniqueId);
+            if (itemInCart) {
+                itemInCart.quantity += change;
+                if (itemInCart.quantity <= 0) {
+                    cartItems = cartItems.filter(item => item.uniqueId !== uniqueId);
+                }
+            }
+            renderCart();
+        } else if (button.classList.contains('cart-remove-item')) {
+            const uniqueId = button.dataset.uniqueId;
+            cartItems = cartItems.filter(item => item.uniqueId !== uniqueId);
+            renderCart();
+        } else if (button.classList.contains('delivery-btn')) {
+            document.getElementById('delivery-options').classList.remove('hidden');
+            document.getElementById('pickup-options').classList.add('hidden');
+        } else if (button.classList.contains('pickup-btn')) {
+            document.getElementById('delivery-options').classList.add('hidden');
+            document.getElementById('pickup-options').classList.remove('hidden');
+        } else if (button.classList.contains('date-btn')) {
+            selectedPickupDay = button.dataset.day;
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('bg-amber-800', 'text-white'));
+            button.classList.add('bg-amber-800', 'text-white');
+            generateTimeSlotButtons(selectedPickupDay);
+        } else if (button.classList.contains('time-slot-btn')) {
+            document.querySelectorAll('.time-slot-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedPickupTime = button.dataset.time;
+        } else if(button.classList.contains('show-later-btn')) {
+            generateTimeSlotButtons(selectedPickupDay, true);
+        } else if (button.classList.contains('tip-btn')) {
+            const tipValue = button.dataset.tip;
+            document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('selected'));
+            button.classList.add('selected');
+            const customTipContainer = document.getElementById('custom-tip-container');
+            const customTipInput = document.getElementById('custom-tip-input');
+            if (tipValue === 'custom') {
+                customTipContainer.classList.remove('hidden');
+                tipInfo = { type: 'percent', value: parseFloat(customTipInput.value) || 0, isCustom: true };
+            } else {
+                customTipContainer.classList.add('hidden');
+                customTipInput.value = '';
+                tipInfo = { type: 'percent', value: parseInt(tipValue), isCustom: false };
+            }
+            updateCartTotals();
+        } else if (button.classList.contains('checkout-continue-btn')) {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            if (subtotal > 150) {
+                showModal('Order Limit Exceeded', 'Our max online order amount is $150 before taxes & tips. Please call us at <a href="tel:908-933-0123" class="text-amber-800 font-bold hover:underline">(908) 933-0123</a> to place a larger order.', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full">OK</button>');
+                return;
+            }
+            document.getElementById('checkout-view').classList.add('hidden');
+            document.getElementById('payment-view').classList.remove('hidden');
+        } else if (button.classList.contains('back-to-checkout-btn')) {
+            document.getElementById('checkout-view').classList.remove('hidden');
+            document.getElementById('payment-view').classList.add('hidden');
+        } else if (button.classList.contains('payment-btn')) {
+            showModal('Online Ordering', 'Our full online ordering system is launching soon! Please call us or visit in person to place an order.', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full">OK</button>');
+        }
+    });
+
+    cartElement.addEventListener('input', e => {
+        if (e.target.id === 'custom-tip-input') {
+            const value = parseFloat(e.target.value) || 0;
+            tipInfo = { type: 'percent', value: value >= 5 ? value : 0, isCustom: true };
+            updateCartTotals();
+        }
+    });
+
+    function updateCartTotals() {
+        const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const tax = subtotal * NJ_SALES_TAX_RATE;
+        const tipAmount = tipInfo.type === 'percent' ? subtotal * (tipInfo.value / 100) : 0;
+        const total = subtotal + tax + tipAmount;
+
+        const subtotalEl = document.getElementById('cart-subtotal');
+        const taxEl = document.getElementById('cart-tax');
+        const tipEl = document.getElementById('cart-tip');
+        const totalEl = document.getElementById('cart-total');
+
+        if(subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+        if(taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+        if(tipEl) tipEl.textContent = `$${tipAmount.toFixed(2)}`;
+        if(totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    floatingCartBtn.addEventListener('click', () => {
+        if (cartItems.length > 0) {
+            renderCart();
+            cartElement.classList.remove('cart-hidden');
+        }
+    });
+
+    filterContainer.addEventListener('click', e => {
+        if(e.target.classList.contains('filter-btn')) {
+            currentFilter = e.target.dataset.category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('selected'));
+            e.target.classList.add('selected');
+            renderMenu();
+        }
+    });
+
+    searchBar.addEventListener('input', renderMenu);
+
+
+    // --- INITIALIZATION ---
+    lucide.createIcons();
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    const header = document.getElementById('header');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            header.classList.add('py-2');
+            header.classList.remove('py-4');
+        } else {
+            header.classList.add('py-4');
+            header.classList.remove('py-2');
+        }
+    };
+
+    const cateringForm = document.getElementById('catering-form');
+    cateringForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const date = e.target.date.value;
+        const message = e.target.message.value;
+
+        const subject = encodeURIComponent("IMPORTANT - CATERING INQUIRY !!!");
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nEvent Date: ${date}\n\nMessage:\n${message}`);
+
+        window.location.href = `mailto:breadnbrew512@gmail.com?subject=${subject}&body=${body}`;
+
+        showModal('Inquiry Ready', 'Your email client has been opened with the catering inquiry details. Please send the email to submit your request.', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full">OK</button>');
+        cateringForm.reset();
+    });
+
+    renderFilters();
+    renderMenu();
+</script>
+</body>
+</html>
