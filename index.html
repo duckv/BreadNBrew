@@ -1171,8 +1171,13 @@
         const quantityButtons = `
             <div class="flex items-center gap-3 mt-4">
                 <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="-1">-</button>
-                <input type="number" id="quantity-${item.id}" value="1" min="1" class="w-16 text-center border rounded py-1">
+                <input type="number" id="quantity-${item.id}" value="1" min="1" max="25" class="w-16 text-center border rounded py-1">
                 <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="1">+</button>
+                ${
+                  item.customizations && item.customizations.toppings
+                    ? `<button class="customize-btn bg-gray-200 text-gray-800 font-bold py-2 px-3 rounded-full hover:bg-gray-300 transition touch-target text-sm" data-item-id="${item.id}">Customize</button>`
+                    : ""
+                }
             </div>
         `;
 
@@ -1188,11 +1193,6 @@
                 ${quantityButtons}
                 <div class="flex gap-2 mt-4">
                     <button class="add-to-cart-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target" data-item-id="${item.id}">Add to Cart</button>
-                    ${
-                      item.customizations && item.customizations.toppings
-                        ? `<button class="customize-btn bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target" data-item-id="${item.id}">Customize</button>`
-                        : ""
-                    }
                     <button class="allergens-btn bg-blue-100 text-blue-800 px-3 py-2 rounded-full text-sm hover:bg-blue-200 transition touch-target" data-item-id="${item.id}">Allergens</button>
                 </div>
             </div>
