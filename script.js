@@ -340,24 +340,25 @@ function renderCart() {
     }
 
     itemDiv.innerHTML = `
-            <img src="${menuItem.img}" alt="${menuItem.name}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg border-2 border-gray-200">
+            <div class="absolute top-2 left-2 bg-amber-600 text-white px-2 py-1 rounded-full text-xs font-bold">ITEM</div>
+            <img src="${menuItem.img}" alt="${menuItem.name}" class="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-xl border-4 border-amber-300 shadow-lg">
             <div class="flex-1">
-                <h4 class="font-bold text-base sm:text-lg text-gray-900 mb-1">${menuItem.name}</h4>
+                <h4 class="font-bold text-xl sm:text-2xl text-gray-900 mb-2 bg-yellow-100 px-2 py-1 rounded">${menuItem.name}</h4>
                 ${customizationText}
-                <p class="text-amber-800 font-bold text-base sm:text-lg mt-2">$${cartItem.price.toFixed(2)} each</p>
-                <div class="flex items-center justify-between mt-3">
-                    <div class="flex items-center gap-3 bg-gray-50 rounded-full px-2 py-1">
-                        <button type="button" class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
-                        <span class="w-8 text-center font-bold text-lg text-gray-900">${cartItem.quantity}</span>
-                        <button type="button" class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
+                <p class="text-amber-900 font-bold text-lg sm:text-xl mt-3 bg-amber-100 px-2 py-1 rounded">$${cartItem.price.toFixed(2)} each</p>
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-center gap-4 bg-amber-100 rounded-full px-4 py-2 border-2 border-amber-300">
+                        <button type="button" class="cart-quantity-change bg-red-600 hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg touch-target transition-colors shadow-md" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
+                        <span class="w-12 text-center font-bold text-2xl text-gray-900 bg-white px-2 py-1 rounded border-2 border-amber-400">${cartItem.quantity}</span>
+                        <button type="button" class="cart-quantity-change bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg touch-target transition-colors shadow-md" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
                     </div>
-                    <button type="button" class="cart-remove-item bg-red-50 hover:bg-red-100 text-red-700 hover:text-red-800 p-2 rounded-full touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <button type="button" class="cart-remove-item bg-red-100 hover:bg-red-200 text-red-800 hover:text-red-900 p-3 rounded-xl touch-target transition-colors border-2 border-red-300 shadow-md" data-unique-id="${cartItem.uniqueId}">
+                        <i data-lucide="trash-2" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
             <div class="text-right flex flex-col justify-center">
-                <p class="font-bold text-xl text-amber-800 bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+                <p class="font-bold text-2xl text-white bg-amber-700 px-4 py-3 rounded-xl border-2 border-amber-800 shadow-lg">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
             </div>
         `;
 
