@@ -136,6 +136,15 @@ h4,
   .cart {
     max-width: 100% !important;
     width: 100% !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+  }
+
+  .cart-items-container {
+    max-height: calc(100vh - 400px) !important;
   }
 
   .filter-btn {
