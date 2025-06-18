@@ -263,6 +263,9 @@ function renderCart() {
   updateFloatingCartButton();
 
   if (cartItems.length === 0) {
+    // Clean up scroll buttons
+    cleanupScrollButtons();
+
     cartElement.innerHTML = `
             <div class="flex items-center justify-between p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100">
                 <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
