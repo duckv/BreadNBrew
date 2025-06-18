@@ -796,6 +796,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Handle clicks on cart overlay to close cart
+  cartElement.addEventListener("click", (e) => {
+    // If clicking on the overlay background (not the cart content), close cart
+    if (e.target === cartElement) {
+      cleanupScrollButtons();
+      cartElement.classList.add("cart-hidden");
+      unlockBodyScroll();
+    }
+  });
+
   // Menu grid event listener
   menuGrid.addEventListener("click", (e) => {
     const button = e.target.closest("button");
