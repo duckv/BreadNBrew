@@ -42,11 +42,63 @@ h4,
   transform: translateX(110%);
 }
 
-/* Ensure cart items are visible */
+/* Ensure cart items are visible and scrollable */
 .cart-items-container {
   max-height: calc(100vh - 300px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #d97706 #f3f4f6;
+}
+
+/* Custom scrollbar for webkit browsers */
+.cart-items-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 4px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
+}
+
+/* Scroll indicator gradient at top and bottom */
+.cart-items-container::before,
+.cart-items-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cart-items-container::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(249, 250, 251, 1),
+    rgba(249, 250, 251, 0)
+  );
+}
+
+.cart-items-container::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(249, 250, 251, 1),
+    rgba(249, 250, 251, 0)
+  );
 }
 
 /* Ensure checkout section is always visible */
