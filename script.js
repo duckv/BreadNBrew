@@ -310,7 +310,7 @@ function renderCart() {
 
     const itemDiv = document.createElement("div");
     itemDiv.className =
-      "flex gap-4 bg-white p-5 rounded-xl shadow-md border-2 border-gray-100 hover:border-amber-200 transition-all duration-200";
+      "flex gap-4 bg-white p-5 rounded-xl shadow-lg border-2 border-amber-200 hover:border-amber-300 transition-all duration-200 mb-2";
 
     let customizationText = "";
     if (cartItem.customizations) {
