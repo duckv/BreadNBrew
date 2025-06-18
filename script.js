@@ -356,7 +356,8 @@ function renderCart() {
 
   const footer = document.createElement("div");
   footer.id = "cart-footer";
-  footer.className = "border-t bg-white";
+  footer.className =
+    "cart-footer border-t-2 border-amber-200 bg-white shadow-lg";
 
   footer.innerHTML = `
         <div id="checkout-view" class="p-6 bg-white border-t-2 border-amber-100">
