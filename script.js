@@ -299,10 +299,10 @@ function renderCart() {
 
   const itemsContainer = document.createElement("div");
   itemsContainer.className =
-    "flex-1 overflow-y-auto bg-gradient-to-b from-gray-50 to-white";
+    "cart-items-container bg-gradient-to-b from-gray-50 to-white";
 
   const itemsList = document.createElement("div");
-  itemsList.className = "p-4 sm:p-6 space-y-6";
+  itemsList.className = "p-4 sm:p-6 space-y-6 min-h-full";
 
   cartItems.forEach((cartItem) => {
     const menuItem = menuItems.find((item) => item.id === cartItem.id);
