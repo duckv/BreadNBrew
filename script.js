@@ -514,6 +514,13 @@ function renderCart() {
   cartElement.appendChild(itemsContainer);
   cartElement.appendChild(footer);
 
+  // Add scroll buttons to document body
+  document.body.appendChild(scrollUpBtn);
+  document.body.appendChild(scrollDownBtn);
+
+  // Setup scroll functionality
+  setupCartScrolling();
+
   generateTimeSlotButtons(selectedPickupDay);
   updateCartTotals();
   lucide.createIcons();
