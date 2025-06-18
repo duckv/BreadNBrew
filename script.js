@@ -444,17 +444,19 @@ function renderCart() {
             <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-700 transition text-xl touch-target shadow-lg border-2 border-green-500 mb-4">Continue to Payment</button>
         </div>
 
-        <div id="payment-view" class="hidden p-4 sm:p-6">
-            <h4 class="font-bold font-display text-xl mb-4">Select Payment</h4>
-            <div class="space-y-3 mb-6">
-                <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
-                    <i data-lucide="credit-card" class="mr-2"></i> Debit/Credit Card
-                </button>
-                <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
-                    <i data-lucide="smartphone" class="mr-2"></i> Apple/Google Pay
-                </button>
+        <div id="payment-view" class="hidden">
+            <div class="p-6 bg-white border-t-2 border-amber-100">
+                <h4 class="font-bold font-display text-2xl mb-6 text-gray-900">Select Payment Method</h4>
+                <div class="space-y-4 mb-8">
+                    <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+                        <i data-lucide="credit-card" class="mr-3 w-6 h-6"></i> Debit/Credit Card
+                    </button>
+                    <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+                        <i data-lucide="smartphone" class="mr-3 w-6 h-6"></i> Apple/Google Pay
+                    </button>
+                </div>
+                <button class="back-to-checkout-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors touch-target">← Back to Order Options</button>
             </div>
-            <button class="back-to-checkout-btn w-full text-sm text-gray-600 hover:underline touch-target">Back to Order Options</button>
         </div>
     `;
 
