@@ -351,7 +351,7 @@ function renderCart() {
                         <span class="w-8 text-center font-bold text-lg text-gray-900">${cartItem.quantity}</span>
                         <button type="button" class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
                     </div>
-                    <button class="cart-remove-item bg-red-50 hover:bg-red-100 text-red-700 hover:text-red-800 p-2 rounded-full touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
+                    <button type="button" class="cart-remove-item bg-red-50 hover:bg-red-100 text-red-700 hover:text-red-800 p-2 rounded-full touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                 </div>
