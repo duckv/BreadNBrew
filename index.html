@@ -562,7 +562,7 @@
             ><i data-lucide="twitter" class="w-7 h-7"></i
           ></a>
         </div>
-        <p class="font-display text-xl sm:text-2xl mb-2">Bread N' Br☕︎w</p>
+        <p class="font-display text-xl sm:text-2xl mb-2">Bread N' Br☕���w</p>
         <p>&copy; 2025. All Rights Reserved.</p>
       </div>
     </footer>
@@ -1065,7 +1065,7 @@
         filterContainer.innerHTML = "";
         categories.forEach((category) => {
           const button = document.createElement("button");
-          button.className = `filter-btn px-4 py-2 border-2 rounded-full font-semibold whitespace-nowrap touch-target ${currentFilter === category ? "selected" : "border-amber-600 text-amber-800"}`;
+          button.className = `filter-btn px-3 sm:px-4 py-2 border-2 rounded-full font-semibold whitespace-nowrap touch-target text-sm sm:text-base ${currentFilter === category ? "selected" : "border-amber-600 text-amber-800"}`;
           button.textContent = category;
           button.dataset.category = category;
           filterContainer.appendChild(button);
