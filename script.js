@@ -305,12 +305,12 @@ function renderCart() {
   itemsList.className = "p-4 sm:p-6 space-y-6 min-h-full";
 
   if (cartItems.length > 0) {
-    // Add debugging info
-    const debugInfo = document.createElement("div");
-    debugInfo.className =
-      "text-center p-4 bg-blue-50 border border-blue-200 rounded-lg mb-4";
-    debugInfo.innerHTML = `<p class="text-blue-800 font-semibold">Cart has ${cartItems.length} item(s)</p>`;
-    itemsList.appendChild(debugInfo);
+    // Add cart status info
+    const statusInfo = document.createElement("div");
+    statusInfo.className =
+      "text-center p-4 bg-green-50 border-2 border-green-300 rounded-xl mb-6";
+    statusInfo.innerHTML = `<p class="text-green-800 font-bold text-lg">✓ ${cartItems.length} item(s) in your cart</p>`;
+    itemsList.appendChild(statusInfo);
   }
 
   cartItems.forEach((cartItem) => {
