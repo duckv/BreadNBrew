@@ -304,9 +304,21 @@ function renderCart() {
   const itemsList = document.createElement("div");
   itemsList.className = "p-4 sm:p-6 space-y-6 min-h-full";
 
+  if (cartItems.length > 0) {
+    // Add debugging info
+    const debugInfo = document.createElement("div");
+    debugInfo.className =
+      "text-center p-4 bg-blue-50 border border-blue-200 rounded-lg mb-4";
+    debugInfo.innerHTML = `<p class="text-blue-800 font-semibold">Cart has ${cartItems.length} item(s)</p>`;
+    itemsList.appendChild(debugInfo);
+  }
+
   cartItems.forEach((cartItem) => {
     const menuItem = menuItems.find((item) => item.id === cartItem.id);
-    if (!menuItem) return;
+    if (!menuItem) {
+      console.log("Menu item not found for cart item:", cartItem);
+      return;
+    }
 
     const itemDiv = document.createElement("div");
     itemDiv.className =
