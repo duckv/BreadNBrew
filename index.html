@@ -631,1108 +631,724 @@
     <script>
       // --- DATA ---
       const menuItems = [
-        // Pastries
-        {
-          id: 1,
-          name: "Butter Croissant",
-          price: 4.5,
-          category: "Pastries",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691220668252201/crossiant.jpg?ex=684fb65e&is=684e64de&hm=5bdd4b747ef554c8039517f54f3c72ace18fe91a36bd6bd043c9c7f8e8a61954&=&format=webp&width=704&height=704",
-          description:
-            "Flaky, buttery, and baked to golden perfection. A classic favorite.",
-          allergens: ["Wheat", "Dairy", "Eggs"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        {
-          id: 3,
-          name: "Cinnamon Bun",
-          price: 5.5,
-          category: "Pastries",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691219783254066/cinnamon.jpg?ex=684fb65e&is=684e64de&hm=438a302406c57b668859321e0e0e2aaa50b3962de71d79603c26bc119f3f47cf&=&format=webp&width=704&height=704",
-          description:
-            "Sweet, gooey, and topped with a decadent cream cheese frosting.",
-          allergens: ["Wheat", "Dairy", "Eggs"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        {
-          id: 4,
-          name: "Chocolate Muffin",
-          price: 4.0,
-          category: "Pastries",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691219531599902/chocolate.jpg?ex=684fb65e&is=684e64de&hm=2865dad7a85b970cf99605477b589d374dc048d0b39bff9d05ad8c4fdedd9c92&=&format=webp&width=704&height=704",
-          description:
-            "A rich, moist chocolate muffin packed with semi-sweet chocolate chips.",
-          allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
-        },
-        {
-          id: 9,
-          name: "Almond Croissant",
-          price: 5.25,
-          category: "Pastries",
-          img: "https://i.ibb.co/gZQQBFX/Almondcros.jpg",
-          description:
-            "Filled with a sweet almond paste and topped with toasted almonds.",
-          allergens: ["Wheat", "Dairy", "Eggs", "Tree Nuts"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        {
-          id: 10,
-          name: "Pain au Chocolat",
-          price: 5.0,
-          category: "Pastries",
-          img: "https://i.ibb.co/rRrTXJm/Painauchocolat.jpg",
-          description:
-            "A classic French pastry with two sticks of dark chocolate.",
-          allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        {
-          id: 11,
-          name: "Blueberry Scone",
-          price: 4.25,
-          category: "Pastries",
-          img: "https://i.ibb.co/bgz2DNx/blueberry.jpg",
-          description:
-            "A tender, crumbly scone bursting with fresh blueberries.",
-          allergens: ["Wheat", "Dairy", "Eggs"],
-        },
-        // Breads
-        {
-          id: 2,
-          name: "Sourdough",
-          price: 17.0,
-          category: "Breads",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691220106350642/sourdough.jpg?ex=684fb65e&is=684e64de&hm=5e7fefbfba4465f47dd23f13d8bda91a98f0673be367755d64d8dabdf45e635e&=&format=webp&width=704&height=704",
-          description:
-            "Our signature loaf with a crispy crust and a soft, chewy interior.",
-          allergens: ["Wheat"],
-          customizations: {
-            slice: [
-              { name: "Loaf", price: 0 },
-              { name: "Slice", price: -14.5 },
-            ],
-          },
-        },
-        // Brews & Coffee
-        {
-          id: 5,
-          name: "Artisan Latte",
-          price: 5.0,
-          category: "Coffee",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691219153981512/artisan.jpg?ex=684fb65e&is=684e64de&hm=438a32e3463de1c3c9dd9732fa1462e9f5797393669ffcbbe1639f464aa6c41f&=&format=webp&width=704&height=704",
-          description:
-            "Rich espresso with perfectly steamed milk and a touch of latte art.",
-          allergens: ["Dairy"],
-        },
-        {
-          id: 6,
-          name: "Signature Cold Brew",
-          price: 5.25,
-          category: "Coffee",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691218890002533/coldbrew.jpg?ex=684fb65e&is=684e64de&hm=4bbf54e70fc6f307e5ae4ccfc1a3761d365de941f7bf9d9e4df79992b10c4a82&=&format=webp&width=704&height=704",
-          description:
-            "Slow-steeped for 18 hours for a smooth, bold, and refreshing taste.",
-          allergens: [],
-        },
-        {
-          id: 7,
-          name: "Classic Cappuccino",
-          price: 4.75,
-          category: "Coffee",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691218537545839/cappucino.jpg?ex=684fb65e&is=684e64de&hm=f8b3ea4b02483ea0149d66c4c11f88bd159f512720b6b567eb847d3dca900264&=&format=webp&width=704&height=704",
-          description:
-            "A perfect balance of espresso, steamed milk, and a thick layer of foam.",
-          allergens: ["Dairy"],
-        },
-        {
-          id: 8,
-          name: "Americano",
-          price: 3.75,
-          category: "Coffee",
-          img: "https://media.discordapp.net/attachments/1141574690025001060/1383691218260852766/esperro.jpg?ex=684fb65e&is=684e64de&hm=a0aa94dc266e87bb0a6255100358110652ac8035ad70677920838556aaae4b8c&=&format=webp&width=704&height=704",
-          description:
-            "A shot of our signature espresso, softened with hot water.",
-          allergens: [],
-        },
-        // Sweets
-        {
-          id: 25,
-          name: "Cake Pop",
-          price: 3.0,
-          category: "Sweets",
-          img: "https://i.ibb.co/C51QZ50/Cakepop.jpg",
-          description:
-            "A bite-sized treat of vanilla or chocolate cake dipped in icing.",
-          allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
-        },
-        {
-          id: 26,
-          name: "Assorted Macarons",
-          price: 3.5,
-          category: "Sweets",
-          img: "https://i.ibb.co/VpgsSqM/Macarons.jpg",
-          description: "Delicate French almond cookies. Flavors change daily.",
-          allergens: ["Tree Nuts", "Dairy", "Eggs"],
-        },
-        {
-          id: 27,
-          name: "Cannoli",
-          price: 4.5,
-          category: "Sweets",
-          img: "https://i.ibb.co/Rkg5z02/Cannoli.jpg",
-          description:
-            "A crispy pastry shell filled with a sweet, creamy ricotta filling.",
-          allergens: ["Wheat", "Dairy", "Eggs"],
-        },
-        // Tea
-        {
-          id: 12,
-          name: "Earl Grey Tea",
-          price: 3.5,
-          category: "Tea",
-          img: "https://i.ibb.co/Hf6ZhbZ/Earlgrey.jpg",
-          description: "A classic black tea blend, fragrant with bergamot.",
-          allergens: [],
-          customizations: { temperature: ["Hot", "Cold"] },
-        },
-        {
-          id: 13,
-          name: "Chamomile Tea",
-          price: 3.5,
-          category: "Tea",
-          img: "https://i.ibb.co/xtPyRd9/Chamomile.jpg",
-          description: "A soothing herbal tea with a delicate, floral aroma.",
-          allergens: [],
-          customizations: { temperature: ["Hot", "Cold"] },
-        },
-        {
-          id: 14,
-          name: "Green Tea",
-          price: 3.5,
-          category: "Tea",
-          img: "https://i.ibb.co/SDHkcTj/Greentea.jpg",
-          description:
-            "A refreshing and vibrant green tea full of antioxidants.",
-          allergens: [],
-          customizations: { temperature: ["Hot", "Cold"] },
-        },
-        // Seasonal Drinks
-        {
-          id: 15,
-          name: "Fresh Lemonade",
-          price: 4.5,
-          category: "Seasonal",
-          img: "https://i.ibb.co/Kcjj58b/Lemonade.jpg",
-          description:
-            "Made in-house with freshly squeezed lemons. Perfectly sweet and tart.",
-          allergens: [],
-        },
-        {
-          id: 16,
-          name: "Matcha Latte",
-          price: 5.75,
-          category: "Seasonal",
-          img: "https://i.ibb.co/gZsZj1T/latte.jpg",
-          description: "Earthy ceremonial grade matcha, lightly sweetened.",
-          allergens: ["Dairy"],
-          customizations: { temperature: ["Hot", "Cold"] },
-        },
-        {
-          id: 17,
-          name: "Strawberry Acai",
-          price: 5.5,
-          category: "Seasonal",
-          img: "https://i.ibb.co/4RJF4wm/Strawberryacai.jpg",
-          description:
-            "A vibrant and fruity refresher with notes of strawberry and acai.",
-          allergens: [],
-        },
-        // Breakfast
-        {
-          id: 18,
-          name: "Bacon, Egg & Cheese",
-          price: 8.5,
-          category: "Breakfast",
-          img: "https://i.ibb.co/kgc9xzr/BEC.jpg",
-          description:
-            "Crispy bacon, fluffy egg, and melted cheese on a fresh brioche bun.",
-          allergens: ["Wheat", "Dairy", "Eggs"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        {
-          id: 19,
-          name: "Avocado Toast",
-          price: 9.5,
-          category: "Breakfast",
-          img: "https://i.ibb.co/cKzs0GN/AvocadoT.jpg",
-          description:
-            "Smashed avocado on our signature sourdough, topped with everything seasoning.",
-          allergens: ["Wheat", "Sesame"],
-          customizations: {
-            toppings: [
-              {
-                name: "Add Bacon",
-                price: 2.0,
-                img: "https://i.ibb.co/hxBK09R/Bacon-Avocado.jpg",
-              },
-            ],
-          },
-        },
-        // Lunch
-        {
-          id: 20,
-          name: "Turkey & Swiss",
-          price: 12.0,
-          category: "Lunch",
-          img: "https://i.ibb.co/JRBSS1c/Turk-Swiss.jpg",
-          description:
-            "Roasted turkey, Swiss cheese, lettuce, and tomato on sourdough.",
-          allergens: ["Wheat", "Dairy"],
-          customizations: {
-            toast: ["Untoasted", "Toasted"],
-            toppings: [
-              { name: "Add Bacon", price: 1.5 },
-              { name: "Add Avocado", price: 2.5 },
-            ],
-          },
-        },
-        {
-          id: 21,
-          name: "Caprese Sandwich",
-          price: 11.5,
-          category: "Lunch",
-          img: "https://i.ibb.co/Fqw9f19/Caprese.jpg",
-          description:
-            "Fresh mozzarella, ripe tomatoes, basil, and balsamic glaze on focaccia.",
-          allergens: ["Wheat", "Dairy"],
-          customizations: { toast: ["Untoasted", "Toasted"] },
-        },
-        // Pizza
-        {
-          id: 22,
-          name: "Margherita Pizza",
-          price: 21.0,
-          category: "Pizza",
-          img: "https://i.ibb.co/G4SQQ4w/Margherita.jpg",
-          description:
-            "Classic pizza with fresh mozzarella, San Marzano tomatoes, and basil.",
-          allergens: ["Wheat", "Dairy"],
-        },
-        {
-          id: 23,
-          name: "Classic Pizza",
-          price: 14.0,
-          category: "Pizza",
-          img: "https://placehold.co/400x400/d3d3d3/ffffff?text=Classic+Pizza",
-          description: "A simple cheese pizza. Add pepperoni for $2.00.",
-          allergens: ["Wheat", "Dairy"],
-          customizations: { toppings: [{ name: "Add Pepperoni", price: 2.0 }] },
-        },
-        {
-          id: 24,
-          name: "Spicy Brooklyn Pizza",
-          price: 24.0,
-          category: "Pizza",
-          img: "https://i.ibb.co/cSDF23Q/Spicy-Brooklyn.jpg",
-          description:
-            "Tomato sauce, mozzarella, pepperoni, pickled long hots, and hot honey.",
-          allergens: ["Wheat", "Dairy"],
-        },
+          // Pastries
+          { id: 1, name: 'Butter Croissant', price: 4.50, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691220668252201/crossiant.jpg?ex=684fb65e&is=684e64de&hm=5bdd4b747ef554c8039517f54f3c72ace18fe91a36bd6bd043c9c7f8e8a61954&=&format=webp&width=704&height=704', description: 'Flaky, buttery, and baked to golden perfection. A classic favorite.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          { id: 3, name: 'Cinnamon Bun', price: 5.50, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219783254066/cinnamon.jpg?ex=684fb65e&is=684e64de&hm=438a302406c57b668859321e0e0e2aaa50b3962de71d79603c26bc119f3f47cf&=&format=webp&width=704&height=704', description: 'Sweet, gooey, and topped with a decadent cream cheese frosting.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          { id: 4, name: 'Chocolate Muffin', price: 4.00, category: 'Pastries', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219531599902/chocolate.jpg?ex=684fb65e&is=684e64de&hm=2865dad7a85b970cf99605477b589d374dc048d0b39bff9d05ad8c4fdedd9c92&=&format=webp&width=704&height=704', description: 'A rich, moist chocolate muffin packed with semi-sweet chocolate chips.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'] },
+          { id: 9, name: 'Almond Croissant', price: 5.25, category: 'Pastries', img: 'https://i.ibb.co/gZQQBFX/Almondcros.jpg', description: 'Filled with a sweet almond paste and topped with toasted almonds.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Tree Nuts'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          { id: 10, name: 'Pain au Chocolat', price: 5.00, category: 'Pastries', img: 'https://i.ibb.co/rRrTXJm/Painauchocolat.jpg', description: 'A classic French pastry with two sticks of dark chocolate.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          { id: 11, name: 'Blueberry Scone', price: 4.25, category: 'Pastries', img: 'https://i.ibb.co/bgz2DNx/blueberry.jpg', description: 'A tender, crumbly scone bursting with fresh blueberries.', allergens: ['Wheat', 'Dairy', 'Eggs'] },
+          // Breads
+          { id: 2, name: 'Sourdough', price: 17.00, category: 'Breads', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691220106350642/sourdough.jpg?ex=684fb65e&is=684e64de&hm=5e7fefbfba4465f47dd23f13d8bda91a98f0673be367755d64d8dabdf45e635e&=&format=webp&width=704&height=704', description: 'Our signature loaf with a crispy crust and a soft, chewy interior.', allergens: ['Wheat'], customizations: { slice: [{name: 'Loaf', price: 0}, {name: 'Slice', price: -14.50}]} },
+          // Brews & Coffee
+          { id: 5, name: 'Artisan Latte', price: 5.00, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691219153981512/artisan.jpg?ex=684fb65e&is=684e64de&hm=438a32e3463de1c3c9dd9732fa1462e9f5797393669ffcbbe1639f464aa6c41f&=&format=webp&width=704&height=704', description: 'Rich espresso with perfectly steamed milk and a touch of latte art.', allergens: ['Dairy'] },
+          { id: 6, name: 'Signature Cold Brew', price: 5.25, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218890002533/coldbrew.jpg?ex=684fb65e&is=684e64de&hm=4bbf54e70fc6f307e5ae4ccfc1a3761d365de941f7bf9d9e4df79992b10c4a82&=&format=webp&width=704&height=704', description: 'Slow-steeped for 18 hours for a smooth, bold, and refreshing taste.', allergens: [] },
+          { id: 7, name: 'Classic Cappuccino', price: 4.75, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218537545839/cappucino.jpg?ex=684fb65e&is=684e64de&hm=f8b3ea4b02483ea0149d66c4c11f88bd159f512720b6b567eb847d3dca900264&=&format=webp&width=704&height=704', description: 'A perfect balance of espresso, steamed milk, and a thick layer of foam.', allergens: ['Dairy'] },
+          { id: 8, name: 'Americano', price: 3.75, category: 'Coffee', img: 'https://media.discordapp.net/attachments/1141574690025001060/1383691218260852766/esperro.jpg?ex=684fb65e&is=684e64de&hm=a0aa94dc266e87bb0a6255100358110652ac8035ad70677920838556aaae4b8c&=&format=webp&width=704&height=704', description: 'A shot of our signature espresso, softened with hot water.', allergens: [] },
+          // Sweets
+          { id: 25, name: 'Cake Pop', price: 3.00, category: 'Sweets', img: 'https://i.ibb.co/C51QZ50/Cakepop.jpg', description: 'A bite-sized treat of vanilla or chocolate cake dipped in icing.', allergens: ['Wheat', 'Dairy', 'Eggs', 'Soy'] },
+          { id: 26, name: 'Assorted Macarons', price: 3.50, category: 'Sweets', img: 'https://i.ibb.co/VpgsSqM/Macarons.jpg', description: 'Delicate French almond cookies. Flavors change daily.', allergens: ['Tree Nuts', 'Dairy', 'Eggs'] },
+          { id: 27, name: 'Cannoli', price: 4.50, category: 'Sweets', img: 'https://i.ibb.co/Rkg5z02/Cannoli.jpg', description: 'A crispy pastry shell filled with a sweet, creamy ricotta filling.', allergens: ['Wheat', 'Dairy', 'Eggs'] },
+          // Tea
+          { id: 12, name: 'Earl Grey Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/Hf6ZhbZ/Earlgrey.jpg', description: 'A classic black tea blend, fragrant with bergamot.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+          { id: 13, name: 'Chamomile Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/xtPyRd9/Chamomile.jpg', description: 'A soothing herbal tea with a delicate, floral aroma.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+          { id: 14, name: 'Green Tea', price: 3.50, category: 'Tea', img: 'https://i.ibb.co/SDHkcTj/Greentea.jpg', description: 'A refreshing and vibrant green tea full of antioxidants.', allergens: [], customizations: { temperature: ['Hot', 'Cold'] } },
+          // Seasonal Drinks
+          { id: 15, name: 'Fresh Lemonade', price: 4.50, category: 'Seasonal', img: 'https://i.ibb.co/Kcjj58b/Lemonade.jpg', description: 'Made in-house with freshly squeezed lemons. Perfectly sweet and tart.', allergens: [] },
+          { id: 16, name: 'Matcha Latte', price: 5.75, category: 'Seasonal', img: 'https://i.ibb.co/gZsZj1T/latte.jpg', description: 'Earthy ceremonial grade matcha, lightly sweetened.', allergens: ['Dairy'], customizations: { temperature: ['Hot', 'Cold'] } },
+          { id: 17, name: 'Strawberry Acai', price: 5.50, category: 'Seasonal', img: 'https://i.ibb.co/4RJF4wm/Strawberryacai.jpg', description: 'A vibrant and fruity refresher with notes of strawberry and acai.', allergens: [] },
+          // Breakfast
+          { id: 18, name: 'Bacon, Egg & Cheese', price: 8.50, category: 'Breakfast', img: 'https://i.ibb.co/kgc9xzr/BEC.jpg', description: 'Crispy bacon, fluffy egg, and melted cheese on a fresh brioche bun.', allergens: ['Wheat', 'Dairy', 'Eggs'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          { id: 19, name: 'Avocado Toast', price: 9.50, category: 'Breakfast', img: 'https://i.ibb.co/cKzs0GN/AvocadoT.jpg', description: 'Smashed avocado on our signature sourdough, topped with everything seasoning.', allergens: ['Wheat', 'Sesame'], customizations: { toppings: [{ name: 'Add Bacon', price: 2.00, img: 'https://i.ibb.co/hxBK09R/Bacon-Avocado.jpg' }] } },
+          // Lunch
+          { id: 20, name: 'Turkey & Swiss', price: 12.00, category: 'Lunch', img: 'https://i.ibb.co/JRBSS1c/Turk-Swiss.jpg', description: 'Roasted turkey, Swiss cheese, lettuce, and tomato on sourdough.', allergens: ['Wheat', 'Dairy'], customizations: { toast: ['Untoasted', 'Toasted'], toppings: [{ name: 'Add Bacon', price: 1.50 }, { name: 'Add Avocado', price: 2.50 }] } },
+          { id: 21, name: 'Caprese Sandwich', price: 11.50, category: 'Lunch', img: 'https://i.ibb.co/Fqw9f19/Caprese.jpg', description: 'Fresh mozzarella, ripe tomatoes, basil, and balsamic glaze on focaccia.', allergens: ['Wheat', 'Dairy'], customizations: { toast: ['Untoasted', 'Toasted'] } },
+          // Pizza
+          { id: 22, name: 'Margherita Pizza', price: 21.00, category: 'Pizza', img: 'https://i.ibb.co/G4SQQ4w/Margherita.jpg', description: 'Classic pizza with fresh mozzarella, San Marzano tomatoes, and basil.', allergens: ['Wheat', 'Dairy'] },
+          { id: 23, name: 'Classic Pizza', price: 14.00, category: 'Pizza', img: 'https://placehold.co/400x400/d3d3d3/ffffff?text=Classic+Pizza', description: 'A simple cheese pizza. Add pepperoni for $2.00.', allergens: ['Wheat', 'Dairy'], customizations: { toppings: [{ name: 'Add Pepperoni', price: 2.00 }] } },
+          { id: 24, name: 'Spicy Brooklyn Pizza', price: 24.00, category: 'Pizza', img: 'https://i.ibb.co/cSDF23Q/Spicy-Brooklyn.jpg', description: 'Tomato sauce, mozzarella, pepperoni, pickled long hots, and hot honey.', allergens: ['Wheat', 'Dairy'] },
       ];
 
       // --- STATE ---
       let cartItems = [];
       const NJ_SALES_TAX_RATE = 0.06625;
-      let selectedPickupDay = "today";
-      let selectedPickupTime = "";
-      let currentFilter = "All";
-      let tipInfo = { type: "percent", value: 0 };
+      let selectedPickupDay = 'today';
+      let selectedPickupTime = '';
+      let currentFilter = 'All';
+      let tipInfo = { type: 'percent', value: 0 };
       const storeHours = { open: 7, close: 17 };
       let toastTimer;
 
       // --- DOM ELEMENTS ---
-      const menuGrid = document.getElementById("menu-grid");
-      const filterContainer = document.getElementById("filter-container");
-      const searchBar = document.getElementById("search-bar");
-      const cartElement = document.getElementById("cart");
-      const floatingCartBtn = document.getElementById("floating-cart-btn");
-      const cartItemCount = document.getElementById("cart-item-count");
-      const toastWrapper = document.getElementById("toast-wrapper");
-      const toastMessage = document.getElementById("toast-message");
-      const modal = document.getElementById("custom-modal");
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
+      const menuGrid = document.getElementById('menu-grid');
+      const filterContainer = document.getElementById('filter-container');
+      const searchBar = document.getElementById('search-bar');
+      const cartElement = document.getElementById('cart');
+      const floatingCartBtn = document.getElementById('floating-cart-btn');
+      const cartItemCount = document.getElementById('cart-item-count');
+      const toastWrapper = document.getElementById('toast-wrapper');
+      const toastMessage = document.getElementById('toast-message');
+      const modal = document.getElementById('custom-modal');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
 
       // --- HELPER FUNCTIONS ---
       function calculateAndRoundPickupTime() {
-        const now = new Date();
-        const earliestPickup = new Date(now.getTime() + 15 * 60000);
-        const minutes = earliestPickup.getMinutes();
-        const remainder = minutes % 15;
-        if (remainder !== 0) {
-          earliestPickup.setMinutes(
-            earliestPickup.getMinutes() + (15 - remainder),
-          );
-        }
-        earliestPickup.setSeconds(0, 0);
-        return earliestPickup;
+          const now = new Date();
+          const earliestPickup = new Date(now.getTime() + 15 * 60000);
+          const minutes = earliestPickup.getMinutes();
+          const remainder = minutes % 15;
+          if (remainder !== 0) {
+              earliestPickup.setMinutes(earliestPickup.getMinutes() + (15 - remainder));
+          }
+          earliestPickup.setSeconds(0, 0);
+          return earliestPickup;
       }
 
       function generateTimeSlotButtons(day, showAll = false) {
-        const timeSlotContainer = document.getElementById(
-          "time-slot-container",
-        );
-        const laterButtonContainer = document.getElementById(
-          "later-button-container",
-        );
-        if (!timeSlotContainer) return;
-        timeSlotContainer.innerHTML = "";
-        if (laterButtonContainer) laterButtonContainer.innerHTML = "";
+          const timeSlotContainer = document.getElementById('time-slot-container');
+          const laterButtonContainer = document.getElementById('later-button-container');
+          if (!timeSlotContainer) return;
+          timeSlotContainer.innerHTML = '';
+          if (laterButtonContainer) laterButtonContainer.innerHTML = '';
 
-        let startHour, startMinute;
-        if (day === "today") {
-          const earliestTime = calculateAndRoundPickupTime();
-          startHour = earliestTime.getHours();
-          startMinute = earliestTime.getMinutes();
-          if (startHour >= storeHours.close) {
-            timeSlotContainer.innerHTML =
-              '<p class="text-center text-gray-500 col-span-full">Sorry, ordering for today is closed.</p>';
-            return;
+          let startHour, startMinute;
+          if (day === 'today') {
+              const earliestTime = calculateAndRoundPickupTime();
+              startHour = earliestTime.getHours();
+              startMinute = earliestTime.getMinutes();
+              if (startHour >= storeHours.close) {
+                  timeSlotContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full">Sorry, ordering for today is closed.</p>';
+                  return;
+              }
+              if (startHour < storeHours.open) {
+                  startHour = storeHours.open;
+                  startMinute = 0;
+              }
+          } else { // tomorrow
+              startHour = storeHours.open;
+              startMinute = 0;
           }
-          if (startHour < storeHours.open) {
-            startHour = storeHours.open;
-            startMinute = 0;
+
+          let slotsGenerated = 0, moreSlotsAvailable = false;
+          const maxInitialSlots = 5;
+
+          const nowButton = document.createElement('button');
+          nowButton.className = 'time-slot-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target';
+          nowButton.textContent = 'ASAP';
+          nowButton.dataset.time = 'ASAP';
+          timeSlotContainer.appendChild(nowButton);
+          slotsGenerated++;
+
+          for (let hour = startHour; hour < storeHours.close; hour++) {
+              for (let minute = (hour === startHour ? startMinute : 0); minute < 60; minute += 15) {
+                  if (!showAll && slotsGenerated >= maxInitialSlots) {
+                      moreSlotsAvailable = true;
+                      break;
+                  }
+                  const timeString = `${hour % 12 === 0 ? 12 : hour % 12}:${minute.toString().padStart(2, '0')} ${hour < 12 ? 'AM' : 'PM'}`;
+                  const button = document.createElement('button');
+                  button.className = 'time-slot-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target';
+                  button.textContent = timeString;
+                  button.dataset.time = timeString;
+                  timeSlotContainer.appendChild(button);
+                  slotsGenerated++;
+              }
+              if (!showAll && slotsGenerated >= maxInitialSlots && moreSlotsAvailable) break;
           }
-        } else {
-          // tomorrow
-          startHour = storeHours.open;
-          startMinute = 0;
-        }
 
-        let slotsGenerated = 0,
-          moreSlotsAvailable = false;
-        const maxInitialSlots = 5;
-
-        const nowButton = document.createElement("button");
-        nowButton.className =
-          "time-slot-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target";
-        nowButton.textContent = "ASAP";
-        nowButton.dataset.time = "ASAP";
-        timeSlotContainer.appendChild(nowButton);
-        slotsGenerated++;
-
-        for (let hour = startHour; hour < storeHours.close; hour++) {
-          for (
-            let minute = hour === startHour ? startMinute : 0;
-            minute < 60;
-            minute += 15
-          ) {
-            if (!showAll && slotsGenerated >= maxInitialSlots) {
-              moreSlotsAvailable = true;
-              break;
-            }
-            const timeString = `${hour % 12 === 0 ? 12 : hour % 12}:${minute.toString().padStart(2, "0")} ${hour < 12 ? "AM" : "PM"}`;
-            const button = document.createElement("button");
-            button.className =
-              "time-slot-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target";
-            button.textContent = timeString;
-            button.dataset.time = timeString;
-            timeSlotContainer.appendChild(button);
-            slotsGenerated++;
+          if (moreSlotsAvailable && !showAll && laterButtonContainer) {
+              const laterButton = document.createElement('button');
+              laterButton.className = 'show-later-btn text-amber-800 hover:underline font-semibold touch-target';
+              laterButton.textContent = 'Show more times';
+              laterButtonContainer.appendChild(laterButton);
           }
-          if (
-            !showAll &&
-            slotsGenerated >= maxInitialSlots &&
-            moreSlotsAvailable
-          )
-            break;
-        }
-
-        if (moreSlotsAvailable && !showAll && laterButtonContainer) {
-          const laterButton = document.createElement("button");
-          laterButton.className =
-            "show-later-btn text-amber-800 hover:underline font-semibold touch-target";
-          laterButton.textContent = "Show more times";
-          laterButtonContainer.appendChild(laterButton);
-        }
       }
 
       function renderMenuFilters() {
-        const categories = [
-          "All",
-          ...new Set(menuItems.map((item) => item.category)),
-        ];
-        filterContainer.innerHTML = "";
-        categories.forEach((category) => {
-          const button = document.createElement("button");
-          button.className = `filter-btn px-4 py-2 border-2 rounded-full font-semibold whitespace-nowrap touch-target ${currentFilter === category ? "selected" : "border-amber-600 text-amber-800"}`;
-          button.textContent = category;
-          button.dataset.category = category;
-          filterContainer.appendChild(button);
-        });
+          const categories = ['All', ...new Set(menuItems.map(item => item.category))];
+          filterContainer.innerHTML = '';
+          categories.forEach(category => {
+              const button = document.createElement('button');
+              button.className = `filter-btn px-4 py-2 border-2 rounded-full font-semibold whitespace-nowrap touch-target ${currentFilter === category ? 'selected' : 'border-amber-600 text-amber-800'}`;
+              button.textContent = category;
+              button.dataset.category = category;
+              filterContainer.appendChild(button);
+          });
       }
 
       function renderMenuItems(items = menuItems) {
-        menuGrid.innerHTML = "";
-        const filteredItems =
-          currentFilter === "All"
-            ? items
-            : items.filter((item) => item.category === currentFilter);
+          menuGrid.innerHTML = '';
 
-        filteredItems.forEach((item) => {
-          const card = document.createElement("div");
-          card.className =
-            "bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform";
+          if (currentFilter === 'All') {
+              // Group items by category and display with section headers
+              const categoryOrder = ['Pastries', 'Breads', 'Coffee', 'Sweets', 'Tea', 'Seasonal', 'Breakfast', 'Lunch', 'Pizza'];
+              const filteredItems = items;
 
-          let customizationOptions = "";
-          if (item.customizations) {
-            if (item.customizations.toast) {
-              customizationOptions += `
-                        <div class="flex gap-2 mt-2">
-                            ${item.customizations.toast
-                              .map(
-                                (option) =>
-                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="toast" data-value="${option}">${option}</button>`,
-                              )
-                              .join("")}
-                        </div>
-                    `;
-            }
-            if (item.customizations.temperature) {
-              customizationOptions += `
-                        <div class="flex gap-2 mt-2">
-                            ${item.customizations.temperature
-                              .map(
-                                (option) =>
-                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="temperature" data-value="${option}">${option}</button>`,
-                              )
-                              .join("")}
-                        </div>
-                    `;
-            }
-            if (item.customizations.slice) {
-              customizationOptions += `
-                        <div class="flex gap-2 mt-2">
-                            ${item.customizations.slice
-                              .map(
-                                (option) =>
-                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="slice" data-value="${option.name}">${option.name} ${option.price !== 0 ? `($${option.price > 0 ? "+" : ""}${option.price.toFixed(2)})` : ""}</button>`,
-                              )
-                              .join("")}
-                        </div>
-                    `;
-            }
+              categoryOrder.forEach(category => {
+                  const categoryItems = filteredItems.filter(item => item.category === category);
+                  if (categoryItems.length === 0) return;
+
+                  // Create category header
+                  const categoryHeader = document.createElement('div');
+                  categoryHeader.className = 'col-span-full mb-4 mt-8 first:mt-0';
+                  categoryHeader.innerHTML = `
+                      <h3 class="text-2xl sm:text-3xl font-bold font-display text-amber-800 mb-4 text-center">${category}</h3>
+                      <div class="w-16 h-1 bg-amber-800 mx-auto mb-6"></div>
+                  `;
+                  menuGrid.appendChild(categoryHeader);
+
+                  // Add items for this category
+                  categoryItems.forEach(item => {
+                      const card = createMenuItemCard(item);
+                      menuGrid.appendChild(card);
+                  });
+              });
+          } else {
+              // Show filtered items without category headers
+              const filteredItems = items.filter(item => item.category === currentFilter);
+              filteredItems.forEach(item => {
+                  const card = createMenuItemCard(item);
+                  menuGrid.appendChild(card);
+              });
           }
+      }
 
-          const quantityButtons = `
-                <div class="flex items-center gap-3 mt-4">
-                    <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="-1">-</button>
-                    <input type="number" id="quantity-${item.id}" value="1" min="1" class="w-16 text-center border rounded py-1">
-                    <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="1">+</button>
-                </div>
-            `;
+      function createMenuItemCard(item) {
+              const card = document.createElement('div');
+              card.className = 'bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform';
 
-          card.innerHTML = `
-                <img src="${item.img}" alt="${item.name}" class="menu-item-img w-full h-48 sm:h-56">
-                <div class="p-4 sm:p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
-                        <span class="text-lg sm:text-xl font-bold text-amber-800">$${item.price.toFixed(2)}</span>
-                    </div>
-                    <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
-                    ${customizationOptions}
-                    ${quantityButtons}
-                    <div class="flex gap-2 mt-4">
-                        <button class="add-to-cart-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target" data-item-id="${item.id}">Add to Cart</button>
-                        ${
-                          item.customizations && item.customizations.toppings
-                            ? `<button class="customize-btn bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target" data-item-id="${item.id}">Customize</button>`
-                            : ""
-                        }
-                        <button class="allergens-btn bg-blue-100 text-blue-800 px-3 py-2 rounded-full text-sm hover:bg-blue-200 transition touch-target" data-item-id="${item.id}">Allergens</button>
-                    </div>
-                </div>
-            `;
+              let customizationOptions = '';
+              if (item.customizations) {
+                  if (item.customizations.toast) {
+                      customizationOptions += `
+                          <div class="flex gap-2 mt-2">
+                              ${item.customizations.toast.map(option =>
+                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="toast" data-value="${option}">${option}</button>`
+                              ).join('')}
+                          </div>
+                      `;
+                  }
+                  if (item.customizations.temperature) {
+                      customizationOptions += `
+                          <div class="flex gap-2 mt-2">
+                              ${item.customizations.temperature.map(option =>
+                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="temperature" data-value="${option}">${option}</button>`
+                              ).join('')}
+                          </div>
+                      `;
+                  }
+                  if (item.customizations.slice) {
+                      customizationOptions += `
+                          <div class="flex gap-2 mt-2">
+                              ${item.customizations.slice.map(option =>
+                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="slice" data-value="${option.name}">${option.name} ${option.price !== 0 ? `($${option.price > 0 ? '+' : ''}${option.price.toFixed(2)})` : ''}</button>`
+                              ).join('')}
+                          </div>
+                      `;
+                  }
+              }
 
-          menuGrid.appendChild(card);
-        });
+              const quantityButtons = `
+                  <div class="flex items-center gap-3 mt-4">
+                      <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="-1">-</button>
+                      <input type="number" id="quantity-${item.id}" value="1" min="1" class="w-16 text-center border rounded py-1">
+                      <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="1">+</button>
+                  </div>
+              `;
+
+              card.innerHTML = `
+                  <img src="${item.img}" alt="${item.name}" class="menu-item-img w-full h-48 sm:h-56">
+                  <div class="p-4 sm:p-6">
+                      <div class="flex justify-between items-start mb-2">
+                          <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
+                          <span class="text-lg sm:text-xl font-bold text-amber-800">$${item.price.toFixed(2)}</span>
+                      </div>
+                      <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
+                      ${customizationOptions}
+                      ${quantityButtons}
+                      <div class="flex gap-2 mt-4">
+                          <button class="add-to-cart-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target" data-item-id="${item.id}">Add to Cart</button>
+                          ${item.customizations && item.customizations.toppings ?
+                              `<button class="customize-btn bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target" data-item-id="${item.id}">Customize</button>` : ''
+                          }
+                          <button class="allergens-btn bg-blue-100 text-blue-800 px-3 py-2 rounded-full text-sm hover:bg-blue-200 transition touch-target" data-item-id="${item.id}">Allergens</button>
+                      </div>
+                  </div>
+              `;
+
+              menuGrid.appendChild(card);
+          });
       }
 
       function renderCart() {
-        updateFloatingCartButton();
+          updateFloatingCartButton();
 
-        if (cartItems.length === 0) {
-          cartElement.innerHTML = `
-                <div class="flex items-center justify-between p-4 sm:p-6 border-b">
-                    <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
-                    <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <div class="flex-1 flex items-center justify-center p-6">
-                    <div class="text-center">
-                        <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
-                        <p class="text-gray-500 text-lg">Your cart is empty</p>
-                        <p class="text-gray-400 text-sm mt-2">Add some delicious items to get started!</p>
-                    </div>
-                </div>
-            `;
-          lucide.createIcons();
-          return;
-        }
-
-        const header = document.createElement("div");
-        header.className =
-          "flex items-center justify-between p-4 sm:p-6 border-b";
-        header.innerHTML = `
-            <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
-            <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-        `;
-
-        const itemsContainer = document.createElement("div");
-        itemsContainer.className = "flex-1 overflow-y-auto";
-
-        const itemsList = document.createElement("div");
-        itemsList.className = "p-4 sm:p-6 space-y-4";
-
-        cartItems.forEach((cartItem) => {
-          const menuItem = menuItems.find((item) => item.id === cartItem.id);
-          if (!menuItem) return;
-
-          const itemDiv = document.createElement("div");
-          itemDiv.className = "flex gap-4 bg-gray-50 p-4 rounded-lg";
-
-          let customizationText = "";
-          if (cartItem.customizations) {
-            const customs = [];
-            Object.entries(cartItem.customizations).forEach(([key, value]) => {
-              if (
-                key === "toppings" &&
-                Array.isArray(value) &&
-                value.length > 0
-              ) {
-                customs.push(value.join(", "));
-              } else if (value && key !== "toppings") {
-                customs.push(value);
-              }
-            });
-            if (customs.length > 0) {
-              customizationText = `<p class="text-sm text-gray-600">${customs.join(", ")}</p>`;
-            }
+          if (cartItems.length === 0) {
+              cartElement.innerHTML = `
+                  <div class="flex items-center justify-between p-4 sm:p-6 border-b">
+                      <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
+                      <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
+                          <i data-lucide="x" class="w-6 h-6"></i>
+                      </button>
+                  </div>
+                  <div class="flex-1 flex items-center justify-center p-6">
+                      <div class="text-center">
+                          <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
+                          <p class="text-gray-500 text-lg">Your cart is empty</p>
+                          <p class="text-gray-400 text-sm mt-2">Add some delicious items to get started!</p>
+                      </div>
+                  </div>
+              `;
+              lucide.createIcons();
+              return;
           }
 
-          itemDiv.innerHTML = `
-                <img src="${menuItem.img}" alt="${menuItem.name}" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded">
-                <div class="flex-1">
-                    <h4 class="font-semibold text-sm sm:text-base">${menuItem.name}</h4>
-                    ${customizationText}
-                    <p class="text-amber-800 font-bold text-sm sm:text-base">$${cartItem.price.toFixed(2)} each</p>
-                    <div class="flex items-center justify-between mt-2">
-                        <div class="flex items-center gap-2">
-                            <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
-                            <span class="w-8 text-center font-semibold">${cartItem.quantity}</span>
-                            <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
-                        </div>
-                        <button class="cart-remove-item text-red-600 hover:text-red-800 text-sm touch-target" data-unique-id="${cartItem.uniqueId}">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <p class="font-bold text-amber-800 text-sm sm:text-base">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
-                </div>
-            `;
+          const header = document.createElement('div');
+          header.className = 'flex items-center justify-between p-4 sm:p-6 border-b';
+          header.innerHTML = `
+              <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
+              <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
+                  <i data-lucide="x" class="w-6 h-6"></i>
+              </button>
+          `;
 
-          itemsList.appendChild(itemDiv);
-        });
+          const itemsContainer = document.createElement('div');
+          itemsContainer.className = 'flex-1 overflow-y-auto';
 
-        itemsContainer.appendChild(itemsList);
+          const itemsList = document.createElement('div');
+          itemsList.className = 'p-4 sm:p-6 space-y-4';
 
-        const footer = document.createElement("div");
-        footer.id = "cart-footer";
-        footer.className = "border-t bg-white";
+          cartItems.forEach(cartItem => {
+              const menuItem = menuItems.find(item => item.id === cartItem.id);
+              if (!menuItem) return;
 
-        updateCartTotals();
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'flex gap-4 bg-gray-50 p-4 rounded-lg';
 
-        footer.innerHTML = `
-            <div id="checkout-view" class="p-4 sm:p-6">
-                <div class="space-y-3 mb-6">
-                    <div class="flex justify-between text-sm sm:text-base">
-                        <span>Subtotal:</span>
-                        <span id="cart-subtotal">$0.00</span>
-                    </div>
-                    <div class="flex justify-between text-sm sm:text-base">
-                        <span>Tax:</span>
-                        <span id="cart-tax">$0.00</span>
-                    </div>
-                    <div class="flex justify-between text-sm sm:text-base">
-                        <span>Tip:</span>
-                        <span id="cart-tip">$0.00</span>
-                    </div>
-                    <div class="flex justify-between font-bold text-lg border-t pt-2">
-                        <span>Total:</span>
-                        <span id="cart-total">$0.00</span>
-                    </div>
-                </div>
+              let customizationText = '';
+              if (cartItem.customizations) {
+                  const customs = [];
+                  Object.entries(cartItem.customizations).forEach(([key, value]) => {
+                      if (key === 'toppings' && Array.isArray(value) && value.length > 0) {
+                          customs.push(value.join(', '));
+                      } else if (value && key !== 'toppings') {
+                          customs.push(value);
+                      }
+                  });
+                  if (customs.length > 0) {
+                      customizationText = `<p class="text-sm text-gray-600">${customs.join(', ')}</p>`;
+                  }
+              }
 
-                <div class="mb-6">
-                    <h4 class="font-bold font-display text-lg mb-3">Pickup or Delivery?</h4>
-                    <div class="flex gap-2 mb-4">
-                        <button class="pickup-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target">Pickup</button>
-                        <button class="delivery-btn flex-1 bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target">Delivery</button>
-                    </div>
+              itemDiv.innerHTML = `
+                  <img src="${menuItem.img}" alt="${menuItem.name}" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded">
+                  <div class="flex-1">
+                      <h4 class="font-semibold text-sm sm:text-base">${menuItem.name}</h4>
+                      ${customizationText}
+                      <p class="text-amber-800 font-bold text-sm sm:text-base">$${cartItem.price.toFixed(2)} each</p>
+                      <div class="flex items-center justify-between mt-2">
+                          <div class="flex items-center gap-2">
+                              <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
+                              <span class="w-8 text-center font-semibold">${cartItem.quantity}</span>
+                              <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
+                          </div>
+                          <button class="cart-remove-item text-red-600 hover:text-red-800 text-sm touch-target" data-unique-id="${cartItem.uniqueId}">
+                              <i data-lucide="trash-2" class="w-4 h-4"></i>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="text-right">
+                      <p class="font-bold text-amber-800 text-sm sm:text-base">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+                  </div>
+              `;
 
-                    <div id="pickup-options" class="">
-                        <div class="mb-4">
-                            <h5 class="font-semibold mb-2">Pickup Day:</h5>
-                            <div class="flex gap-2">
-                                <button class="date-btn bg-amber-800 text-white px-4 py-2 rounded-full font-semibold touch-target" data-day="today">Today</button>
-                                <button class="date-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-day="tomorrow">Tomorrow</button>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <h5 class="font-semibold mb-2">Pickup Time:</h5>
-                            <div id="time-slot-container" class="flex flex-wrap gap-2 mb-2">
-                                <!-- Time slots will be generated by JS -->
-                            </div>
-                            <div id="later-button-container" class="text-center">
-                                <!-- "Show more times" button will be added here if needed -->
-                            </div>
-                        </div>
-                    </div>
+              itemsList.appendChild(itemDiv);
+          });
 
-                    <div id="delivery-options" class="hidden">
-                        <p class="text-gray-600 text-sm">Delivery is not yet available. Please select pickup.</p>
-                    </div>
-                </div>
+          itemsContainer.appendChild(itemsList);
 
-                <div class="mb-6">
-                    <h4 class="font-bold font-display text-lg mb-3">Add a Tip</h4>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="15">15%</button>
-                        <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="18">18%</button>
-                        <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="20">20%</button>
-                        <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="custom">Custom</button>
-                    </div>
-                    <div id="custom-tip-container" class="hidden">
-                        <input type="number" id="custom-tip-input" placeholder="Enter tip %" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" min="0" max="100">
-                    </div>
-                </div>
+          const footer = document.createElement('div');
+          footer.id = 'cart-footer';
+          footer.className = 'border-t bg-white';
 
-                <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-lg touch-target">Continue to Payment</button>
-            </div>
+          updateCartTotals();
 
-            <div id="payment-view" class="hidden p-4 sm:p-6">
-                <h4 class="font-bold font-display text-xl mb-4">Select Payment</h4>
-                <div class="space-y-3 mb-6">
-                    <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
-                        <i data-lucide="credit-card" class="mr-2"></i> Debit/Credit Card
-                    </button>
-                    <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
-                        <i data-lucide="smartphone" class="mr-2"></i> Apple/Google Pay
-                    </button>
-                </div>
-                <button class="back-to-checkout-btn w-full text-sm text-gray-600 hover:underline touch-target">Back to Order Options</button>
-            </div>
-        `;
+          footer.innerHTML = `
+              <div id="checkout-view" class="p-4 sm:p-6">
+                  <div class="space-y-3 mb-6">
+                      <div class="flex justify-between text-sm sm:text-base">
+                          <span>Subtotal:</span>
+                          <span id="cart-subtotal">$0.00</span>
+                      </div>
+                      <div class="flex justify-between text-sm sm:text-base">
+                          <span>Tax:</span>
+                          <span id="cart-tax">$0.00</span>
+                      </div>
+                      <div class="flex justify-between text-sm sm:text-base">
+                          <span>Tip:</span>
+                          <span id="cart-tip">$0.00</span>
+                      </div>
+                      <div class="flex justify-between font-bold text-lg border-t pt-2">
+                          <span>Total:</span>
+                          <span id="cart-total">$0.00</span>
+                      </div>
+                  </div>
 
-        cartElement.innerHTML = "";
-        cartElement.appendChild(header);
-        cartElement.appendChild(itemsContainer);
-        cartElement.appendChild(footer);
+                  <div class="mb-6">
+                      <h4 class="font-bold font-display text-lg mb-3">Pickup or Delivery?</h4>
+                      <div class="flex gap-2 mb-4">
+                          <button class="pickup-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target">Pickup</button>
+                          <button class="delivery-btn flex-1 bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target">Delivery</button>
+                      </div>
 
-        generateTimeSlotButtons(selectedPickupDay);
-        updateCartTotals();
-        lucide.createIcons();
+                      <div id="pickup-options" class="">
+                          <div class="mb-4">
+                              <h5 class="font-semibold mb-2">Pickup Day:</h5>
+                              <div class="flex gap-2">
+                                  <button class="date-btn bg-amber-800 text-white px-4 py-2 rounded-full font-semibold touch-target" data-day="today">Today</button>
+                                  <button class="date-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-day="tomorrow">Tomorrow</button>
+                              </div>
+                          </div>
+                          <div class="mb-4">
+                              <h5 class="font-semibold mb-2">Pickup Time:</h5>
+                              <div id="time-slot-container" class="flex flex-wrap gap-2 mb-2">
+                                  <!-- Time slots will be generated by JS -->
+                              </div>
+                              <div id="later-button-container" class="text-center">
+                                  <!-- "Show more times" button will be added here if needed -->
+                              </div>
+                          </div>
+                      </div>
+
+                      <div id="delivery-options" class="hidden">
+                          <p class="text-gray-600 text-sm">Delivery is not yet available. Please select pickup.</p>
+                      </div>
+                  </div>
+
+                  <div class="mb-6">
+                      <h4 class="font-bold font-display text-lg mb-3">Add a Tip</h4>
+                      <div class="flex flex-wrap gap-2 mb-3">
+                          <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="15">15%</button>
+                          <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="18">18%</button>
+                          <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="20">20%</button>
+                          <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="custom">Custom</button>
+                      </div>
+                      <div id="custom-tip-container" class="hidden">
+                          <input type="number" id="custom-tip-input" placeholder="Enter tip %" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" min="0" max="100">
+                      </div>
+                  </div>
+
+                  <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-lg touch-target">Continue to Payment</button>
+              </div>
+
+              <div id="payment-view" class="hidden p-4 sm:p-6">
+                  <h4 class="font-bold font-display text-xl mb-4">Select Payment</h4>
+                  <div class="space-y-3 mb-6">
+                      <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
+                          <i data-lucide="credit-card" class="mr-2"></i> Debit/Credit Card
+                      </button>
+                      <button class="payment-btn w-full flex items-center justify-center p-3 border rounded-lg hover:bg-gray-100 touch-target">
+                          <i data-lucide="smartphone" class="mr-2"></i> Apple/Google Pay
+                      </button>
+                  </div>
+                  <button class="back-to-checkout-btn w-full text-sm text-gray-600 hover:underline touch-target">Back to Order Options</button>
+              </div>
+          `;
+
+          cartElement.innerHTML = '';
+          cartElement.appendChild(header);
+          cartElement.appendChild(itemsContainer);
+          cartElement.appendChild(footer);
+
+          generateTimeSlotButtons(selectedPickupDay);
+          updateCartTotals();
+          lucide.createIcons();
       }
 
       function updateCartTotals() {
-        const subtotalElement = document.getElementById("cart-subtotal");
-        const taxElement = document.getElementById("cart-tax");
-        const tipElement = document.getElementById("cart-tip");
-        const totalElement = document.getElementById("cart-total");
+          const subtotalElement = document.getElementById('cart-subtotal');
+          const taxElement = document.getElementById('cart-tax');
+          const tipElement = document.getElementById('cart-tip');
+          const totalElement = document.getElementById('cart-total');
 
-        if (!subtotalElement) return;
+          if (!subtotalElement) return;
 
-        const subtotal = cartItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0,
-        );
-        const tax = subtotal * NJ_SALES_TAX_RATE;
-        const tip =
-          tipInfo.type === "percent"
-            ? (subtotal * tipInfo.value) / 100
-            : tipInfo.value;
-        const total = subtotal + tax + tip;
+          const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+          const tax = subtotal * NJ_SALES_TAX_RATE;
+          const tip = tipInfo.type === 'percent' ? (subtotal * tipInfo.value / 100) : tipInfo.value;
+          const total = subtotal + tax + tip;
 
-        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        taxElement.textContent = `$${tax.toFixed(2)}`;
-        tipElement.textContent = `$${tip.toFixed(2)}`;
-        totalElement.textContent = `$${total.toFixed(2)}`;
+          subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+          taxElement.textContent = `$${tax.toFixed(2)}`;
+          tipElement.textContent = `$${tip.toFixed(2)}`;
+          totalElement.textContent = `$${total.toFixed(2)}`;
       }
 
       function updateFloatingCartButton() {
-        const totalQuantity = cartItems.reduce(
-          (sum, item) => sum + item.quantity,
-          0,
-        );
-        if (totalQuantity > 0) {
-          cartItemCount.textContent = totalQuantity;
-          floatingCartBtn.classList.add("visible");
-        } else {
-          floatingCartBtn.classList.remove("visible");
-        }
+          const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+          if (totalQuantity > 0) {
+              cartItemCount.textContent = totalQuantity;
+              floatingCartBtn.classList.add('visible');
+          } else {
+              floatingCartBtn.classList.remove('visible');
+          }
       }
 
       function showToast(message) {
-        clearTimeout(toastTimer);
-        toastMessage.textContent = message;
-        toastWrapper.classList.add("visible");
-        toastTimer = setTimeout(() => {
-          toastWrapper.classList.remove("visible");
-        }, 3000);
+          clearTimeout(toastTimer);
+          toastMessage.textContent = message;
+          toastWrapper.classList.add('visible');
+          toastTimer = setTimeout(() => {
+              toastWrapper.classList.remove('visible');
+          }, 3000);
       }
 
-      function showModal(
-        title,
-        body,
-        actions = '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-      ) {
-        document.getElementById("modal-title").textContent = title;
-        document.getElementById("modal-body").innerHTML = body;
-        document.getElementById("modal-actions").innerHTML = actions;
-        modal.classList.remove("hidden");
+      function showModal(title, body, actions = '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>') {
+          document.getElementById('modal-title').textContent = title;
+          document.getElementById('modal-body').innerHTML = body;
+          document.getElementById('modal-actions').innerHTML = actions;
+          modal.classList.remove('hidden');
       }
 
       function hideModal() {
-        modal.classList.add("hidden");
+          modal.classList.add('hidden');
       }
 
       // --- EVENT HANDLERS & LOGIC ---
       function addToCart(item, quantity, customizations) {
-        let price = item.price;
-        if (customizations.toppings) {
-          customizations.toppings.forEach((toppingName) => {
-            const topping = item.customizations.toppings.find(
-              (t) => t.name === toppingName,
-            );
-            if (topping) price += topping.price;
-          });
-        }
-        if (customizations.slice === "Slice") {
-          const sliceOption = item.customizations.slice.find(
-            (s) => s.name === "Slice",
-          );
-          if (sliceOption) price += sliceOption.price;
-        }
+          let price = item.price;
+          if (customizations.toppings) {
+              customizations.toppings.forEach(toppingName => {
+                  const topping = item.customizations.toppings.find(t => t.name === toppingName);
+                  if(topping) price += topping.price;
+              });
+          }
+          if (customizations.slice === 'Slice') {
+              const sliceOption = item.customizations.slice.find(s => s.name === 'Slice');
+              if(sliceOption) price += sliceOption.price;
+          }
 
-        showToast("Item added to your cart!");
-        const uniqueId = `${item.id}-${JSON.stringify(customizations)}`;
-        const existingItem = cartItems.find(
-          (cartItem) => cartItem.uniqueId === uniqueId,
-        );
-        if (existingItem) {
-          existingItem.quantity += quantity;
-        } else {
-          cartItems.push({
-            id: item.id,
-            uniqueId,
-            quantity,
-            customizations,
-            price,
-          });
-        }
-        renderCart();
+          showToast('Item added to your cart!');
+          const uniqueId = `${item.id}-${JSON.stringify(customizations)}`;
+          const existingItem = cartItems.find(cartItem => cartItem.uniqueId === uniqueId);
+          if (existingItem) {
+              existingItem.quantity += quantity;
+          } else {
+              cartItems.push({ id: item.id, uniqueId, quantity, customizations, price });
+          }
+          renderCart();
       }
 
       // Mobile menu toggle
-      mobileMenuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("mobile-menu-hidden");
-        mobileMenu.classList.toggle("mobile-menu-visible");
+      mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('mobile-menu-hidden');
+          mobileMenu.classList.toggle('mobile-menu-visible');
       });
 
       // Close mobile menu when clicking on a link
-      mobileMenu.addEventListener("click", (e) => {
-        if (e.target.tagName === "A") {
-          mobileMenu.classList.add("mobile-menu-hidden");
-          mobileMenu.classList.remove("mobile-menu-visible");
-        }
-      });
-
-      menuGrid.addEventListener("click", (e) => {
-        const button = e.target.closest("button");
-        if (!button) return;
-
-        const card = e.target.closest(".bg-white");
-
-        if (button.classList.contains("quantity-change")) {
-          const itemId = parseInt(button.dataset.itemId);
-          const change = parseInt(button.dataset.change);
-          const input = document.getElementById(`quantity-${itemId}`);
-          let currentValue = parseInt(input.value);
-          currentValue = Math.max(1, currentValue + change);
-          input.value = currentValue;
-        } else if (button.classList.contains("add-to-cart-btn")) {
-          const itemId = parseInt(button.dataset.itemId);
-          const item = menuItems.find((i) => i.id === itemId);
-          const quantity = parseInt(
-            document.getElementById(`quantity-${itemId}`).value,
-          );
-          const customizations = { toppings: [] };
-
-          card.querySelectorAll(".custom-btn.selected").forEach((btn) => {
-            customizations[btn.dataset.type] = btn.dataset.value;
-          });
-
-          const cardImage = card.querySelector(".menu-item-img");
-          if (
-            customizations.toppings &&
-            customizations.toppings.includes("Add Bacon") &&
-            item.customizations &&
-            item.customizations.toppings &&
-            item.customizations.toppings[0].img
-          ) {
-            cardImage.src = item.customizations.toppings[0].img;
+      mobileMenu.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A') {
+              mobileMenu.classList.add('mobile-menu-hidden');
+              mobileMenu.classList.remove('mobile-menu-visible');
           }
+      });
 
-          addToCart(item, quantity, customizations);
-        } else if (button.classList.contains("custom-btn")) {
-          const type = button.dataset.type;
-          const parent = button.parentElement;
-          parent
-            .querySelectorAll(`.custom-btn[data-type="${type}"]`)
-            .forEach((btn) => btn.classList.remove("selected"));
-          button.classList.add("selected");
-        } else if (button.classList.contains("allergens-btn")) {
-          const item = menuItems.find((i) => i.id == button.dataset.itemId);
-          const allergensList =
-            item.allergens.length > 0
-              ? item.allergens.join(", ")
-              : "No common allergens listed.";
-          showModal(
-            "Allergen Information",
-            `Contains: ${allergensList}`,
-            '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-          );
-        } else if (button.classList.contains("customize-btn")) {
-          const item = menuItems.find((i) => i.id == button.dataset.itemId);
-          let modalBody = '<div class="space-y-2 text-left">';
-          if (item.customizations && item.customizations.toppings) {
-            item.customizations.toppings.forEach((topping) => {
-              modalBody += `<label class="flex items-center space-x-3">
-                                        <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
-                                        <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
-                                     </label>`;
-            });
+      menuGrid.addEventListener('click', (e) => {
+          const button = e.target.closest('button');
+          if (!button) return;
+
+          const card = e.target.closest('.bg-white');
+
+          if (button.classList.contains('quantity-change')) {
+              const itemId = parseInt(button.dataset.itemId);
+              const change = parseInt(button.dataset.change);
+              const input = document.getElementById(`quantity-${itemId}`);
+              let currentValue = parseInt(input.value);
+              currentValue = Math.max(1, currentValue + change);
+              input.value = currentValue;
+          } else if (button.classList.contains('add-to-cart-btn')) {
+              const itemId = parseInt(button.dataset.itemId);
+              const item = menuItems.find(i => i.id === itemId);
+              const quantity = parseInt(document.getElementById(`quantity-${itemId}`).value);
+              const customizations = { toppings: [] };
+
+              card.querySelectorAll('.custom-btn.selected').forEach(btn => {
+                  customizations[btn.dataset.type] = btn.dataset.value;
+              });
+
+              const cardImage = card.querySelector('.menu-item-img');
+              if (customizations.toppings && customizations.toppings.includes('Add Bacon') && item.customizations && item.customizations.toppings && item.customizations.toppings[0].img) {
+                  cardImage.src = item.customizations.toppings[0].img;
+              }
+
+              addToCart(item, quantity, customizations);
+          } else if (button.classList.contains('custom-btn')) {
+              const type = button.dataset.type;
+              const parent = button.parentElement;
+              parent.querySelectorAll(`.custom-btn[data-type="${type}"]`).forEach(btn => btn.classList.remove('selected'));
+              button.classList.add('selected');
+          } else if (button.classList.contains('allergens-btn')) {
+              const item = menuItems.find(i => i.id == button.dataset.itemId);
+              const allergensList = item.allergens.length > 0 ? item.allergens.join(', ') : 'No common allergens listed.';
+              showModal('Allergen Information', `Contains: ${allergensList}`, '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>');
+          } else if (button.classList.contains('customize-btn')) {
+              const item = menuItems.find(i => i.id == button.dataset.itemId);
+              let modalBody = '<div class="space-y-2 text-left">';
+              if (item.customizations && item.customizations.toppings) {
+                  item.customizations.toppings.forEach(topping => {
+                      modalBody += `<label class="flex items-center space-x-3">
+                                          <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
+                                          <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
+                                       </label>`;
+                  });
+              }
+              modalBody += '</div>';
+              const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
+                                   <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target">Add to Cart</button>`;
+              showModal(`Customize ${item.name}`, modalBody, actions);
           }
-          modalBody += "</div>";
-          const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
-                                 <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target">Add to Cart</button>`;
-          showModal(`Customize ${item.name}`, modalBody, actions);
-        }
       });
 
-      modal.addEventListener("click", (e) => {
-        if (e.target.classList.contains("modal-close-btn")) {
-          hideModal();
-        } else if (e.target.id === "save-customizations-btn") {
-          const itemId = parseInt(e.target.dataset.itemId);
-          const item = menuItems.find((i) => i.id === itemId);
-          const quantity = 1;
-          const customizations = { toppings: [] };
+      modal.addEventListener('click', e => {
+          if (e.target.classList.contains('modal-close-btn')) {
+              hideModal();
+          } else if (e.target.id === 'save-customizations-btn') {
+              const itemId = parseInt(e.target.dataset.itemId);
+              const item = menuItems.find(i => i.id === itemId);
+              const quantity = 1;
+              const customizations = { toppings: [] };
 
-          document
-            .querySelectorAll(".topping-checkbox:checked")
-            .forEach((checkbox) => {
-              customizations.toppings.push(checkbox.dataset.name);
-            });
+              document.querySelectorAll('.topping-checkbox:checked').forEach(checkbox => {
+                  customizations.toppings.push(checkbox.dataset.name);
+              });
 
-          addToCart(item, quantity, customizations);
-          hideModal();
-        }
-      });
-
-      cartElement.addEventListener("click", (e) => {
-        const button = e.target.closest("button");
-        if (!button) return;
-
-        if (button.closest("#close-cart")) {
-          cartElement.classList.add("cart-hidden");
-        } else if (button.classList.contains("cart-quantity-change")) {
-          const uniqueId = button.dataset.uniqueId;
-          const change = parseInt(button.dataset.change);
-          const itemInCart = cartItems.find(
-            (item) => item.uniqueId === uniqueId,
-          );
-          if (itemInCart) {
-            itemInCart.quantity += change;
-            if (itemInCart.quantity <= 0) {
-              cartItems = cartItems.filter(
-                (item) => item.uniqueId !== uniqueId,
-              );
-            }
+              addToCart(item, quantity, customizations);
+              hideModal();
           }
-          renderCart();
-        } else if (button.classList.contains("cart-remove-item")) {
-          const uniqueId = button.dataset.uniqueId;
-          cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
-          renderCart();
-        } else if (button.classList.contains("delivery-btn")) {
-          document
-            .getElementById("delivery-options")
-            .classList.remove("hidden");
-          document.getElementById("pickup-options").classList.add("hidden");
-          document
-            .querySelectorAll(".delivery-btn, .pickup-btn")
-            .forEach((btn) => {
-              btn.classList.remove("bg-amber-800", "text-white");
-              btn.classList.add("bg-gray-200", "text-gray-800");
-            });
-          button.classList.remove("bg-gray-200", "text-gray-800");
-          button.classList.add("bg-amber-800", "text-white");
-        } else if (button.classList.contains("pickup-btn")) {
-          document.getElementById("delivery-options").classList.add("hidden");
-          document.getElementById("pickup-options").classList.remove("hidden");
-          document
-            .querySelectorAll(".delivery-btn, .pickup-btn")
-            .forEach((btn) => {
-              btn.classList.remove("bg-amber-800", "text-white");
-              btn.classList.add("bg-gray-200", "text-gray-800");
-            });
-          button.classList.remove("bg-gray-200", "text-gray-800");
-          button.classList.add("bg-amber-800", "text-white");
-        } else if (button.classList.contains("date-btn")) {
-          selectedPickupDay = button.dataset.day;
-          document.querySelectorAll(".date-btn").forEach((btn) => {
-            btn.classList.remove("bg-amber-800", "text-white");
-            btn.classList.add(
-              "bg-white",
-              "border-2",
-              "border-amber-600",
-              "text-amber-800",
-            );
-          });
-          button.classList.add("bg-amber-800", "text-white");
-          button.classList.remove(
-            "bg-white",
-            "border-2",
-            "border-amber-600",
-            "text-amber-800",
-          );
-          generateTimeSlotButtons(selectedPickupDay);
-        } else if (button.classList.contains("time-slot-btn")) {
-          document
-            .querySelectorAll(".time-slot-btn")
-            .forEach((btn) => btn.classList.remove("selected"));
-          button.classList.add("selected");
-          selectedPickupTime = button.dataset.time;
-        } else if (button.classList.contains("show-later-btn")) {
-          generateTimeSlotButtons(selectedPickupDay, true);
-        } else if (button.classList.contains("tip-btn")) {
-          const tipValue = button.dataset.tip;
-          document
-            .querySelectorAll(".tip-btn")
-            .forEach((b) => b.classList.remove("selected"));
-          button.classList.add("selected");
-          const customTipContainer = document.getElementById(
-            "custom-tip-container",
-          );
-          const customTipInput = document.getElementById("custom-tip-input");
-          if (tipValue === "custom") {
-            customTipContainer.classList.remove("hidden");
-            tipInfo = {
-              type: "percent",
-              value: parseFloat(customTipInput.value) || 0,
-              isCustom: true,
-            };
-          } else {
-            customTipContainer.classList.add("hidden");
-            customTipInput.value = "";
-            tipInfo = {
-              type: "percent",
-              value: parseInt(tipValue),
-              isCustom: false,
-            };
+      });
+
+      cartElement.addEventListener('click', (e) => {
+          const button = e.target.closest('button');
+          if (!button) return;
+
+          if (button.closest('#close-cart')) {
+              cartElement.classList.add('cart-hidden');
+          } else if (button.classList.contains('cart-quantity-change')) {
+              const uniqueId = button.dataset.uniqueId;
+              const change = parseInt(button.dataset.change);
+              const itemInCart = cartItems.find(item => item.uniqueId === uniqueId);
+              if (itemInCart) {
+                  itemInCart.quantity += change;
+                  if (itemInCart.quantity <= 0) {
+                      cartItems = cartItems.filter(item => item.uniqueId !== uniqueId);
+                  }
+              }
+              renderCart();
+          } else if (button.classList.contains('cart-remove-item')) {
+              const uniqueId = button.dataset.uniqueId;
+              cartItems = cartItems.filter(item => item.uniqueId !== uniqueId);
+              renderCart();
+          } else if (button.classList.contains('delivery-btn')) {
+              document.getElementById('delivery-options').classList.remove('hidden');
+              document.getElementById('pickup-options').classList.add('hidden');
+              document.querySelectorAll('.delivery-btn, .pickup-btn').forEach(btn => {
+                  btn.classList.remove('bg-amber-800', 'text-white');
+                  btn.classList.add('bg-gray-200', 'text-gray-800');
+              });
+              button.classList.remove('bg-gray-200', 'text-gray-800');
+              button.classList.add('bg-amber-800', 'text-white');
+          } else if (button.classList.contains('pickup-btn')) {
+              document.getElementById('delivery-options').classList.add('hidden');
+              document.getElementById('pickup-options').classList.remove('hidden');
+              document.querySelectorAll('.delivery-btn, .pickup-btn').forEach(btn => {
+                  btn.classList.remove('bg-amber-800', 'text-white');
+                  btn.classList.add('bg-gray-200', 'text-gray-800');
+              });
+              button.classList.remove('bg-gray-200', 'text-gray-800');
+              button.classList.add('bg-amber-800', 'text-white');
+          } else if (button.classList.contains('date-btn')) {
+              selectedPickupDay = button.dataset.day;
+              document.querySelectorAll('.date-btn').forEach(btn => {
+                  btn.classList.remove('bg-amber-800', 'text-white');
+                  btn.classList.add('bg-white', 'border-2', 'border-amber-600', 'text-amber-800');
+              });
+              button.classList.add('bg-amber-800', 'text-white');
+              button.classList.remove('bg-white', 'border-2', 'border-amber-600', 'text-amber-800');
+              generateTimeSlotButtons(selectedPickupDay);
+          } else if (button.classList.contains('time-slot-btn')) {
+              document.querySelectorAll('.time-slot-btn').forEach(btn => btn.classList.remove('selected'));
+              button.classList.add('selected');
+              selectedPickupTime = button.dataset.time;
+          } else if(button.classList.contains('show-later-btn')) {
+              generateTimeSlotButtons(selectedPickupDay, true);
+          } else if (button.classList.contains('tip-btn')) {
+              const tipValue = button.dataset.tip;
+              document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('selected'));
+              button.classList.add('selected');
+              const customTipContainer = document.getElementById('custom-tip-container');
+              const customTipInput = document.getElementById('custom-tip-input');
+              if (tipValue === 'custom') {
+                  customTipContainer.classList.remove('hidden');
+                  tipInfo = { type: 'percent', value: parseFloat(customTipInput.value) || 0, isCustom: true };
+              } else {
+                  customTipContainer.classList.add('hidden');
+                  customTipInput.value = '';
+                  tipInfo = { type: 'percent', value: parseInt(tipValue), isCustom: false };
+              }
+              updateCartTotals();
+          } else if (button.classList.contains('checkout-continue-btn')) {
+              const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              if (subtotal > 150) {
+                  showModal('Order Limit Exceeded', 'Our max online order amount is $150 before taxes & tips. Please call us at <a href="tel:908-933-0123" class="text-amber-800 font-bold hover:underline">(908) 933-0123</a> to place a larger order.', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>');
+                  return;
+              }
+              document.getElementById('checkout-view').classList.add('hidden');
+              document.getElementById('payment-view').classList.remove('hidden');
+          } else if (button.classList.contains('back-to-checkout-btn')) {
+              document.getElementById('checkout-view').classList.remove('hidden');
+              document.getElementById('payment-view').classList.add('hidden');
+          } else if (button.classList.contains('payment-btn')) {
+              showModal('Online Ordering', 'Our full online ordering system is launching soon! Please call us or visit in person to place an order.', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>');
           }
-          updateCartTotals();
-        } else if (button.classList.contains("checkout-continue-btn")) {
-          const subtotal = cartItems.reduce(
-            (sum, item) => sum + item.price * item.quantity,
-            0,
-          );
-          if (subtotal > 150) {
-            showModal(
-              "Order Limit Exceeded",
-              'Our max online order amount is $150 before taxes & tips. Please call us at <a href="tel:908-933-0123" class="text-amber-800 font-bold hover:underline">(908) 933-0123</a> to place a larger order.',
-              '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-            );
-            return;
+      });
+
+      cartElement.addEventListener('input', e => {
+          if (e.target.id === 'custom-tip-input') {
+              const value = parseFloat(e.target.value) || 0;
+              tipInfo = { type: 'percent', value: value >= 5 ? value : 0, isCustom: true };
+              updateCartTotals();
           }
-          document.getElementById("checkout-view").classList.add("hidden");
-          document.getElementById("payment-view").classList.remove("hidden");
-        } else if (button.classList.contains("back-to-checkout-btn")) {
-          document.getElementById("checkout-view").classList.remove("hidden");
-          document.getElementById("payment-view").classList.add("hidden");
-        } else if (button.classList.contains("payment-btn")) {
-          showModal(
-            "Online Ordering",
-            "Our full online ordering system is launching soon! Please call us or visit in person to place an order.",
-            '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+      });
+
+      filterContainer.addEventListener('click', e => {
+          if(e.target.classList.contains('filter-btn')) {
+              currentFilter = e.target.dataset.category;
+              document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('selected'));
+              e.target.classList.add('selected');
+              renderMenuItems();
+          }
+      });
+
+      searchBar.addEventListener('input', e => {
+          const searchTerm = e.target.value.toLowerCase();
+          const filteredItems = menuItems.filter(item =>
+              item.name.toLowerCase().includes(searchTerm) ||
+              item.description.toLowerCase().includes(searchTerm) ||
+              item.category.toLowerCase().includes(searchTerm)
           );
-        }
+          renderMenuItems(filteredItems);
       });
 
-      cartElement.addEventListener("input", (e) => {
-        if (e.target.id === "custom-tip-input") {
-          const value = parseFloat(e.target.value) || 0;
-          tipInfo = {
-            type: "percent",
-            value: value >= 5 ? value : 0,
-            isCustom: true,
-          };
-          updateCartTotals();
-        }
+      floatingCartBtn.addEventListener('click', () => {
+          cartElement.classList.remove('cart-hidden');
       });
 
-      filterContainer.addEventListener("click", (e) => {
-        if (e.target.classList.contains("filter-btn")) {
-          currentFilter = e.target.dataset.category;
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach((btn) => btn.classList.remove("selected"));
-          e.target.classList.add("selected");
-          renderMenuItems();
-        }
-      });
-
-      searchBar.addEventListener("input", (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredItems = menuItems.filter(
-          (item) =>
-            item.name.toLowerCase().includes(searchTerm) ||
-            item.description.toLowerCase().includes(searchTerm) ||
-            item.category.toLowerCase().includes(searchTerm),
-        );
-        renderMenuItems(filteredItems);
-      });
-
-      floatingCartBtn.addEventListener("click", () => {
-        cartElement.classList.remove("cart-hidden");
-      });
-
-      document
-        .getElementById("catering-form")
-        .addEventListener("submit", (e) => {
+      document.getElementById('catering-form').addEventListener('submit', e => {
           e.preventDefault();
-          showModal(
-            "Thank You!",
-            "Your catering inquiry has been submitted. We'll be in touch with you soon!",
-            '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-          );
+          showModal('Thank You!', 'Your catering inquiry has been submitted. We\'ll be in touch with you soon!', '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>');
           e.target.reset();
-        });
+      });
 
       // --- INITIALIZATION ---
       renderMenuFilters();
