@@ -1543,11 +1543,36 @@
           addToCart(item, quantity, customizations);
         } else if (button.classList.contains("custom-btn")) {
           const type = button.dataset.type;
+          const value = button.dataset.value;
           const parent = button.parentElement;
           parent
             .querySelectorAll(`.custom-btn[data-type="${type}"]`)
             .forEach((btn) => btn.classList.remove("selected"));
           button.classList.add("selected");
+
+          // Update price display for slice customization
+          if (type === "slice") {
+            const itemId = parseInt(
+              card.querySelector(".add-to-cart-btn").dataset.itemId,
+            );
+            const item = menuItems.find((i) => i.id === itemId);
+            const priceElement = document.getElementById(`price-${itemId}`);
+
+            if (
+              item &&
+              item.customizations &&
+              item.customizations.slice &&
+              priceElement
+            ) {
+              const sliceOption = item.customizations.slice.find(
+                (option) => option.name === value,
+              );
+              if (sliceOption) {
+                const newPrice = item.price + sliceOption.price;
+                priceElement.textContent = `$${newPrice.toFixed(2)}`;
+              }
+            }
+          }
         } else if (button.classList.contains("allergens-btn")) {
           const item = menuItems.find((i) => i.id == button.dataset.itemId);
           const allergensList =
