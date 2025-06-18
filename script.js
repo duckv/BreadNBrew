@@ -900,6 +900,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         return;
       }
+      updatePaymentOrderSummary();
       document.getElementById("checkout-view").classList.add("hidden");
       document.getElementById("payment-view").classList.remove("hidden");
     } else if (button.classList.contains("back-to-checkout-btn")) {
