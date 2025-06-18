@@ -701,6 +701,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = e.target.closest("button");
     if (!button) return;
 
+    // Prevent any default behavior and stop propagation for all cart buttons
+    e.preventDefault();
+    e.stopPropagation();
+
     if (button.closest("#close-cart")) {
       cartElement.classList.add("cart-hidden");
     } else if (button.classList.contains("cart-quantity-change")) {
