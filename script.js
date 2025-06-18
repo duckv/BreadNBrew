@@ -263,7 +263,7 @@ function renderCart() {
   updateFloatingCartButton();
 
   if (cartItems.length === 0) {
-    // Clean up scroll buttons
+    // Clean up scroll buttons but keep body scroll locked (cart still open)
     cleanupScrollButtons();
 
     cartElement.innerHTML = `
