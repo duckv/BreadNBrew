@@ -359,23 +359,28 @@ function renderCart() {
   footer.className = "border-t bg-white";
 
   footer.innerHTML = `
-        <div id="checkout-view" class="p-4 sm:p-6">
-            <div class="space-y-3 mb-6">
-                <div class="flex justify-between text-sm sm:text-base">
-                    <span>Subtotal:</span>
-                    <span id="cart-subtotal">$0.00</span>
-                </div>
-                <div class="flex justify-between text-sm sm:text-base">
-                    <span>Tax:</span>
-                    <span id="cart-tax">$0.00</span>
-                </div>
-                <div class="flex justify-between text-sm sm:text-base">
-                    <span>Tip:</span>
-                    <span id="cart-tip">$0.00</span>
-                </div>
-                <div class="flex justify-between font-bold text-lg border-t pt-2">
-                    <span>Total:</span>
-                    <span id="cart-total">$0.00</span>
+        <div id="checkout-view" class="p-6 bg-white border-t-2 border-amber-100">
+            <div class="bg-gray-50 rounded-xl p-5 mb-6 border border-gray-200">
+                <h3 class="font-bold text-lg text-gray-900 mb-4">Order Summary</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between text-base font-medium text-gray-700">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal" class="font-bold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-base font-medium text-gray-700">
+                        <span>Tax:</span>
+                        <span id="cart-tax" class="font-bold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-base font-medium text-gray-700">
+                        <span>Tip:</span>
+                        <span id="cart-tip" class="font-bold">$0.00</span>
+                    </div>
+                    <div class="border-t-2 border-amber-200 pt-3 mt-3">
+                        <div class="flex justify-between font-bold text-xl text-gray-900">
+                            <span>Total:</span>
+                            <span id="cart-total" class="text-amber-800 bg-amber-50 px-3 py-1 rounded-lg">$0.00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
