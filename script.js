@@ -299,7 +299,22 @@ function renderCart() {
 
   const itemsContainer = document.createElement("div");
   itemsContainer.className =
-    "cart-items-container bg-gradient-to-b from-gray-50 to-white";
+    "cart-items-container bg-gradient-to-b from-gray-50 to-white relative";
+  itemsContainer.id = "cart-items-scroll-container";
+
+  // Add scroll navigation buttons
+  const scrollUpBtn = document.createElement("button");
+  scrollUpBtn.id = "cart-scroll-up";
+  scrollUpBtn.className =
+    "fixed right-4 top-1/3 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none md:hidden";
+  scrollUpBtn.innerHTML = '<i data-lucide="chevrons-up" class="w-6 h-6"></i>';
+
+  const scrollDownBtn = document.createElement("button");
+  scrollDownBtn.id = "cart-scroll-down";
+  scrollDownBtn.className =
+    "fixed right-4 bottom-1/3 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none md:hidden";
+  scrollDownBtn.innerHTML =
+    '<i data-lucide="chevrons-down" class="w-6 h-6"></i>';
 
   const itemsList = document.createElement("div");
   itemsList.className = "p-4 sm:p-6 space-y-6 min-h-full";
