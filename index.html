@@ -1186,7 +1186,7 @@
             <div class="p-4 sm:p-6">
                 <div class="flex justify-between items-start mb-2">
                     <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
-                    <span class="text-lg sm:text-xl font-bold text-amber-800">$${item.price.toFixed(2)}</span>
+                    <span id="price-${item.id}" class="text-lg sm:text-xl font-bold text-amber-800">$${item.price.toFixed(2)}</span>
                 </div>
                 <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
                 ${customizationOptions}
