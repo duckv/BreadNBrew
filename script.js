@@ -657,6 +657,30 @@ function cleanupScrollButtons() {
   }
 }
 
+function lockBodyScroll() {
+  // Store current scroll position
+  const scrollY = window.scrollY;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.width = "100%";
+  document.body.style.overflow = "hidden";
+  document.body.setAttribute("data-scroll-y", scrollY.toString());
+}
+
+function unlockBodyScroll() {
+  // Restore scroll position
+  const scrollY = document.body.getAttribute("data-scroll-y");
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+  document.body.style.overflow = "";
+  document.body.removeAttribute("data-scroll-y");
+
+  if (scrollY) {
+    window.scrollTo(0, parseInt(scrollY));
+  }
+}
+
 function setupCartScrolling() {
   const scrollContainer = document.getElementById(
     "cart-items-scroll-container",
