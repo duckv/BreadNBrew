@@ -303,7 +303,8 @@ function renderCart() {
     if (!menuItem) return;
 
     const itemDiv = document.createElement("div");
-    itemDiv.className = "flex gap-4 bg-white p-4 rounded-lg shadow-sm border";
+    itemDiv.className =
+      "flex gap-4 bg-white p-5 rounded-xl shadow-md border-2 border-gray-100 hover:border-amber-200 transition-all duration-200";
 
     let customizationText = "";
     if (cartItem.customizations) {
@@ -316,29 +317,29 @@ function renderCart() {
         }
       });
       if (customs.length > 0) {
-        customizationText = `<p class="text-sm text-gray-600">${customs.join(", ")}</p>`;
+        customizationText = `<p class="text-sm text-gray-700 bg-gray-50 px-2 py-1 rounded-md mt-1 font-medium">${customs.join(", ")}</p>`;
       }
     }
 
     itemDiv.innerHTML = `
-            <img src="${menuItem.img}" alt="${menuItem.name}" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded">
+            <img src="${menuItem.img}" alt="${menuItem.name}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg border-2 border-gray-200">
             <div class="flex-1">
-                <h4 class="font-semibold text-sm sm:text-base">${menuItem.name}</h4>
+                <h4 class="font-bold text-base sm:text-lg text-gray-900 mb-1">${menuItem.name}</h4>
                 ${customizationText}
-                <p class="text-amber-800 font-bold text-sm sm:text-base">$${cartItem.price.toFixed(2)} each</p>
-                <div class="flex items-center justify-between mt-2">
-                    <div class="flex items-center gap-2">
-                        <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
-                        <span class="w-8 text-center font-semibold">${cartItem.quantity}</span>
-                        <button class="cart-quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
+                <p class="text-amber-800 font-bold text-base sm:text-lg mt-2">$${cartItem.price.toFixed(2)} each</p>
+                <div class="flex items-center justify-between mt-3">
+                    <div class="flex items-center gap-3 bg-gray-50 rounded-full px-2 py-1">
+                        <button class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
+                        <span class="w-8 text-center font-bold text-lg text-gray-900">${cartItem.quantity}</span>
+                        <button class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
                     </div>
-                    <button class="cart-remove-item text-red-600 hover:text-red-800 text-sm touch-target" data-unique-id="${cartItem.uniqueId}">
+                    <button class="cart-remove-item bg-red-50 hover:bg-red-100 text-red-700 hover:text-red-800 p-2 rounded-full touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                 </div>
             </div>
-            <div class="text-right">
-                <p class="font-bold text-amber-800 text-sm sm:text-base">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+            <div class="text-right flex flex-col justify-center">
+                <p class="font-bold text-xl text-amber-800 bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
             </div>
         `;
 
@@ -371,14 +372,14 @@ function renderCart() {
                     <span id="cart-total">$0.00</span>
                 </div>
             </div>
-            
+
             <div class="mb-6">
                 <h4 class="font-bold font-display text-lg mb-3">Pickup or Delivery?</h4>
                 <div class="flex gap-2 mb-4">
                     <button class="pickup-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target">Pickup</button>
                     <button class="delivery-btn flex-1 bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target">Delivery</button>
                 </div>
-                
+
                 <div id="pickup-options" class="">
                     <div class="mb-4">
                         <h5 class="font-semibold mb-2">Pickup Day:</h5>
@@ -397,12 +398,12 @@ function renderCart() {
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="delivery-options" class="hidden">
                     <p class="text-gray-600 text-sm">Delivery is not yet available. Please select pickup.</p>
                 </div>
             </div>
-            
+
             <div class="mb-6">
                 <h4 class="font-bold font-display text-lg mb-3">Add a Tip</h4>
                 <div class="flex flex-wrap gap-2 mb-3">
@@ -415,10 +416,10 @@ function renderCart() {
                     <input type="number" id="custom-tip-input" placeholder="Enter tip %" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" min="0" max="100">
                 </div>
             </div>
-            
+
             <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-lg touch-target">Continue to Payment</button>
         </div>
-        
+
         <div id="payment-view" class="hidden p-4 sm:p-6">
             <h4 class="font-bold font-display text-xl mb-4">Select Payment</h4>
             <div class="space-y-3 mb-6">
