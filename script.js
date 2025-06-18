@@ -445,17 +445,50 @@ function renderCart() {
         </div>
 
         <div id="payment-view" class="hidden">
-            <div class="p-6 bg-white border-t-2 border-amber-100">
-                <h4 class="font-bold font-display text-2xl mb-6 text-gray-900">Select Payment Method</h4>
-                <div class="space-y-4 mb-8">
-                    <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
-                        <i data-lucide="credit-card" class="mr-3 w-6 h-6"></i> Debit/Credit Card
-                    </button>
-                    <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
-                        <i data-lucide="smartphone" class="mr-3 w-6 h-6"></i> Apple/Google Pay
-                    </button>
+            <div class="max-h-screen overflow-y-auto">
+                <!-- Order Summary Section -->
+                <div class="p-6 bg-amber-50 border-b-2 border-amber-200">
+                    <h3 class="font-bold font-display text-xl mb-4 text-gray-900">Order Summary</h3>
+                    <div id="payment-order-items" class="space-y-3 mb-4">
+                        <!-- Order items will be populated here -->
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border-2 border-amber-200">
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-base font-medium">
+                                <span>Subtotal:</span>
+                                <span id="payment-subtotal" class="font-bold">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-base font-medium">
+                                <span>Tax:</span>
+                                <span id="payment-tax" class="font-bold">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-base font-medium">
+                                <span>Tip:</span>
+                                <span id="payment-tip" class="font-bold">$0.00</span>
+                            </div>
+                            <div class="border-t-2 border-amber-200 pt-2 mt-2">
+                                <div class="flex justify-between font-bold text-xl">
+                                    <span>Total:</span>
+                                    <span id="payment-total" class="text-amber-800">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button class="back-to-checkout-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors touch-target">← Back to Order Options</button>
+
+                <!-- Payment Method Section -->
+                <div class="p-6 bg-white">
+                    <h4 class="font-bold font-display text-2xl mb-6 text-gray-900">Select Payment Method</h4>
+                    <div class="space-y-4 mb-8">
+                        <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+                            <i data-lucide="credit-card" class="mr-3 w-6 h-6"></i> Debit/Credit Card
+                        </button>
+                        <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+                            <i data-lucide="smartphone" class="mr-3 w-6 h-6"></i> Apple/Google Pay
+                        </button>
+                    </div>
+                    <button class="back-to-checkout-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors touch-target">← Back to Order Options</button>
+                </div>
             </div>
         </div>
     `;
