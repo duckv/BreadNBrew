@@ -298,10 +298,11 @@ function renderCart() {
     `;
 
   const itemsContainer = document.createElement("div");
-  itemsContainer.className = "flex-1 overflow-y-auto bg-gray-50";
+  itemsContainer.className =
+    "flex-1 overflow-y-auto bg-gradient-to-b from-gray-50 to-white";
 
   const itemsList = document.createElement("div");
-  itemsList.className = "p-4 sm:p-6 space-y-4";
+  itemsList.className = "p-4 sm:p-6 space-y-6";
 
   cartItems.forEach((cartItem) => {
     const menuItem = menuItems.find((item) => item.id === cartItem.id);
