@@ -264,17 +264,19 @@ function renderCart() {
 
   if (cartItems.length === 0) {
     cartElement.innerHTML = `
-            <div class="flex items-center justify-between p-4 sm:p-6 border-b bg-white">
-                <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
-                <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
+            <div class="flex items-center justify-between p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100">
+                <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
+                <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <div class="flex-1 flex items-center justify-center p-6 bg-white">
+            <div class="flex-1 flex items-center justify-center p-8 bg-white">
                 <div class="text-center">
-                    <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
-                    <p class="text-gray-500 text-lg">Your cart is empty</p>
-                    <p class="text-gray-400 text-sm mt-2">Add some delicious items to get started!</p>
+                    <div class="bg-gray-100 rounded-full p-6 mx-auto mb-6 w-fit">
+                        <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400 mx-auto"></i>
+                    </div>
+                    <p class="text-gray-700 text-xl font-semibold mb-2">Your cart is empty</p>
+                    <p class="text-gray-500 text-base">Add some delicious items to get started!</p>
                 </div>
             </div>
         `;
