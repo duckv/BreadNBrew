@@ -642,6 +642,75 @@ function hideModal() {
   modal.classList.add("hidden");
 }
 
+function setupCartScrolling() {
+  const scrollContainer = document.getElementById(
+    "cart-items-scroll-container",
+  );
+  const scrollUpBtn = document.getElementById("cart-scroll-up");
+  const scrollDownBtn = document.getElementById("cart-scroll-down");
+
+  if (!scrollContainer || !scrollUpBtn || !scrollDownBtn) return;
+
+  // Check if content is scrollable and show/hide buttons
+  function updateScrollButtons() {
+    const isScrollable =
+      scrollContainer.scrollHeight > scrollContainer.clientHeight;
+    const isAtTop = scrollContainer.scrollTop <= 10;
+    const isAtBottom =
+      scrollContainer.scrollTop >=
+      scrollContainer.scrollHeight - scrollContainer.clientHeight - 10;
+
+    if (isScrollable) {
+      // Show/hide up button
+      if (isAtTop) {
+        scrollUpBtn.classList.add("opacity-0", "pointer-events-none");
+      } else {
+        scrollUpBtn.classList.remove("opacity-0", "pointer-events-none");
+      }
+
+      // Show/hide down button
+      if (isAtBottom) {
+        scrollDownBtn.classList.add("opacity-0", "pointer-events-none");
+      } else {
+        scrollDownBtn.classList.remove("opacity-0", "pointer-events-none");
+      }
+    } else {
+      // Hide both buttons if content doesn't need scrolling
+      scrollUpBtn.classList.add("opacity-0", "pointer-events-none");
+      scrollDownBtn.classList.add("opacity-0", "pointer-events-none");
+    }
+  }
+
+  // Scroll up function
+  scrollUpBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollContainer.scrollBy({
+      top: -200,
+      behavior: "smooth",
+    });
+  });
+
+  // Scroll down function
+  scrollDownBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollContainer.scrollBy({
+      top: 200,
+      behavior: "smooth",
+    });
+  });
+
+  // Listen for scroll events to update button visibility
+  scrollContainer.addEventListener("scroll", updateScrollButtons);
+
+  // Initial check
+  setTimeout(updateScrollButtons, 100);
+
+  // Re-check when window resizes
+  window.addEventListener("resize", updateScrollButtons);
+}
+
 function addToCart(item, quantity, customizations) {
   let price = item.price;
   if (customizations.toppings) {
