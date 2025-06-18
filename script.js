@@ -645,6 +645,18 @@ function hideModal() {
   modal.classList.add("hidden");
 }
 
+function cleanupScrollButtons() {
+  const scrollUpBtn = document.getElementById("cart-scroll-up");
+  const scrollDownBtn = document.getElementById("cart-scroll-down");
+
+  if (scrollUpBtn) {
+    scrollUpBtn.remove();
+  }
+  if (scrollDownBtn) {
+    scrollDownBtn.remove();
+  }
+}
+
 function setupCartScrolling() {
   const scrollContainer = document.getElementById(
     "cart-items-scroll-container",
