@@ -286,10 +286,13 @@ function renderCart() {
 
   const header = document.createElement("div");
   header.className =
-    "flex items-center justify-between p-4 sm:p-6 border-b bg-white";
+    "flex items-center justify-between p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100";
   header.innerHTML = `
-        <h2 class="text-xl sm:text-2xl font-bold font-display">Your Cart</h2>
-        <button id="close-cart" class="text-gray-500 hover:text-gray-700 touch-target">
+        <div class="flex items-center gap-3">
+            <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
+            <span class="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-bold">${cartItems.length} item${cartItems.length !== 1 ? "s" : ""}</span>
+        </div>
+        <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
             <i data-lucide="x" class="w-6 h-6"></i>
         </button>
     `;
