@@ -1086,6 +1086,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Floating cart button event listener
   floatingCartBtn.addEventListener("click", () => {
     cartElement.classList.remove("cart-hidden");
+    lockBodyScroll();
   });
 
   // Catering form event listener
