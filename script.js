@@ -429,7 +429,7 @@ function renderCart() {
                 </div>
             </div>
 
-            <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-lg touch-target">Continue to Payment</button>
+            <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-700 transition text-xl touch-target shadow-lg border-2 border-green-500 mb-4">Continue to Payment</button>
         </div>
 
         <div id="payment-view" class="hidden p-4 sm:p-6">
