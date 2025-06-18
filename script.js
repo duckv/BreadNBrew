@@ -526,6 +526,63 @@ function updateCartTotals() {
   taxElement.textContent = `$${tax.toFixed(2)}`;
   tipElement.textContent = `$${tip.toFixed(2)}`;
   totalElement.textContent = `$${total.toFixed(2)}`;
+
+  // Update payment view totals if elements exist
+  updatePaymentTotals(subtotal, tax, tip, total);
+}
+
+function updatePaymentTotals(subtotal, tax, tip, total) {
+  const paymentSubtotal = document.getElementById("payment-subtotal");
+  const paymentTax = document.getElementById("payment-tax");
+  const paymentTip = document.getElementById("payment-tip");
+  const paymentTotal = document.getElementById("payment-total");
+
+  if (paymentSubtotal) paymentSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+  if (paymentTax) paymentTax.textContent = `$${tax.toFixed(2)}`;
+  if (paymentTip) paymentTip.textContent = `$${tip.toFixed(2)}`;
+  if (paymentTotal) paymentTotal.textContent = `$${total.toFixed(2)}`;
+}
+
+function updatePaymentOrderSummary() {
+  const paymentOrderItems = document.getElementById("payment-order-items");
+  if (!paymentOrderItems) return;
+
+  paymentOrderItems.innerHTML = "";
+
+  cartItems.forEach((cartItem) => {
+    const menuItem = menuItems.find((item) => item.id === cartItem.id);
+    if (!menuItem) return;
+
+    let customizationText = "";
+    if (cartItem.customizations) {
+      const customs = [];
+      Object.entries(cartItem.customizations).forEach(([key, value]) => {
+        if (key === "toppings" && Array.isArray(value) && value.length > 0) {
+          customs.push(value.join(", "));
+        } else if (value && key !== "toppings") {
+          customs.push(value);
+        }
+      });
+      if (customs.length > 0) {
+        customizationText = `<p class="text-sm text-gray-600 font-medium">${customs.join(", ")}</p>`;
+      }
+    }
+
+    const orderItem = document.createElement("div");
+    orderItem.className =
+      "flex justify-between items-center bg-white p-3 rounded-lg border border-amber-200";
+    orderItem.innerHTML = `
+            <div class="flex-1">
+                <h5 class="font-semibold text-gray-900">${menuItem.name}</h5>
+                ${customizationText}
+                <p class="text-sm text-gray-600">Qty: ${cartItem.quantity} × $${cartItem.price.toFixed(2)}</p>
+            </div>
+            <div class="text-right">
+                <p class="font-bold text-amber-800">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+            </div>
+        `;
+    paymentOrderItems.appendChild(orderItem);
+  });
 }
 
 function updateFloatingCartButton() {
