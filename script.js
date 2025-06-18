@@ -931,6 +931,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (button.closest("#close-cart")) {
       cleanupScrollButtons();
       cartElement.classList.add("cart-hidden");
+      unlockBodyScroll();
     } else if (button.classList.contains("cart-quantity-change")) {
       const uniqueId = button.dataset.uniqueId;
       const change = parseInt(button.dataset.change);
