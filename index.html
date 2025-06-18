@@ -1515,7 +1515,7 @@
           const change = parseInt(button.dataset.change);
           const input = document.getElementById(`quantity-${itemId}`);
           let currentValue = parseInt(input.value);
-          currentValue = Math.max(1, currentValue + change);
+          currentValue = Math.max(1, Math.min(25, currentValue + change));
           input.value = currentValue;
         } else if (button.classList.contains("add-to-cart-btn")) {
           const itemId = parseInt(button.dataset.itemId);
