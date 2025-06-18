@@ -905,6 +905,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.stopPropagation();
 
     if (button.closest("#close-cart")) {
+      cleanupScrollButtons();
       cartElement.classList.add("cart-hidden");
     } else if (button.classList.contains("cart-quantity-change")) {
       const uniqueId = button.dataset.uniqueId;
