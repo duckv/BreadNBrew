@@ -347,9 +347,9 @@ function renderCart() {
                 <p class="text-amber-800 font-bold text-base sm:text-lg mt-2">$${cartItem.price.toFixed(2)} each</p>
                 <div class="flex items-center justify-between mt-3">
                     <div class="flex items-center gap-3 bg-gray-50 rounded-full px-2 py-1">
-                        <button class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
+                        <button type="button" class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
                         <span class="w-8 text-center font-bold text-lg text-gray-900">${cartItem.quantity}</span>
-                        <button class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
+                        <button type="button" class="cart-quantity-change bg-amber-600 hover:bg-amber-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
                     </div>
                     <button class="cart-remove-item bg-red-50 hover:bg-red-100 text-red-700 hover:text-red-800 p-2 rounded-full touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
