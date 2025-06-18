@@ -58,6 +58,20 @@ h4,
   z-index: 10;
 }
 
+/* Payment view positioning */
+#payment-view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 20;
+}
+
+#payment-view.hidden {
+  display: none !important;
+}
+
 /* Floating cart button animations */
 .floating-cart-btn {
   transition:
