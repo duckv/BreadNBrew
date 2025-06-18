@@ -1156,15 +1156,15 @@
           }
           if (item.customizations.slice) {
             customizationOptions += `
-                    <div class="flex gap-2 mt-2">
-                        ${item.customizations.slice
-                          .map(
-                            (option) =>
-                              `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="slice" data-value="${option.name}">${option.name} ${option.price !== 0 ? `($${option.price > 0 ? "+" : ""}${option.price.toFixed(2)})` : ""}</button>`,
-                          )
-                          .join("")}
-                    </div>
-                `;
+                        <div class="flex gap-2 mt-2">
+                            ${item.customizations.slice
+                              .map(
+                                (option, index) =>
+                                  `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target ${index === 0 ? "selected" : ""}" data-type="slice" data-value="${option.name}">${option.name} ($${(item.price + option.price).toFixed(2)})</button>`,
+                              )
+                              .join("")}
+                        </div>
+                    `;
           }
         }
 
