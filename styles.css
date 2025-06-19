@@ -169,23 +169,31 @@ h4,
   min-height: 0; /* Important for flexbox scrolling */
 }
 
-/* Custom scrollbar for webkit browsers */
-.cart-items-container::-webkit-scrollbar {
-  width: 8px;
+/* Custom scrollbar for webkit browsers - Made more visible */
+.cart-items-container::-webkit-scrollbar,
+#payment-view div::-webkit-scrollbar {
+  width: 14px;
 }
 
-.cart-items-container::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 4px;
+.cart-items-container::-webkit-scrollbar-track,
+#payment-view div::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 7px;
+  border: 1px solid #d1d5db;
 }
 
-.cart-items-container::-webkit-scrollbar-thumb {
+.cart-items-container::-webkit-scrollbar-thumb,
+#payment-view div::-webkit-scrollbar-thumb {
   background: #d97706;
-  border-radius: 4px;
+  border-radius: 7px;
+  border: 2px solid #e5e7eb;
+  min-height: 30px;
 }
 
-.cart-items-container::-webkit-scrollbar-thumb:hover {
+.cart-items-container::-webkit-scrollbar-thumb:hover,
+#payment-view div::-webkit-scrollbar-thumb:hover {
   background: #b45309;
+  border: 2px solid #d1d5db;
 }
 
 /* Scroll indicator gradient at top and bottom */
