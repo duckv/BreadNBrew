@@ -602,6 +602,9 @@ function updateCartTotals() {
   const taxElement = document.getElementById("cart-tax");
   const tipElement = document.getElementById("cart-tip");
   const totalElement = document.getElementById("cart-total");
+  const deliveryFeeElement = document.getElementById("cart-delivery-fee");
+  const discountElement = document.getElementById("cart-discount");
+  const discountRow = document.getElementById("promo-discount-row");
 
   if (!subtotalElement) return;
 
@@ -609,20 +612,57 @@ function updateCartTotals() {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const tax = subtotal * APP_CONFIG.NJ_SALES_TAX_RATE;
+
+  // Calculate promo discount
+  let discount = 0;
+  if (window.appliedPromo) {
+    if (window.appliedPromo.type === "percent") {
+      discount = (subtotal * window.appliedPromo.value) / 100;
+    } else {
+      discount = window.appliedPromo.value;
+    }
+    discount = Math.min(discount, subtotal); // Can't discount more than subtotal
+  }
+
+  const discountedSubtotal = subtotal - discount;
+
+  // Delivery fee (currently $0 for pickup only)
+  const deliveryFee = 0;
+
+  const tax = discountedSubtotal * APP_CONFIG.NJ_SALES_TAX_RATE;
   const tip =
     tipInfo.type === "percent"
-      ? (subtotal * tipInfo.value) / 100
+      ? (discountedSubtotal * tipInfo.value) / 100
       : tipInfo.value;
-  const total = subtotal + tax + tip;
+  const total = discountedSubtotal + deliveryFee + tax + tip;
 
   subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
   taxElement.textContent = `$${tax.toFixed(2)}`;
   tipElement.textContent = `$${tip.toFixed(2)}`;
   totalElement.textContent = `$${total.toFixed(2)}`;
 
+  if (deliveryFeeElement) {
+    deliveryFeeElement.textContent = `$${deliveryFee.toFixed(2)}`;
+  }
+
+  // Show/hide discount row
+  if (discount > 0 && discountElement && discountRow) {
+    discountElement.textContent = `-$${discount.toFixed(2)}`;
+    discountRow.classList.remove("hidden");
+  } else if (discountRow) {
+    discountRow.classList.add("hidden");
+  }
+
+  // Update header cart counts
+  const headerCartCount = document.getElementById("header-cart-count");
+  const mobileCartCount = document.getElementById("mobile-cart-count");
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  if (headerCartCount) headerCartCount.textContent = totalQuantity;
+  if (mobileCartCount) mobileCartCount.textContent = totalQuantity;
+
   // Update payment view totals if elements exist
-  updatePaymentTotals(subtotal, tax, tip, total);
+  updatePaymentTotals(discountedSubtotal, tax, tip, total);
 }
 
 function updatePaymentTotals(subtotal, tax, tip, total) {
