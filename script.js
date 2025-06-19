@@ -1226,8 +1226,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.id === "custom-tip-input") {
       const value = parseFloat(e.target.value) || 0;
       tipInfo = {
-        type: "percent",
-        value: value >= APP_CONFIG.MIN_TIP_PERCENTAGE ? value : 0,
+        type: "fixed",
+        value: value >= 0 ? value : 0,
         isCustom: true,
       };
       updateCartTotals();
