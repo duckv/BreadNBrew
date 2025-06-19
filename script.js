@@ -1162,6 +1162,62 @@ document.addEventListener("DOMContentLoaded", function () {
         "Our full online ordering system is launching soon! Please call us or visit in person to place an order.",
         '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
       );
+    } else if (button.classList.contains("express-payment-btn")) {
+      showModal(
+        "Express Payment",
+        "Express payment options are coming soon! Please use the regular checkout for now.",
+        '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+      );
+    } else if (
+      button.id === "continue-shopping-btn" ||
+      button.id === "continue-shopping-empty"
+    ) {
+      cleanupScrollButtons();
+      cartElement.classList.add("cart-hidden");
+      unlockBodyScroll();
+      // Scroll to menu section
+      document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+    } else if (button.id === "apply-promo-btn") {
+      const promoInput = document.getElementById("promo-code-input");
+      const promoMessage = document.getElementById("promo-message");
+      const promoCode = promoInput.value.trim().toUpperCase();
+
+      // Simple promo code validation (you can expand this)
+      const validPromoCodes = {
+        WELCOME10: {
+          type: "percent",
+          value: 10,
+          message: "10% off your order!",
+        },
+        FIRST5: { type: "fixed", value: 5, message: "$5 off your order!" },
+        STUDENT: {
+          type: "percent",
+          value: 15,
+          message: "15% student discount!",
+        },
+      };
+
+      if (promoCode && validPromoCodes[promoCode]) {
+        window.appliedPromo = validPromoCodes[promoCode];
+        promoMessage.textContent = validPromoCodes[promoCode].message;
+        promoMessage.className = "mt-2 text-sm text-green-600 font-medium";
+        promoMessage.classList.remove("hidden");
+        promoInput.disabled = true;
+        button.textContent = "Applied";
+        button.disabled = true;
+        button.classList.add("bg-green-600", "hover:bg-green-600");
+        button.classList.remove("bg-amber-800", "hover:bg-amber-900");
+      } else if (promoCode) {
+        promoMessage.textContent = "Invalid promo code. Please try again.";
+        promoMessage.className = "mt-2 text-sm text-red-600 font-medium";
+        promoMessage.classList.remove("hidden");
+      } else {
+        promoMessage.textContent = "Please enter a promo code.";
+        promoMessage.className = "mt-2 text-sm text-gray-600 font-medium";
+        promoMessage.classList.remove("hidden");
+      }
+
+      updateCartTotals();
     }
   });
 
