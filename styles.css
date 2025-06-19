@@ -231,6 +231,7 @@ h4,
 /* Payment view positioning */
 #payment-view {
   position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
