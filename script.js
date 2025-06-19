@@ -8,6 +8,9 @@ let currentFilter = "All";
 let tipInfo = { type: "percent", value: 0 };
 let toastTimer;
 
+// Global promo system
+window.appliedPromo = null;
+
 // DOM Elements
 const menuGrid = document.getElementById("menu-grid");
 const filterContainer = document.getElementById("filter-container");
