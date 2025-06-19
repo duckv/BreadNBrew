@@ -314,15 +314,6 @@ function renderCart() {
   const itemsList = document.createElement("div");
   itemsList.className = "p-4 sm:p-6 space-y-4";
 
-  // Order Review Section
-  const orderReviewHeader = document.createElement("div");
-  orderReviewHeader.className = "mb-6";
-  orderReviewHeader.innerHTML = `
-    <h3 class="text-lg font-bold font-display text-gray-900 mb-2">Order Review</h3>
-    <p class="text-sm text-gray-600">Review your items below</p>
-  `;
-  itemsList.appendChild(orderReviewHeader);
-
   // Render each cart item with enhanced display
   cartItems.forEach((cartItem) => {
     const menuItem = menuItems.find((item) => item.id === cartItem.id);
