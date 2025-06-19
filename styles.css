@@ -164,9 +164,15 @@ h4,
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #d97706 #f3f4f6;
+  scrollbar-width: auto;
+  scrollbar-color: #d97706 #e5e7eb;
   min-height: 0; /* Important for flexbox scrolling */
+}
+
+/* Payment view scrolling */
+#payment-view > div {
+  scrollbar-width: auto;
+  scrollbar-color: #d97706 #e5e7eb;
 }
 
 /* Custom scrollbar for webkit browsers - Made more visible */
