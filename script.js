@@ -539,6 +539,13 @@ function renderCart() {
     <!-- Payment View (existing) -->
     <div id="payment-view" class="hidden">
       <div class="max-h-screen overflow-y-auto">
+        <!-- Payment Header with Close Button -->
+        <div class="flex items-center justify-between p-4 sm:p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold font-display text-gray-900">Checkout</h2>
+          <button id="close-cart-payment" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
         <div class="p-6 bg-amber-50 border-b-2 border-amber-200">
           <h3 class="font-bold font-display text-xl mb-4 text-gray-900">Order Summary</h3>
           <div id="payment-order-items" class="space-y-3 mb-4"></div>
