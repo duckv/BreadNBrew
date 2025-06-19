@@ -36,10 +36,106 @@ h4,
   max-height: 100vh;
   height: 100vh;
   overflow: hidden;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
 }
 
 .cart-hidden {
   transform: translateX(110%);
+}
+
+/* Enhanced cart item styling */
+.cart-item-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.cart-item-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart section headers */
+.cart-section-header {
+  position: relative;
+}
+
+.cart-section-header::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #d97706;
+  border-radius: 2px;
+}
+
+/* Promo code styling */
+.promo-success {
+  background-color: #dcfce7;
+  border-color: #22c55e;
+  color: #15803d;
+}
+
+.promo-error {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+/* Express payment buttons */
+.express-payment-btn {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.express-payment-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.express-payment-btn:hover::before {
+  left: 100%;
+}
+
+/* Order summary styling */
+.order-summary-card {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border: 2px solid #e5e7eb;
+}
+
+/* Special instructions textarea */
+#special-instructions {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 150px;
+}
+
+/* Fulfillment method cards */
+.fulfillment-option {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.fulfillment-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.fulfillment-option.selected {
+  border-color: #d97706;
+  background-color: #fef3c7;
 }
 
 /* Cart overlay to block background interaction */
