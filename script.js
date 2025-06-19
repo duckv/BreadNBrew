@@ -591,6 +591,8 @@ function renderCart() {
   `;
 
   cartElement.innerHTML = "";
+  cartElement.style.display = "flex";
+  cartElement.style.flexDirection = "column";
   cartElement.appendChild(header);
   cartElement.appendChild(itemsContainer);
   cartElement.appendChild(footer);
