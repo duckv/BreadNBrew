@@ -220,11 +220,12 @@ h4,
 
 /* Ensure checkout section is always visible */
 .cart-footer {
-  position: sticky;
-  bottom: 0;
+  flex-shrink: 0;
   background: white;
   border-top: 2px solid #fbbf24;
   z-index: 10;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 /* Payment view positioning */
