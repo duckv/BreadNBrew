@@ -263,266 +263,334 @@ function renderCart() {
   updateFloatingCartButton();
 
   if (cartItems.length === 0) {
-    // Clean up scroll buttons but keep body scroll locked (cart still open)
     cleanupScrollButtons();
 
     cartElement.innerHTML = `
-            <div class="flex items-center justify-between p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100">
-                <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
-                <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <div class="flex-1 flex items-center justify-center p-8 bg-white">
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full p-6 mx-auto mb-6 w-fit">
-                        <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400 mx-auto"></i>
-                    </div>
-                    <p class="text-gray-700 text-xl font-semibold mb-2">Your cart is empty</p>
-                    <p class="text-gray-500 text-base">Add some delicious items to get started!</p>
-                </div>
-            </div>
-        `;
+      <div class="flex items-center justify-between p-4 sm:p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100">
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
+        <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div class="flex-1 flex items-center justify-center p-8 bg-white">
+        <div class="text-center">
+          <div class="bg-gray-100 rounded-full p-6 mx-auto mb-6 w-fit">
+            <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400 mx-auto"></i>
+          </div>
+          <p class="text-gray-700 text-xl font-semibold mb-2">Your cart is empty</p>
+          <p class="text-gray-500 text-base mb-6">Add some delicious items to get started!</p>
+          <button id="continue-shopping-empty" class="bg-amber-800 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-900 transition touch-target">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    `;
     lucide.createIcons();
     return;
   }
 
+  // Cart Header
   const header = document.createElement("div");
   header.className =
-    "flex items-center justify-between p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100";
+    "flex items-center justify-between p-4 sm:p-6 border-b-2 border-amber-100 bg-gradient-to-r from-amber-50 to-amber-100";
   header.innerHTML = `
-        <div class="flex items-center gap-3">
-            <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
-            <span class="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-bold">${cartItems.length} item${cartItems.length !== 1 ? "s" : ""}</span>
-        </div>
-        <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
-            <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-    `;
+    <div class="flex items-center gap-3">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold font-display text-gray-900">Your Cart</h2>
+      <span class="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-bold">${cartItems.length} item${cartItems.length !== 1 ? "s" : ""}</span>
+    </div>
+    <button id="close-cart" class="text-gray-600 hover:text-gray-800 p-2 hover:bg-white rounded-full touch-target transition-colors">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+  `;
 
+  // Cart Items Container
   const itemsContainer = document.createElement("div");
-  itemsContainer.className =
-    "cart-items-container bg-gradient-to-b from-gray-50 to-white relative";
+  itemsContainer.className = "cart-items-container bg-white relative";
   itemsContainer.id = "cart-items-scroll-container";
 
-  // Add scroll navigation buttons
-  const scrollUpBtn = document.createElement("button");
-  scrollUpBtn.id = "cart-scroll-up";
-  scrollUpBtn.className =
-    "fixed right-4 top-1/3 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none md:hidden";
-  scrollUpBtn.innerHTML = '<i data-lucide="chevrons-up" class="w-6 h-6"></i>';
-
-  const scrollDownBtn = document.createElement("button");
-  scrollDownBtn.id = "cart-scroll-down";
-  scrollDownBtn.className =
-    "fixed right-4 bottom-1/3 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none md:hidden";
-  scrollDownBtn.innerHTML =
-    '<i data-lucide="chevrons-down" class="w-6 h-6"></i>';
-
   const itemsList = document.createElement("div");
-  itemsList.className = "p-4 sm:p-6 space-y-6 min-h-full";
+  itemsList.className = "p-4 sm:p-6 space-y-4";
 
-  if (cartItems.length > 0) {
-    // Add cart status info
-    const statusInfo = document.createElement("div");
-    statusInfo.className =
-      "text-center p-4 bg-green-50 border-2 border-green-300 rounded-xl mb-6";
-    statusInfo.innerHTML = `<p class="text-green-800 font-bold text-lg">✓ ${cartItems.length} item(s) in your cart</p>`;
-    itemsList.appendChild(statusInfo);
-  }
+  // Order Review Section
+  const orderReviewHeader = document.createElement("div");
+  orderReviewHeader.className = "mb-6";
+  orderReviewHeader.innerHTML = `
+    <h3 class="text-lg font-bold font-display text-gray-900 mb-2">Order Review</h3>
+    <p class="text-sm text-gray-600">Review your items below</p>
+  `;
+  itemsList.appendChild(orderReviewHeader);
 
+  // Render each cart item with enhanced display
   cartItems.forEach((cartItem) => {
     const menuItem = menuItems.find((item) => item.id === cartItem.id);
-    if (!menuItem) {
-      console.log("Menu item not found for cart item:", cartItem);
-      return;
-    }
+    if (!menuItem) return;
 
     const itemDiv = document.createElement("div");
     itemDiv.className =
-      "flex gap-6 bg-white p-6 rounded-xl shadow-xl border-4 border-amber-400 hover:border-amber-500 transition-all duration-200 mb-4 relative";
+      "bg-gray-50 rounded-xl p-4 border-2 border-gray-200 hover:border-amber-300 transition-all";
 
-    let customizationText = "";
+    // Build customization display
+    let customizationDisplay = "";
     if (cartItem.customizations) {
       const customs = [];
       Object.entries(cartItem.customizations).forEach(([key, value]) => {
         if (key === "toppings" && Array.isArray(value) && value.length > 0) {
-          customs.push(value.join(", "));
+          customs.push(`Add: ${value.join(", ")}`);
         } else if (value && key !== "toppings") {
           customs.push(value);
         }
       });
       if (customs.length > 0) {
-        customizationText = `<p class="text-sm text-gray-700 bg-gray-50 px-2 py-1 rounded-md mt-1 font-medium">${customs.join(", ")}</p>`;
+        customizationDisplay = `
+          <div class="mt-2">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Options:</span>
+            <p class="text-sm text-gray-700 font-medium">${customs.join(" • ")}</p>
+          </div>
+        `;
       }
     }
 
     itemDiv.innerHTML = `
-            <div class="absolute top-2 left-2 bg-amber-600 text-white px-2 py-1 rounded-full text-xs font-bold">ITEM</div>
-            <img src="${menuItem.img}" alt="${menuItem.name}" class="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-xl border-4 border-amber-300 shadow-lg">
-            <div class="flex-1">
-                <h4 class="font-bold text-xl sm:text-2xl text-gray-900 mb-2 bg-yellow-100 px-2 py-1 rounded">${menuItem.name}</h4>
-                ${customizationText}
-                <p class="text-amber-900 font-bold text-lg sm:text-xl mt-3 bg-amber-100 px-2 py-1 rounded">$${cartItem.price.toFixed(2)} each</p>
-                <div class="flex items-center justify-between mt-4">
-                    <div class="flex items-center gap-4 bg-amber-100 rounded-full px-4 py-2 border-2 border-amber-300">
-                        <button type="button" class="cart-quantity-change bg-red-600 hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg touch-target transition-colors shadow-md" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
-                        <span class="w-12 text-center font-bold text-2xl text-gray-900 bg-white px-2 py-1 rounded border-2 border-amber-400">${cartItem.quantity}</span>
-                        <button type="button" class="cart-quantity-change bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg touch-target transition-colors shadow-md" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
-                    </div>
-                    <button type="button" class="cart-remove-item bg-red-100 hover:bg-red-200 text-red-800 hover:text-red-900 p-3 rounded-xl touch-target transition-colors border-2 border-red-300 shadow-md" data-unique-id="${cartItem.uniqueId}">
-                        <i data-lucide="trash-2" class="w-6 h-6"></i>
-                    </button>
-                </div>
+      <div class="flex gap-4">
+        <!-- Product Image -->
+        <div class="flex-shrink-0">
+          <img src="${menuItem.img}" alt="${menuItem.name}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg border-2 border-gray-300">
+        </div>
+
+        <!-- Product Details -->
+        <div class="flex-1 min-w-0">
+          <h4 class="font-bold text-lg text-gray-900 mb-1">${menuItem.name}</h4>
+          ${customizationDisplay}
+          <div class="flex items-center justify-between mt-3">
+            <div class="text-sm text-gray-600">
+              <span class="font-medium">$${cartItem.price.toFixed(2)} each</span>
             </div>
-            <div class="text-right flex flex-col justify-center">
-                <p class="font-bold text-2xl text-white bg-amber-700 px-4 py-3 rounded-xl border-2 border-amber-800 shadow-lg">$${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+            <div class="text-lg font-bold text-amber-800">
+              $${(cartItem.price * cartItem.quantity).toFixed(2)}
             </div>
-        `;
+          </div>
+        </div>
+      </div>
+
+      <!-- Quantity Controls -->
+      <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+        <div class="flex items-center gap-3">
+          <span class="text-sm font-medium text-gray-700">Quantity:</span>
+          <div class="flex items-center gap-2">
+            <button type="button" class="cart-quantity-change bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="-1">-</button>
+            <span class="w-8 text-center font-bold text-lg text-gray-900">${cartItem.quantity}</span>
+            <button type="button" class="cart-quantity-change bg-green-500 hover:bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target transition-colors" data-unique-id="${cartItem.uniqueId}" data-change="1">+</button>
+          </div>
+        </div>
+        <button type="button" class="cart-remove-item text-red-600 hover:text-red-800 hover:bg-red-50 p-2 rounded-lg touch-target transition-colors" data-unique-id="${cartItem.uniqueId}">
+          <i data-lucide="trash-2" class="w-5 h-5"></i>
+        </button>
+      </div>
+    `;
 
     itemsList.appendChild(itemDiv);
   });
 
   itemsContainer.appendChild(itemsList);
 
+  // Cart Footer with comprehensive checkout options
   const footer = document.createElement("div");
   footer.id = "cart-footer";
-  footer.className =
-    "cart-footer border-t-2 border-amber-200 bg-white shadow-lg";
+  footer.className = "cart-footer border-t-2 border-gray-200 bg-white";
 
   footer.innerHTML = `
-        <div id="checkout-view" class="p-6 bg-white border-t-2 border-amber-100">
-            <div class="bg-gray-50 rounded-xl p-5 mb-6 border border-gray-200">
-                <h3 class="font-bold text-lg text-gray-900 mb-4">Order Summary</h3>
-                <div class="space-y-3">
-                    <div class="flex justify-between text-base font-medium text-gray-700">
-                        <span>Subtotal:</span>
-                        <span id="cart-subtotal" class="font-bold">$0.00</span>
-                    </div>
-                    <div class="flex justify-between text-base font-medium text-gray-700">
-                        <span>Tax:</span>
-                        <span id="cart-tax" class="font-bold">$0.00</span>
-                    </div>
-                    <div class="flex justify-between text-base font-medium text-gray-700">
-                        <span>Tip:</span>
-                        <span id="cart-tip" class="font-bold">$0.00</span>
-                    </div>
-                    <div class="border-t-2 border-amber-200 pt-3 mt-3">
-                        <div class="flex justify-between font-bold text-xl text-gray-900">
-                            <span>Total:</span>
-                            <span id="cart-total" class="text-amber-800 bg-amber-50 px-3 py-1 rounded-lg">$0.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div id="checkout-view" class="p-4 sm:p-6">
 
-            <div class="mb-6">
-                <h4 class="font-bold font-display text-lg mb-3">Pickup or Delivery?</h4>
-                <div class="flex gap-2 mb-4">
-                    <button class="pickup-btn flex-1 bg-amber-800 text-white font-bold py-2 px-4 rounded-full hover:bg-amber-900 transition touch-target">Pickup</button>
-                    <button class="delivery-btn flex-1 bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-300 transition touch-target">Delivery</button>
-                </div>
-
-                <div id="pickup-options" class="">
-                    <div class="mb-4">
-                        <h5 class="font-semibold mb-2">Pickup Day:</h5>
-                        <div class="flex gap-2">
-                            <button class="date-btn bg-amber-800 text-white px-4 py-2 rounded-full font-semibold touch-target" data-day="today">Today</button>
-                            <button class="date-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-day="tomorrow">Tomorrow</button>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="font-semibold mb-2">Pickup Time:</h5>
-                        <div id="time-slot-container" class="flex flex-wrap gap-2 mb-2">
-                            <!-- Time slots will be generated by JS -->
-                        </div>
-                        <div id="later-button-container" class="text-center">
-                            <!-- "Show more times" button will be added here if needed -->
-                        </div>
-                    </div>
-                </div>
-
-                <div id="delivery-options" class="hidden">
-                    <p class="text-gray-600 text-sm">Delivery is not yet available. Please select pickup.</p>
-                </div>
-            </div>
-
-            <div class="mb-6">
-                <h4 class="font-bold font-display text-lg mb-3">Add a Tip</h4>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="15">15%</button>
-                    <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="18">18%</button>
-                    <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="20">20%</button>
-                    <button class="tip-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-full font-semibold touch-target" data-tip="custom">Custom</button>
-                </div>
-                <div id="custom-tip-container" class="hidden">
-                    <input type="number" id="custom-tip-input" placeholder="Enter tip %" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" min="0" max="100">
-                </div>
-            </div>
-
-            <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-700 transition text-xl touch-target shadow-lg border-2 border-green-500 mb-4">Continue to Payment</button>
+      <!-- Fulfillment Method Section -->
+      <div class="mb-6">
+        <h3 class="text-lg font-bold font-display text-gray-900 mb-4">Fulfillment Method</h3>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <button class="pickup-btn bg-amber-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-amber-900 transition touch-target">
+            <i data-lucide="map-pin" class="w-5 h-5 mx-auto mb-1"></i>
+            Pickup
+          </button>
+          <button class="delivery-btn bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-lg hover:bg-gray-300 transition touch-target">
+            <i data-lucide="truck" class="w-5 h-5 mx-auto mb-1"></i>
+            Delivery
+          </button>
         </div>
 
-        <div id="payment-view" class="hidden">
-            <div class="max-h-screen overflow-y-auto">
-                <!-- Order Summary Section -->
-                <div class="p-6 bg-amber-50 border-b-2 border-amber-200">
-                    <h3 class="font-bold font-display text-xl mb-4 text-gray-900">Order Summary</h3>
-                    <div id="payment-order-items" class="space-y-3 mb-4">
-                        <!-- Order items will be populated here -->
-                    </div>
-                    <div class="bg-white rounded-lg p-4 border-2 border-amber-200">
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-base font-medium">
-                                <span>Subtotal:</span>
-                                <span id="payment-subtotal" class="font-bold">$0.00</span>
-                            </div>
-                            <div class="flex justify-between text-base font-medium">
-                                <span>Tax:</span>
-                                <span id="payment-tax" class="font-bold">$0.00</span>
-                            </div>
-                            <div class="flex justify-between text-base font-medium">
-                                <span>Tip:</span>
-                                <span id="payment-tip" class="font-bold">$0.00</span>
-                            </div>
-                            <div class="border-t-2 border-amber-200 pt-2 mt-2">
-                                <div class="flex justify-between font-bold text-xl">
-                                    <span>Total:</span>
-                                    <span id="payment-total" class="text-amber-800">$0.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Payment Method Section -->
-                <div class="p-6 bg-white">
-                    <h4 class="font-bold font-display text-2xl mb-6 text-gray-900">Select Payment Method</h4>
-                    <div class="space-y-4 mb-8">
-                        <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
-                            <i data-lucide="credit-card" class="mr-3 w-6 h-6"></i> Debit/Credit Card
-                        </button>
-                        <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
-                            <i data-lucide="smartphone" class="mr-3 w-6 h-6"></i> Apple/Google Pay
-                        </button>
-                    </div>
-                    <button class="back-to-checkout-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors touch-target">← Back to Order Options</button>
-                </div>
+        <!-- Pickup Options -->
+        <div id="pickup-options" class="space-y-4">
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-amber-600 mt-1"></i>
+              <div>
+                <p class="font-semibold text-gray-900">512 Springfield Ave</p>
+                <p class="text-sm text-gray-600">Berkeley Heights, NJ 07922</p>
+              </div>
             </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-2 text-gray-900">Pickup Day:</h4>
+            <div class="flex gap-2">
+              <button class="date-btn bg-amber-800 text-white px-4 py-2 rounded-lg font-semibold touch-target" data-day="today">Today</button>
+              <button class="date-btn bg-white border-2 border-amber-600 text-amber-800 px-4 py-2 rounded-lg font-semibold touch-target" data-day="tomorrow">Tomorrow</button>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-2 text-gray-900">Pickup Time:</h4>
+            <div id="time-slot-container" class="flex flex-wrap gap-2 mb-2"></div>
+            <div id="later-button-container" class="text-center"></div>
+          </div>
         </div>
-    `;
+
+        <!-- Delivery Options -->
+        <div id="delivery-options" class="hidden bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="info" class="w-5 h-5 text-blue-600"></i>
+            <p class="text-blue-800 font-medium">Delivery coming soon!</p>
+          </div>
+          <p class="text-sm text-blue-700">We're working on delivery options. For now, please select pickup.</p>
+        </div>
+      </div>
+
+      <!-- Promo Code Section -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-3 text-gray-900">Promo Code</h4>
+        <div class="flex gap-2">
+          <input type="text" id="promo-code-input" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-transparent">
+          <button id="apply-promo-btn" class="bg-amber-800 text-white font-bold py-2 px-4 rounded-lg hover:bg-amber-900 transition touch-target">Apply</button>
+        </div>
+        <div id="promo-message" class="mt-2 text-sm hidden"></div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="mb-6">
+        <h3 class="text-lg font-bold font-display text-gray-900 mb-4">Order Summary</h3>
+        <div class="bg-gray-50 rounded-lg p-4 space-y-3">
+          <div class="flex justify-between text-base">
+            <span class="text-gray-600">Subtotal:</span>
+            <span id="cart-subtotal" class="font-medium">$0.00</span>
+          </div>
+          <div id="promo-discount-row" class="flex justify-between text-base text-green-600 hidden">
+            <span>Promo Discount:</span>
+            <span id="cart-discount">-$0.00</span>
+          </div>
+          <div class="flex justify-between text-base">
+            <span class="text-gray-600">Delivery Fee:</span>
+            <span id="cart-delivery-fee" class="font-medium">$0.00</span>
+          </div>
+          <div class="flex justify-between text-base">
+            <span class="text-gray-600">Tax:</span>
+            <span id="cart-tax" class="font-medium">$0.00</span>
+          </div>
+          <div class="flex justify-between text-base">
+            <span class="text-gray-600">Tip:</span>
+            <span id="cart-tip" class="font-medium">$0.00</span>
+          </div>
+          <div class="border-t border-gray-300 pt-3">
+            <div class="flex justify-between font-bold text-xl">
+              <span>Grand Total:</span>
+              <span id="cart-total" class="text-amber-800">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip Section -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-3 text-gray-900">Add a Tip</h4>
+        <div class="grid grid-cols-4 gap-2 mb-3">
+          <button class="tip-btn bg-white border-2 border-gray-300 text-gray-700 py-2 px-3 rounded-lg font-semibold touch-target hover:border-amber-600 hover:text-amber-800 transition" data-tip="15">15%</button>
+          <button class="tip-btn bg-white border-2 border-gray-300 text-gray-700 py-2 px-3 rounded-lg font-semibold touch-target hover:border-amber-600 hover:text-amber-800 transition" data-tip="18">18%</button>
+          <button class="tip-btn bg-white border-2 border-gray-300 text-gray-700 py-2 px-3 rounded-lg font-semibold touch-target hover:border-amber-600 hover:text-amber-800 transition" data-tip="20">20%</button>
+          <button class="tip-btn bg-white border-2 border-gray-300 text-gray-700 py-2 px-3 rounded-lg font-semibold touch-target hover:border-amber-600 hover:text-amber-800 transition" data-tip="custom">Custom</button>
+        </div>
+        <div id="custom-tip-container" class="hidden">
+          <input type="number" id="custom-tip-input" placeholder="Enter tip amount ($)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600" min="0" step="0.50">
+        </div>
+      </div>
+
+      <!-- Special Instructions -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-3 text-gray-900">Special Instructions</h4>
+        <textarea id="special-instructions" placeholder="Any special requests? (e.g., allergies, birthday message, etc.)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 resize-none" rows="3"></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-3">
+        <!-- Primary Checkout Button -->
+        <button class="checkout-continue-btn w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-700 transition text-lg touch-target shadow-lg">
+          <i data-lucide="credit-card" class="w-5 h-5 inline mr-2"></i>
+          Proceed to Payment
+        </button>
+
+        <!-- Express Payment Options -->
+        <div class="grid grid-cols-2 gap-3">
+          <button class="express-payment-btn bg-black text-white font-bold py-3 px-4 rounded-lg hover:bg-gray-800 transition touch-target">
+            <i data-lucide="smartphone" class="w-4 h-4 inline mr-2"></i>
+            Apple Pay
+          </button>
+          <button class="express-payment-btn bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition touch-target">
+            <i data-lucide="smartphone" class="w-4 h-4 inline mr-2"></i>
+            Google Pay
+          </button>
+        </div>
+
+        <!-- Continue Shopping Link -->
+        <button id="continue-shopping-btn" class="w-full text-amber-800 font-semibold py-2 hover:underline transition">
+          ← Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <!-- Payment View (existing) -->
+    <div id="payment-view" class="hidden">
+      <div class="max-h-screen overflow-y-auto">
+        <div class="p-6 bg-amber-50 border-b-2 border-amber-200">
+          <h3 class="font-bold font-display text-xl mb-4 text-gray-900">Order Summary</h3>
+          <div id="payment-order-items" class="space-y-3 mb-4"></div>
+          <div class="bg-white rounded-lg p-4 border-2 border-amber-200">
+            <div class="space-y-2">
+              <div class="flex justify-between text-base font-medium">
+                <span>Subtotal:</span>
+                <span id="payment-subtotal" class="font-bold">$0.00</span>
+              </div>
+              <div class="flex justify-between text-base font-medium">
+                <span>Tax:</span>
+                <span id="payment-tax" class="font-bold">$0.00</span>
+              </div>
+              <div class="flex justify-between text-base font-medium">
+                <span>Tip:</span>
+                <span id="payment-tip" class="font-bold">$0.00</span>
+              </div>
+              <div class="border-t-2 border-amber-200 pt-2 mt-2">
+                <div class="flex justify-between font-bold text-xl">
+                  <span>Total:</span>
+                  <span id="payment-total" class="text-amber-800">$0.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-white">
+          <h4 class="font-bold font-display text-2xl mb-6 text-gray-900">Select Payment Method</h4>
+          <div class="space-y-4 mb-8">
+            <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+              <i data-lucide="credit-card" class="mr-3 w-6 h-6"></i> Debit/Credit Card
+            </button>
+            <button class="payment-btn w-full flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-amber-300 touch-target transition-all text-lg font-semibold">
+              <i data-lucide="smartphone" class="mr-3 w-6 h-6"></i> Apple/Google Pay
+            </button>
+          </div>
+          <button class="back-to-checkout-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors touch-target">← Back to Order Options</button>
+        </div>
+      </div>
+    </div>
+  `;
 
   cartElement.innerHTML = "";
   cartElement.appendChild(header);
   cartElement.appendChild(itemsContainer);
   cartElement.appendChild(footer);
-
-  // Add scroll buttons to document body
-  document.body.appendChild(scrollUpBtn);
-  document.body.appendChild(scrollDownBtn);
-
-  // Setup scroll functionality
-  setupCartScrolling();
 
   generateTimeSlotButtons(selectedPickupDay);
   updateCartTotals();
