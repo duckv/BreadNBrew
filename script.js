@@ -1064,7 +1064,10 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     e.stopPropagation();
 
-    if (button.closest("#close-cart")) {
+    if (
+      button.closest("#close-cart") ||
+      button.closest("#close-cart-payment")
+    ) {
       cleanupScrollButtons();
       cartElement.classList.add("cart-hidden");
       unlockBodyScroll();
