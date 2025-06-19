@@ -1208,6 +1208,27 @@ document.addEventListener("DOMContentLoaded", function () {
     lockBodyScroll();
   });
 
+  // Header cart button event listeners
+  const headerCartBtn = document.getElementById("header-cart-btn");
+  const mobileCartBtn = document.getElementById("mobile-cart-btn");
+
+  if (headerCartBtn) {
+    headerCartBtn.addEventListener("click", () => {
+      cartElement.classList.remove("cart-hidden");
+      lockBodyScroll();
+    });
+  }
+
+  if (mobileCartBtn) {
+    mobileCartBtn.addEventListener("click", () => {
+      cartElement.classList.remove("cart-hidden");
+      lockBodyScroll();
+      // Close mobile menu
+      mobileMenu.classList.add("mobile-menu-hidden");
+      mobileMenu.classList.remove("mobile-menu-visible");
+    });
+  }
+
   // Catering form event listener
   document.getElementById("catering-form").addEventListener("submit", (e) => {
     e.preventDefault();
