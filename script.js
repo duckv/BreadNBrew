@@ -721,11 +721,26 @@ function updatePaymentOrderSummary() {
 
 function updateFloatingCartButton() {
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Update floating cart button
   if (totalQuantity > 0) {
     cartItemCount.textContent = totalQuantity;
     floatingCartBtn.classList.add("visible");
   } else {
     floatingCartBtn.classList.remove("visible");
+  }
+
+  // Update header cart counts
+  const headerCartCount = document.getElementById("header-cart-count");
+  const mobileCartCount = document.getElementById("mobile-cart-count");
+
+  if (headerCartCount) {
+    headerCartCount.textContent = totalQuantity;
+    headerCartCount.style.display = totalQuantity > 0 ? "flex" : "none";
+  }
+  if (mobileCartCount) {
+    mobileCartCount.textContent = totalQuantity;
+    mobileCartCount.style.display = totalQuantity > 0 ? "flex" : "none";
   }
 }
 
