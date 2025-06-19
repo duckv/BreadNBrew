@@ -328,7 +328,12 @@ h4,
   }
 
   .cart-items-container {
-    max-height: calc(100vh - 400px) !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+  }
+
+  .cart-footer {
+    max-height: 50vh !important;
   }
 
   .filter-btn {
