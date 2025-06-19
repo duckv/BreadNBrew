@@ -1123,7 +1123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (tipValue === "custom") {
         customTipContainer.classList.remove("hidden");
         tipInfo = {
-          type: "percent",
+          type: "fixed",
           value: parseFloat(customTipInput.value) || 0,
           isCustom: true,
         };
