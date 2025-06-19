@@ -367,6 +367,20 @@ textarea:focus {
   outline-offset: 2px;
 }
 
+/* Cart counter styling */
+#header-cart-count,
+#mobile-cart-count {
+  min-width: 20px;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* Hide cart counters when empty */
+#header-cart-count[style*="display: none"],
+#mobile-cart-count[style*="display: none"] {
+  display: none !important;
+}
+
 /* Loading animation for images */
 .menu-item-img {
   background-color: #f3f4f6;
