@@ -1026,15 +1026,34 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     } else if (button.classList.contains("customize-btn")) {
       const item = menuItems.find((i) => i.id == button.dataset.itemId);
-      let modalBody = '<div class="space-y-2 text-left">';
-      if (item.customizations && item.customizations.toppings) {
-        item.customizations.toppings.forEach((topping) => {
-          modalBody += `<label class="flex items-center space-x-3">
-                                        <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
-                                        <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
-                                     </label>`;
+      let modalBody = '<div class="space-y-4 text-left">';
+
+      // Add test options if they exist
+      if (item.customizations && item.customizations.test) {
+        modalBody +=
+          '<div class="border-b border-gray-200 pb-4"><h4 class="font-semibold text-gray-900 mb-3">Test Options:</h4>';
+        item.customizations.test.forEach((option, index) => {
+          modalBody += `<label class="flex items-center space-x-3 mb-2">
+                          <input type="radio" name="test-option" class="test-radio h-5 w-5 text-amber-600 focus:ring-amber-500" data-value="${option}" ${index === 0 ? "checked" : ""}>
+                          <span>${option} (+$0.00)</span>
+                       </label>`;
         });
+        modalBody += "</div>";
       }
+
+      // Add toppings if they exist
+      if (item.customizations && item.customizations.toppings) {
+        modalBody +=
+          '<div><h4 class="font-semibold text-gray-900 mb-3">Add Toppings:</h4>';
+        item.customizations.toppings.forEach((topping) => {
+          modalBody += `<label class="flex items-center space-x-3 mb-2">
+                          <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
+                          <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
+                       </label>`;
+        });
+        modalBody += "</div>";
+      }
+
       modalBody += "</div>";
       const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
                                  <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target">Add to Cart</button>`;
