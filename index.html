@@ -3,70 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bread N' Brew - Berkeley Heights</title>
+    <title>Artisan Boulangerie - Berkeley Heights</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-gray-100 text-gray-800">
+  <body class="bg-cream text-charcoal">
     <!-- Header & Navigation -->
     <header
       id="header"
-      class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300"
+      class="bg-white shadow-elegant sticky top-0 z-50 transition-all duration-300"
     >
       <nav
-        class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center"
       >
-        <a
-          href="#"
-          class="text-2xl sm:text-3xl font-bold text-pink-500 font-display"
-        >
-          <div>
-            Bread N' Br☕︎w
+        <a href="#" class="text-2xl sm:text-3xl font-serif font-bold text-gold">
+          <div class="flex flex-col">
+            <span class="text-charcoal font-light tracking-wide">ARTISAN</span>
+            <span class="text-gold -mt-2 font-bold">Boulangerie</span>
             <span
-              class="hidden sm:block text-xs font-normal text-gray-500 tracking-wider"
-              >Artisan Breads, Perfect Brews, & Fine Patisseries</span
+              class="hidden sm:block text-xs font-normal text-charcoal-light tracking-wider mt-1 font-sans"
+              >Handcrafted French Pastries & Artisan Breads</span
             >
           </div>
         </a>
         <div class="hidden md:flex items-center space-x-8">
           <a
             href="#menu"
-            class="text-gray-600 hover:text-pink-500 transition text-lg"
+            class="text-charcoal hover:text-gold transition text-lg font-medium"
             >Menu</a
           >
           <a
-            href="#catering"
-            class="text-gray-600 hover:text-pink-500 transition text-lg"
-            >Catering</a
+            href="#patisserie"
+            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            >Patisserie</a
+          >
+          <a
+            href="#about"
+            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            >About</a
           >
           <a
             href="#location"
-            class="text-gray-600 hover:text-pink-500 transition text-lg"
-            >Location</a
+            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            >Visit</a
           >
           <button
             id="header-cart-btn"
-            class="hidden md:flex items-center gap-2 text-gray-600 hover:text-pink-500 transition text-lg touch-target"
+            class="hidden md:flex items-center gap-2 text-charcoal hover:text-gold transition text-lg touch-target"
           >
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="header-cart-count"
-              class="bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="hidden lg:inline-block bg-pink-500 text-white font-bold py-2 px-6 rounded-full hover:bg-pink-600 transition"
-            >Order Online</a
+            class="hidden lg:inline-block bg-gold text-white font-semibold py-3 px-8 rounded-full hover:bg-gold-dark transition shadow-elegant"
+            >Order Now</a
           >
         </div>
         <button
@@ -79,93 +82,202 @@
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="mobile-menu-transition mobile-menu-hidden md:hidden"
+        class="mobile-menu-transition mobile-menu-hidden md:hidden bg-white border-t border-cream"
       >
-        <div class="px-4 sm:px-6 pb-4 space-y-2">
+        <div class="px-4 sm:px-6 pb-6 space-y-3">
           <a
             href="#menu"
-            class="block py-3 text-gray-600 hover:text-pink-500 text-lg touch-target"
+            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
             >Menu</a
           >
           <a
-            href="#catering"
-            class="block py-3 text-gray-600 hover:text-pink-500 text-lg touch-target"
-            >Catering</a
+            href="#patisserie"
+            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            >Patisserie</a
+          >
+          <a
+            href="#about"
+            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            >About</a
           >
           <a
             href="#location"
-            class="block py-3 text-gray-600 hover:text-pink-500 text-lg touch-target"
-            >Location</a
+            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            >Visit</a
           >
           <button
             id="mobile-cart-btn"
-            class="flex items-center justify-center gap-2 w-full py-3 text-gray-600 hover:text-pink-500 text-lg touch-target"
+            class="flex items-center justify-center gap-2 w-full py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
           >
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="mobile-cart-count"
-              class="bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="block mt-4 bg-pink-500 text-white font-bold py-3 px-6 rounded-full text-center hover:bg-pink-600 transition touch-target"
-            >Order Online</a
+            class="block mt-6 bg-gold text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-gold-dark transition touch-target shadow-elegant"
+            >Order Now</a
           >
         </div>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-bg text-white h-[60vh] sm:h-[70vh] flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <section
+      class="hero-section text-white min-h-screen flex items-center relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-charcoal/80 to-charcoal/40"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <h1
-          class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg"
+          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light mb-6 leading-tight"
         >
-          Perfect Brews, Fine Patisseries
+          <span class="block">L'Art de la</span>
+          <span class="block text-gold font-bold">Boulangerie</span>
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-          Freshly baked pastries and specialty coffee in the heart of Berkeley
-          Heights.
-        </p>
-        <a
-          href="#menu"
-          class="bg-white text-amber-800 font-bold py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg hover:bg-gray-200 transition touch-target inline-block"
-          >Start Your Order</a
+        <p
+          class="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto mb-10 font-light leading-relaxed"
         >
+          Experience the authentic flavors of French artisan baking, where
+          time-honored techniques meet the finest ingredients to create
+          extraordinary moments.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <a
+            href="#menu"
+            class="bg-gold text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-gold-dark transition touch-target inline-block shadow-elegant transform hover:scale-105"
+            >Explore Our Collection</a
+          >
+          <a
+            href="#about"
+            class="border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-charcoal transition touch-target inline-block transform hover:scale-105"
+            >Our Story</a
+          >
+        </div>
       </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Featured Section -->
+      <section class="py-16 sm:py-24">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
+          >
+            Today's Signature Creations
+          </h2>
+          <div class="w-24 h-0.5 bg-gold mx-auto"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center group">
+            <div
+              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600"
+                alt="Fresh Brioche"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
+              ></div>
+            </div>
+            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
+              Fresh Daily Brioche
+            </h3>
+            <p class="text-charcoal-light leading-relaxed">
+              Rich, buttery brioche made with premium European ingredients,
+              baked fresh every morning.
+            </p>
+          </div>
+          <div class="text-center group">
+            <div
+              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
+                alt="French Pastries"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
+              ></div>
+            </div>
+            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
+              Classic Patisserie
+            </h3>
+            <p class="text-charcoal-light leading-relaxed">
+              Delicate French pastries crafted with precision, showcasing
+              traditional techniques and seasonal flavors.
+            </p>
+          </div>
+          <div class="text-center group">
+            <div
+              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600"
+                alt="Artisan Bread"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
+              ></div>
+            </div>
+            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
+              Artisan Breads
+            </h3>
+            <p class="text-charcoal-light leading-relaxed">
+              Hand-shaped loaves using wild yeast starters and stone-ground
+              flours for exceptional flavor and texture.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <!-- Menu Section -->
-      <section id="menu" class="my-8 sm:my-16">
-        <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 font-display"
-        >
-          Our Menu
-        </h2>
+      <section id="menu" class="py-16 sm:py-24">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
+          >
+            Our Collection
+          </h2>
+          <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
+          <p
+            class="text-lg text-charcoal-light max-w-3xl mx-auto leading-relaxed"
+          >
+            Each creation is handcrafted using traditional French techniques and
+            the finest ingredients, sourced locally when possible.
+          </p>
+        </div>
 
         <!-- Menu Filters & Search -->
         <div
-          class="flex flex-col gap-4 items-stretch mb-8 sm:mb-12 bg-gray-100 py-4 rounded-lg"
+          class="flex flex-col gap-6 items-stretch mb-12 bg-white p-6 rounded-xl shadow-elegant"
         >
           <div class="relative w-full">
             <input
               type="text"
               id="search-bar"
-              placeholder="Search for an item..."
-              class="w-full pl-10 pr-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-amber-600 text-base"
+              placeholder="Search our collection..."
+              class="w-full pl-12 pr-4 py-4 border border-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold text-base bg-cream/30"
             />
             <i
               data-lucide="search"
-              class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-light"
             ></i>
           </div>
           <div
             id="filter-container"
-            class="filter-container flex flex-wrap gap-2 pb-2"
+            class="filter-container flex flex-wrap gap-3 justify-center"
           >
             <!-- Filter buttons will be generated by JS -->
           </div>
@@ -173,207 +285,55 @@
 
         <div
           id="menu-grid"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
         >
           <!-- Menu items will be generated here by JS -->
         </div>
       </section>
 
-      <!-- Catering Section -->
-      <section id="catering" class="my-16 sm:my-24">
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <!-- About Section -->
+      <section id="about" class="py-16 sm:py-24">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <h2
-              class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-display"
+              class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-8"
             >
-              Catering for Any Event
+              Our Story
             </h2>
-            <p class="text-lg sm:text-xl text-gray-600 mb-6">
-              Bring the taste of Bread N' Brew to your next meeting, party, or
-              special event. We offer customizable platters of our finest
-              pastries, breads, and coffee service.
-            </p>
-            <p class="text-base sm:text-lg text-gray-600">
-              Fill out the form to get started, and our catering specialist will
-              get in touch with you shortly.
-            </p>
-          </div>
-          <div class="bg-white p-6 sm:p-10 rounded-lg shadow-lg">
-            <form id="catering-form">
-              <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold mb-2"
-                  >Full Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-base sm:text-lg"
-                  required
-                />
-              </div>
-              <div class="mb-4">
-                <label for="email" class="block text-gray-700 font-bold mb-2"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-base sm:text-lg"
-                  required
-                />
-              </div>
-              <div class="mb-4">
-                <label for="date" class="block text-gray-700 font-bold mb-2"
-                  >Event Date</label
-                >
-                <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-base sm:text-lg"
-                  required
-                />
-              </div>
-              <div class="mb-6">
-                <label for="message" class="block text-gray-700 font-bold mb-2"
-                  >Tell Us About Your Event</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-base sm:text-lg"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-amber-800 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-900 transition text-lg sm:text-xl touch-target"
-              >
-                Submit Inquiry
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- Customer Reviews -->
-      <section id="reviews" class="my-16 sm:my-24">
-        <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-16 font-display"
-        >
-          What Our Customers Are Saying
-        </h2>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            <div class="space-y-6 text-lg text-charcoal-light leading-relaxed">
+              <p>
+                Founded on a passion for authentic French baking, Artisan
+                Boulangerie brings centuries-old techniques to Berkeley Heights.
+                Our master baker trained in Lyon, France, where he learned the
+                sacred art of bread making from fourth-generation bakers.
+              </p>
+              <p>
+                Every morning before dawn, our artisans begin the careful
+                process of shaping, proofing, and baking. We use only the finest
+                ingredients: European butter, organic stone-ground flours, and
+                wild yeast starters that have been lovingly maintained for over
+                a decade.
+              </p>
+              <p>
+                From our signature heritage sourdough to delicate French
+                pastries, each creation reflects our commitment to excellence
+                and our respect for tradition. We believe that great baking is
+                both an art and a science—requiring patience, skill, and an
+                unwavering dedication to quality.
+              </p>
             </div>
-            <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
-            <p class="font-bold text-amber-800">- Developer</p>
           </div>
-          <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
-            <p class="font-bold text-amber-800">- Developer</p>
-          </div>
-          <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-gray-600 italic mb-4">"Review System to be Added"</p>
-            <p class="font-bold text-amber-800">- Developer</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Photo Gallery -->
-      <section id="gallery" class="my-16 sm:my-24">
-        <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-16 font-display"
-        >
-          A Glimpse Inside
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="grid gap-4">
-            <div>
+          <div class="relative">
+            <div class="grid grid-cols-2 gap-4">
               <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Cafe interior"
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
+                alt="Baker at work"
+                class="rounded-lg shadow-elegant transform rotate-3 hover:rotate-0 transition duration-500"
               />
-            </div>
-            <div>
               <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Latte art close-up"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Coffee beans"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Pastry display case"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Barista making coffee"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Loaf of bread"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Customers enjoying coffee"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="UPDATE WHEN IMAGE"
-                alt="Espresso machine"
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"
+                alt="Fresh pastries"
+                class="rounded-lg shadow-elegant transform -rotate-3 hover:rotate-0 transition duration-500 mt-8"
               />
             </div>
           </div>
@@ -381,75 +341,72 @@
       </section>
 
       <!-- Location Section -->
-      <section id="location" class="my-16 sm:my-24">
-        <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-16 font-display"
-        >
-          Visit Us
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
-          <div class="rounded-lg overflow-hidden shadow-lg h-full">
+      <section id="location" class="py-16 sm:py-24">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
+          >
+            Visit Our Boulangerie
+          </h2>
+          <div class="w-24 h-0.5 bg-gold mx-auto"></div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div class="rounded-xl overflow-hidden shadow-elegant">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.471988894957!2d-74.3808189845963!3d40.66360327933718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3b88b0b54131b%3A0x5f3f0e1f0e2d3d3!2s512%20Springfield%20Ave%2C%20Berkeley%20Heights%2C%20NJ%2007922!5e0!3m2!1sen!2sus!4v1626815320508!5m2!1sen!2sus"
               width="100%"
-              height="100%"
-              style="border: 0; min-height: 350px"
+              height="400"
+              style="border: 0"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-          <div
-            class="bg-white p-6 sm:p-10 rounded-lg shadow-lg flex flex-col justify-center"
-          >
-            <h3
-              class="text-2xl sm:text-3xl lg:text-4xl font-bold font-display mb-6"
-            >
-              Contact & Hours
+          <div class="bg-white p-8 lg:p-12 rounded-xl shadow-elegant">
+            <h3 class="text-3xl font-serif font-semibold text-charcoal mb-8">
+              Come Experience Our Craft
             </h3>
-            <div
-              class="text-lg sm:text-xl text-gray-700 mb-6 flex flex-col space-y-4"
-            >
-              <a
-                href="tel:908-933-0123"
-                class="flex items-center hover:text-amber-800 touch-target"
-              >
-                <i
-                  data-lucide="phone"
-                  class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0"
-                ></i>
-                <span>(908) 933-0123</span>
-              </a>
-              <a
-                href="mailto:breadnbrew512@gmail.com"
-                class="flex items-center hover:text-amber-800 touch-target"
-              >
-                <i
-                  data-lucide="mail"
-                  class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0"
-                ></i>
-                <span>breadnbrew512@gmail.com</span>
-              </a>
-              <a
-                href="https://www.google.com/maps/place/512+Springfield+Ave,+Berkeley+Heights,+NJ+07922/@40.6833573,-74.4471183,17z/data=!3m1!4b1!4m6!3m5!1s0x89c3badcdf66fd51:0x96ba1541f304b640!8m2!3d40.6833533!4d-74.4422474!16s%2Fg%2F11f4ln2ss9?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-start hover:text-amber-800 touch-target"
-              >
+            <div class="space-y-6 text-lg text-charcoal-light">
+              <div class="flex items-start">
                 <i
                   data-lucide="map-pin"
-                  class="w-6 h-6 mr-4 text-amber-800 flex-shrink-0 mt-1"
+                  class="w-6 h-6 mr-4 mt-1 text-gold flex-shrink-0"
                 ></i>
-                <span>512 Springfield Ave<br />Berkeley Heights, NJ 07922</span>
-              </a>
-            </div>
-            <div class="text-lg sm:text-xl text-gray-700 flex items-start">
-              <i
-                data-lucide="clock"
-                class="w-6 h-6 mr-4 mt-1 text-amber-800 flex-shrink-0"
-              ></i>
-              <div>
-                <p class="mb-2"><span class="font-bold">Hours:</span> TBD</p>
+                <div>
+                  <p class="font-medium text-charcoal">512 Springfield Ave</p>
+                  <p>Berkeley Heights, NJ 07922</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <i
+                  data-lucide="phone"
+                  class="w-6 h-6 mr-4 text-gold flex-shrink-0"
+                ></i>
+                <a href="tel:908-555-BAKE" class="hover:text-gold transition"
+                  >(908) 555-BAKE</a
+                >
+              </div>
+              <div class="flex items-center">
+                <i
+                  data-lucide="mail"
+                  class="w-6 h-6 mr-4 text-gold flex-shrink-0"
+                ></i>
+                <a
+                  href="mailto:hello@artisanboulangerie.com"
+                  class="hover:text-gold transition"
+                  >hello@artisanboulangerie.com</a
+                >
+              </div>
+              <div class="flex items-start">
+                <i
+                  data-lucide="clock"
+                  class="w-6 h-6 mr-4 mt-1 text-gold flex-shrink-0"
+                ></i>
+                <div>
+                  <p class="font-medium text-charcoal">Hours</p>
+                  <p>Tuesday - Sunday: 7:00 AM - 6:00 PM</p>
+                  <p>Monday: Closed</p>
+                </div>
               </div>
             </div>
           </div>
@@ -458,39 +415,84 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-        <div class="flex justify-center space-x-6 mb-4">
-          <a
-            href="#"
-            class="text-gray-400 hover:text-white touch-target flex items-center justify-center"
-            ><i data-lucide="instagram" class="w-7 h-7"></i
-          ></a>
-          <a
-            href="#"
-            class="text-gray-400 hover:text-white touch-target flex items-center justify-center"
-            ><i data-lucide="facebook" class="w-7 h-7"></i
-          ></a>
-          <a
-            href="#"
-            class="text-gray-400 hover:text-white touch-target flex items-center justify-center"
-            ><i data-lucide="twitter" class="w-7 h-7"></i
-          ></a>
+    <footer class="bg-charcoal text-white py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="md:col-span-2">
+            <h3 class="text-2xl font-serif font-bold text-gold mb-4">
+              Artisan Boulangerie
+            </h3>
+            <p class="text-gray-300 leading-relaxed mb-6">
+              Bringing authentic French baking traditions to Berkeley Heights,
+              where every creation is crafted with passion and precision.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-gold transition">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-gold transition">
+                <i data-lucide="facebook" class="w-6 h-6"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-gold transition">
+                <i data-lucide="twitter" class="w-6 h-6"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#menu" class="text-gray-300 hover:text-gold transition"
+                  >Menu</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-300 hover:text-gold transition"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#location"
+                  class="text-gray-300 hover:text-gold transition"
+                  >Location</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-gold transition"
+                  >Catering</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Contact</h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>(908) 555-BAKE</li>
+              <li>hello@artisanboulangerie.com</li>
+              <li>512 Springfield Ave<br />Berkeley Heights, NJ</li>
+            </ul>
+          </div>
         </div>
-        <p class="font-display text-xl sm:text-2xl mb-2">Bread N' Br☕︎w</p>
-        <p>&copy; 2025. All Rights Reserved.</p>
+        <div
+          class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2025 Artisan Boulangerie. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
     <!-- Floating Cart Button -->
     <button
       id="floating-cart-btn"
-      class="floating-cart-btn fixed bottom-4 sm:bottom-6 right-4 sm:right-6 bg-amber-800 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-lg flex items-center justify-center z-40 touch-target"
+      class="floating-cart-btn fixed bottom-6 right-6 bg-gold text-white w-16 h-16 rounded-full shadow-elegant flex items-center justify-center z-40 touch-target hover:bg-gold-dark transition transform hover:scale-110"
     >
-      <i data-lucide="shopping-cart" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+      <i data-lucide="shopping-bag" class="w-7 h-7"></i>
       <span
         id="cart-item-count"
-        class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 sm:h-6 sm:w-6 flex items-center justify-center font-bold"
+        class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold"
         >0</span
       >
     </button>
@@ -503,38 +505,40 @@
       <!-- Cart will be rendered here by JS -->
     </div>
 
-    <!-- "Added to Cart" Toast Notification -->
+    <!-- Toast Notification -->
     <div
       id="toast-wrapper"
-      class="toast-wrapper fixed bottom-20 sm:bottom-6 left-4 right-4 sm:left-0 sm:right-0 text-center z-50"
+      class="toast-wrapper fixed bottom-24 left-4 right-4 sm:left-0 sm:right-0 text-center z-50"
     >
       <div
         id="toast-message"
-        class="inline-block bg-gray-900 text-white py-3 px-6 rounded-full shadow-lg"
+        class="inline-block bg-charcoal text-white py-3 px-6 rounded-full shadow-elegant"
       >
         Item added to your cart!
       </div>
     </div>
 
-    <!-- Custom Modal for Alerts and Customizations -->
+    <!-- Custom Modal -->
     <div
       id="custom-modal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4"
     >
       <div
-        class="bg-white p-6 sm:p-8 rounded-lg shadow-xl text-center max-w-sm mx-auto w-full"
+        class="bg-white p-8 rounded-xl shadow-elegant text-center max-w-sm mx-auto w-full"
       >
         <div id="modal-content">
           <h3
             id="modal-title"
-            class="text-xl sm:text-2xl font-bold mb-4 font-display"
+            class="text-xl sm:text-2xl font-serif font-semibold mb-4 text-charcoal"
           >
-            Alert
+            Notice
           </h3>
-          <div id="modal-body" class="text-gray-700 mb-6">Message here.</div>
+          <div id="modal-body" class="text-charcoal-light mb-6">
+            Message here.
+          </div>
           <div id="modal-actions">
             <button
-              class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target"
+              class="modal-close-btn bg-gold text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-gold-dark transition"
             >
               OK
             </button>
