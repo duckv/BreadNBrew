@@ -1,4 +1,11 @@
-/* Refined Styling for Bread N' Brew */
+/* Forest Green Theme for Bread N' Brew */
+
+/* Custom Forest Green Color Palette */
+:root {
+  --forest-green: #065f46;
+  --forest-green-dark: #064e3b;
+  --forest-green-light: #10b981;
+}
 
 /* Typography System */
 body {
@@ -10,6 +17,50 @@ body {
 
 .font-display {
   font-family: "Playfair Display", serif;
+}
+
+/* Forest Green Color Classes */
+.bg-forest-green {
+  background-color: var(--forest-green);
+}
+.bg-forest-green-dark {
+  background-color: var(--forest-green-dark);
+}
+.bg-forest-green-light {
+  background-color: var(--forest-green-light);
+}
+.text-forest-green {
+  color: var(--forest-green);
+}
+.text-forest-green-dark {
+  color: var(--forest-green-dark);
+}
+.text-forest-green-light {
+  color: var(--forest-green-light);
+}
+.border-forest-green {
+  border-color: var(--forest-green);
+}
+.ring-forest-green {
+  --tw-ring-color: var(--forest-green);
+}
+.hover\:text-forest-green:hover {
+  color: var(--forest-green);
+}
+.hover\:bg-forest-green:hover {
+  background-color: var(--forest-green);
+}
+.hover\:bg-forest-green-dark:hover {
+  background-color: var(--forest-green-dark);
+}
+.hover\:text-forest-green-light:hover {
+  color: var(--forest-green-light);
+}
+.focus\:ring-forest-green:focus {
+  --tw-ring-color: var(--forest-green);
+}
+.focus\:border-forest-green:focus {
+  border-color: var(--forest-green);
 }
 
 /* Hero Section */
@@ -51,6 +102,69 @@ body {
   transform: scale(1.05);
 }
 
+/* Featured Item Cards (no add to cart button) */
+.featured-item-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgb(229, 231, 235);
+  box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08);
+}
+
+.featured-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.15);
+}
+
+/* Improved Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  background: rgb(243, 244, 246);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 8px;
+}
+
+.quantity-btn {
+  background: white;
+  border: 2px solid rgb(229, 231, 235);
+  color: var(--forest-green);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.quantity-btn:hover {
+  background: var(--forest-green);
+  color: white;
+  border-color: var(--forest-green);
+  transform: scale(1.1);
+}
+
+.quantity-input {
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--forest-green);
+  width: 40px;
+}
+
+.quantity-input:focus {
+  outline: none;
+}
+
 /* Filter Buttons */
 .filter-btn {
   background: white;
@@ -65,11 +179,11 @@ body {
 
 .filter-btn:hover,
 .filter-btn.selected {
-  background: rgb(146, 64, 14);
+  background: var(--forest-green);
   color: white;
-  border-color: rgb(146, 64, 14);
+  border-color: var(--forest-green);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(146, 64, 14, 0.3);
+  box-shadow: 0 8px 24px rgba(6, 95, 70, 0.3);
 }
 
 /* Cart Styling */
@@ -103,7 +217,7 @@ body {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform: scale(0);
   opacity: 0;
-  box-shadow: 0 8px 24px rgba(146, 64, 14, 0.3);
+  box-shadow: 0 8px 24px rgba(6, 95, 70, 0.3);
 }
 
 .floating-cart-btn.visible {
@@ -113,7 +227,7 @@ body {
 
 .floating-cart-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(146, 64, 14, 0.4);
+  box-shadow: 0 12px 32px rgba(6, 95, 70, 0.4);
 }
 
 /* Toast Notifications */
@@ -141,7 +255,7 @@ body {
 }
 
 .mobile-menu-visible {
-  max-height: 400px;
+  max-height: 500px;
   opacity: 1;
 }
 
@@ -152,15 +266,15 @@ body {
 
 #search-bar:focus {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(146, 64, 14, 0.15);
+  box-shadow: 0 8px 24px rgba(6, 95, 70, 0.15);
 }
 
 /* Button Styles */
 .btn-primary {
   background: linear-gradient(
     135deg,
-    rgb(146, 64, 14) 0%,
-    rgb(120, 53, 15) 100%
+    var(--forest-green) 0%,
+    var(--forest-green-dark) 100%
   );
   border: none;
   color: white;
@@ -168,18 +282,64 @@ body {
   padding: 16px 32px;
   border-radius: 50px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(146, 64, 14, 0.3);
+  box-shadow: 0 4px 16px rgba(6, 95, 70, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(146, 64, 14, 0.4);
+  box-shadow: 0 8px 24px rgba(6, 95, 70, 0.4);
+}
+
+/* Customize Button */
+.customize-btn {
+  background: rgba(6, 95, 70, 0.1);
+  border: 2px solid rgba(6, 95, 70, 0.3);
+  color: var(--forest-green);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.customize-btn:hover {
+  background: var(--forest-green);
+  color: white;
+  border-color: var(--forest-green);
+  transform: translateY(-1px);
+}
+
+/* Test Options Styling */
+.test-options {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.test-option-btn {
+  background: white;
+  border: 2px solid rgba(6, 95, 70, 0.3);
+  color: var(--forest-green);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.test-option-btn:hover,
+.test-option-btn.selected {
+  background: var(--forest-green);
+  color: white;
+  border-color: var(--forest-green);
 }
 
 /* Price Display */
 .price-display {
   font-weight: 600;
-  color: rgb(146, 64, 14);
+  color: var(--forest-green);
   font-size: 1.1em;
 }
 
@@ -189,7 +349,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgb(146, 64, 14) rgb(243, 244, 246);
+  scrollbar-color: var(--forest-green) rgb(243, 244, 246);
 }
 
 .cart-items-container::-webkit-scrollbar {
@@ -202,12 +362,12 @@ body {
 }
 
 .cart-items-container::-webkit-scrollbar-thumb {
-  background: rgb(146, 64, 14);
+  background: var(--forest-green);
   border-radius: 3px;
 }
 
 .cart-items-container::-webkit-scrollbar-thumb:hover {
-  background: rgb(120, 53, 15);
+  background: var(--forest-green-dark);
 }
 
 /* Form Styling */
@@ -226,9 +386,16 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: rgb(146, 64, 14);
-  box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1);
+  border-color: var(--forest-green);
+  box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
   transform: translateY(-1px);
+}
+
+/* Top Bar Styling */
+.top-bar {
+  background: var(--forest-green);
+  color: white;
+  font-size: 14px;
 }
 
 /* Loading States */
@@ -247,7 +414,7 @@ select:focus {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(146, 64, 14, 0.2),
+    rgba(6, 95, 70, 0.2),
     transparent
   );
   animation: shimmer 2s infinite;
@@ -305,6 +472,20 @@ select:focus {
     font-size: 14px;
     padding: 10px 20px;
   }
+
+  .quantity-controls {
+    gap: 4px;
+  }
+
+  .top-bar {
+    font-size: 12px;
+  }
+
+  .top-bar .flex {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -319,6 +500,15 @@ select:focus {
 
   .section-padding {
     padding: 3rem 0;
+  }
+
+  .test-options {
+    gap: 4px;
+  }
+
+  .test-option-btn {
+    font-size: 11px;
+    padding: 4px 8px;
   }
 }
 
@@ -341,13 +531,13 @@ a:focus,
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid rgb(146, 64, 14);
+  outline: 2px solid var(--forest-green);
   outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
-  background: rgb(146, 64, 14);
+  background: var(--forest-green);
   color: white;
 }
 
@@ -361,12 +551,12 @@ select:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(146, 64, 14);
+  background: var(--forest-green);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(120, 53, 15);
+  background: var(--forest-green-dark);
 }
 
 /* Enhanced Card Shadows */
@@ -385,43 +575,6 @@ select:focus {
   transform: scale(1.05);
 }
 
-/* Gradient Overlays */
-.gradient-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(17, 24, 39, 0.8) 0%,
-    rgba(17, 24, 39, 0.4) 100%
-  );
-  pointer-events: none;
-}
-
-/* Typography Enhancements */
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Grid Improvements */
-.elegant-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-@media (max-width: 768px) {
-  .elegant-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-/* Star Rating */
-.star-rating {
-  color: rgb(234, 179, 8);
-}
-
 /* Category Headers */
 .category-header {
   position: relative;
@@ -437,22 +590,13 @@ select:focus {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: rgb(146, 64, 14);
+  background: var(--forest-green);
   border-radius: 2px;
 }
 
 /* Premium Spacing */
 .content-spacing > * + * {
   margin-top: 1.5rem;
-}
-
-/* Image Aspect Ratios */
-.aspect-golden {
-  aspect-ratio: 1.618 / 1;
-}
-
-.aspect-square {
-  aspect-ratio: 1 / 1;
 }
 
 /* Smooth Animations */
@@ -489,14 +633,4 @@ select:focus {
 /* Border Improvements */
 .border-elegant {
   border: 1px solid rgba(229, 231, 235, 0.8);
-}
-
-/* Background Patterns */
-.bg-pattern {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(146, 64, 14, 0.05) 1px,
-    transparent 0
-  );
-  background-size: 20px 20px;
 }
