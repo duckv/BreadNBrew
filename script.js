@@ -142,55 +142,25 @@ function createMenuItemCard(item) {
     "bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform flex flex-col h-full";
 
   let customizationOptions = "";
-  if (item.customizations) {
-    if (item.customizations.toast) {
-      customizationOptions += `
-                <div class="flex gap-2 mt-2">
-                    ${item.customizations.toast
-                      .map(
-                        (option) =>
-                          `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="toast" data-value="${option}">${option}</button>`,
-                      )
-                      .join("")}
-                </div>
-            `;
-    }
-    if (item.customizations.temperature) {
-      customizationOptions += `
-                <div class="flex gap-2 mt-2">
-                    ${item.customizations.temperature
-                      .map(
-                        (option) =>
-                          `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target" data-type="temperature" data-value="${option}">${option}</button>`,
-                      )
-                      .join("")}
-                </div>
-            `;
-    }
-    if (item.customizations.slice) {
-      customizationOptions += `
-                <div class="flex gap-2 mt-2">
-                    ${item.customizations.slice
-                      .map(
-                        (option, index) =>
-                          `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target ${index === 0 ? "selected" : ""}" data-type="slice" data-value="${option.name}">${option.name} ($${(item.price + option.price).toFixed(2)})</button>`,
-                      )
-                      .join("")}
-                </div>
-            `;
-    }
+  if (item.customizations && item.customizations.slice) {
+    customizationOptions += `
+            <div class="flex gap-2 mt-2">
+                ${item.customizations.slice
+                  .map(
+                    (option, index) =>
+                      `<button class="custom-btn px-3 py-1 border border-amber-600 text-amber-800 rounded-full text-sm touch-target ${index === 0 ? "selected" : ""}" data-type="slice" data-value="${option.name}">${option.name} ($${(item.price + option.price).toFixed(2)})</button>`,
+                  )
+                  .join("")}
+            </div>
+        `;
   }
 
   const quantityButtons = `
-        <div class="flex items-center gap-3 mt-4">
+        <div class="flex items-center gap-2 mt-4">
             <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="-1">-</button>
             <input type="number" id="quantity-${item.id}" value="1" min="1" max="${APP_CONFIG.MAX_QUANTITY_PER_ITEM}" class="w-16 text-center border rounded py-1">
             <button class="quantity-change bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold touch-target" data-item-id="${item.id}" data-change="1">+</button>
-            ${
-              item.customizations && item.customizations.toppings
-                ? `<button class="customize-btn bg-gray-200 text-gray-800 font-bold py-2 px-3 rounded-full hover:bg-gray-300 transition touch-target text-sm" data-item-id="${item.id}">Customize</button>`
-                : ""
-            }
+            <button class="customize-btn bg-amber-100 text-amber-800 font-semibold py-2 px-3 rounded-full hover:bg-amber-200 transition touch-target text-sm border border-amber-300" data-item-id="${item.id}">Customize</button>
         </div>
     `;
 
