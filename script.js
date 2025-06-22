@@ -965,14 +965,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Handle clicks on cart overlay to close cart
-  cartElement.addEventListener("click", (e) => {
-    // If clicking on the overlay background (not the cart content), close cart
-    if (e.target === cartElement) {
-      cleanupScrollButtons();
-      cartElement.classList.add("cart-hidden");
-      unlockBodyScroll();
-    }
-  });
+  if (cartElement) {
+    cartElement.addEventListener("click", (e) => {
+      // If clicking on the overlay background (not the cart content), close cart
+      if (e.target === cartElement) {
+        cleanupScrollButtons();
+        closeCart();
+      }
+    });
+  }
 
   // Menu grid event listener (only if menuGrid exists)
   if (menuGrid) {
