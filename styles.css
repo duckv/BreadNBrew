@@ -722,3 +722,95 @@ select:focus {
 .border-elegant {
   border: 1px solid rgba(229, 231, 235, 0.8);
 }
+
+/* Map Styling */
+.map-container {
+  height: 100%;
+  min-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(17, 24, 39, 0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive Design Improvements */
+.responsive-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.responsive-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Section Spacing */
+.section-spacing {
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding: 3rem 0;
+  }
+
+  .responsive-container {
+    padding: 0 1rem;
+  }
+
+  .responsive-grid {
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .map-container {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-spacing {
+    padding: 2rem 0;
+  }
+
+  .responsive-container {
+    padding: 0 0.75rem;
+  }
+
+  .responsive-grid {
+    gap: 1rem;
+  }
+}
+
+/* Card Improvements */
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(17, 24, 39, 0.08);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(17, 24, 39, 0.12);
+}
+
+@media (max-width: 768px) {
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card {
+    padding: 1rem;
+  }
+}
