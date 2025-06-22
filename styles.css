@@ -686,6 +686,32 @@ select:focus {
   }
 }
 
+/* Featured Grid */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Glimpse Gallery */
+.glimpse-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .glimpse-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
