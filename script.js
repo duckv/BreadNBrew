@@ -350,41 +350,47 @@ function renderCart() {
         .map(
           (item) => `
         <div class="cart-item-card mb-4 p-4 border rounded-lg bg-white">
-          <div class="flex justify-between items-start mb-2">
-            <h4 class="font-semibold text-gray-900">${item.name}</h4>
-            <button class="remove-item-btn text-red-500 hover:text-red-700 p-1" data-unique-id="${item.uniqueId}">
-              <i data-lucide="trash-2" class="w-4 h-4"></i>
-            </button>
-          </div>
-          <p class="text-sm text-gray-600 mb-2">${item.description}</p>
-          ${
-            item.customizations && Object.keys(item.customizations).length > 0
-              ? `
-            <div class="text-xs text-gray-500 mb-2">
-              ${Object.entries(item.customizations)
-                .map(([key, value]) => {
-                  if (
-                    key === "toppings" &&
-                    Array.isArray(value) &&
-                    value.length > 0
-                  ) {
-                    return `Toppings: ${value.join(", ")}`;
-                  } else if (key === "test" && value) {
-                    return `Test: ${value}`;
-                  }
-                  return "";
-                })
-                .filter(Boolean)
-                .join(" • ")}
+          <div class="flex gap-3 mb-3">
+            <img src="${item.img}" alt="${item.name}" class="cart-item-image w-16 h-16 object-cover rounded-lg flex-shrink-0">
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="font-semibold text-gray-900 text-sm leading-tight">${item.name}</h4>
+                <button class="remove-item-btn text-red-500 hover:text-red-700 p-1 flex-shrink-0" data-unique-id="${item.uniqueId}">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <p class="text-xs text-gray-600 mb-2 line-clamp-2">${item.description}</p>
+              ${
+                item.customizations &&
+                Object.keys(item.customizations).length > 0
+                  ? `
+                <div class="text-xs text-gray-500 mb-2">
+                  ${Object.entries(item.customizations)
+                    .map(([key, value]) => {
+                      if (
+                        key === "toppings" &&
+                        Array.isArray(value) &&
+                        value.length > 0
+                      ) {
+                        return `Toppings: ${value.join(", ")}`;
+                      } else if (key === "test" && value) {
+                        return `Test: ${value}`;
+                      }
+                      return "";
+                    })
+                    .filter(Boolean)
+                    .join(" • ")}
+                </div>
+              `
+                  : ""
+              }
             </div>
-          `
-              : ""
-          }
+          </div>
           <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
-              <button class="quantity-btn-cart bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600" data-unique-id="${item.uniqueId}" data-change="-1">−</button>
+              <button class="quantity-btn-cart bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600 transition" data-unique-id="${item.uniqueId}" data-change="-1">−</button>
               <span class="font-semibold w-8 text-center">${item.quantity}</span>
-              <button class="quantity-btn-cart bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-600" data-unique-id="${item.uniqueId}" data-change="1">+</button>
+              <button class="quantity-btn-cart bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-600 transition" data-unique-id="${item.uniqueId}" data-change="1">+</button>
             </div>
             <p class="text-amber-700 font-bold">$${(item.price * item.quantity).toFixed(2)}</p>
           </div>
