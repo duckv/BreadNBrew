@@ -455,7 +455,7 @@ function updateFloatingCartButton() {
   }
 
   // Update header cart count
-  const headerCartCount = document.getElementById("cart-item-count");
+  const headerCartCount = document.getElementById("header-cart-count");
   if (headerCartCount) {
     headerCartCount.textContent = totalItems;
   }
