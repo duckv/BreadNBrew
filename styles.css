@@ -285,6 +285,7 @@ body {
   transform: scale(0);
   opacity: 0;
   box-shadow: 0 8px 24px rgba(6, 95, 70, 0.3);
+  z-index: 1000;
 }
 
 .floating-cart-btn.visible {
