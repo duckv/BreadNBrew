@@ -16,7 +16,7 @@
   </head>
   <body class="bg-gray-50 text-gray-900">
     <!-- Top Bar with Hours and Contact -->
-    <div class="bg-forest-green text-white py-2 text-sm">
+    <div class="bg-navy-blue text-white py-2 text-sm sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div class="flex items-center space-x-6">
           <span class="font-medium"
@@ -26,7 +26,7 @@
         <div class="flex items-center space-x-6">
           <a
             href="tel:908-933-0123"
-            class="hover:text-forest-green-light transition flex items-center"
+            class="hover:text-gray-300 transition flex items-center"
           >
             <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
             (908) 933-0123
@@ -34,7 +34,7 @@
           <a
             href="https://www.google.com/maps/place/512+Springfield+Ave,+Berkeley+Heights,+NJ+07922"
             target="_blank"
-            class="hover:text-forest-green-light transition flex items-center"
+            class="hover:text-gray-300 transition flex items-center"
           >
             <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
             512 Springfield Ave, Berkeley Heights, NJ
@@ -46,12 +46,15 @@
     <!-- Header & Navigation -->
     <header
       id="header"
-      class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300"
+      class="bg-white shadow-md sticky top-8 z-40 transition-all duration-300"
     >
       <nav
         class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center"
       >
-        <a href="#" class="text-3xl font-bold text-pink-500 font-display">
+        <a
+          href="index.html"
+          class="text-3xl font-bold text-pink-500 font-display"
+        >
           <div>
             Bread N' Br☕︎w
             <span class="block text-xs font-normal text-gray-600 tracking-wider"
@@ -60,15 +63,13 @@
           </div>
         </a>
         <div class="hidden md:flex items-center space-x-8">
-          <a
-            href="#featured"
-            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
-            >Featured</a
+          <a href="index.html" class="text-forest-green font-semibold text-lg"
+            >Home</a
           >
           <a
-            href="#menu"
+            href="menu.html"
             class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
-            >Full Menu</a
+            >Menu</a
           >
           <a
             href="#catering"
@@ -81,7 +82,7 @@
             >About</a
           >
           <a
-            href="#contact"
+            href="contact.html"
             class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
             >Contact</a
           >
@@ -98,8 +99,8 @@
             >
           </button>
           <a
-            href="#menu"
-            class="hidden lg:inline-block bg-forest-green text-white font-semibold py-3 px-8 rounded-full hover:bg-forest-green-dark transition shadow-lg"
+            href="menu.html"
+            class="hidden lg:inline-block bg-pink-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-pink-600 transition shadow-lg"
             >Order Now</a
           >
         </div>
@@ -117,14 +118,14 @@
       >
         <div class="px-6 pb-6 space-y-3">
           <a
-            href="#featured"
-            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
-            >Featured</a
+            href="index.html"
+            class="block py-3 text-forest-green font-semibold text-lg"
+            >Home</a
           >
           <a
-            href="#menu"
+            href="menu.html"
             class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
-            >Full Menu</a
+            >Menu</a
           >
           <a
             href="#catering"
@@ -137,7 +138,7 @@
             >About</a
           >
           <a
-            href="#contact"
+            href="contact.html"
             class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
             >Contact</a
           >
@@ -153,11 +154,6 @@
               >0</span
             >
           </button>
-          <a
-            href="#menu"
-            class="block mt-6 bg-forest-green text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-forest-green-dark transition touch-target shadow-lg"
-            >Order Now</a
-          >
         </div>
       </div>
     </header>
@@ -185,12 +181,12 @@
           class="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="#menu"
-            class="bg-forest-green text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-forest-green-dark transition touch-target inline-block shadow-lg transform hover:scale-105"
+            href="menu.html"
+            class="bg-amber-700 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-amber-800 transition touch-target inline-block shadow-lg transform hover:scale-105"
             >View Menu</a
           >
           <a
-            href="#contact"
+            href="contact.html"
             class="border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-gray-900 transition touch-target inline-block transform hover:scale-105"
             >Contact Us</a
           >
@@ -223,57 +219,10 @@
 
         <div class="text-center">
           <a
-            href="#menu"
-            class="inline-block bg-forest-green text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-forest-green-dark transition shadow-lg"
+            href="menu.html"
+            class="inline-block bg-amber-700 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-amber-800 transition shadow-lg"
             >View Full Menu</a
           >
-        </div>
-      </section>
-
-      <!-- Full Menu Section -->
-      <section id="menu" class="py-20">
-        <div class="text-center mb-16">
-          <h2
-            class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
-          >
-            Our Full Menu
-          </h2>
-          <div class="w-24 h-0.5 bg-forest-green mx-auto mb-8"></div>
-          <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            From fresh-baked breads to expertly crafted coffee, every item is
-            made with care and the finest ingredients.
-          </p>
-        </div>
-
-        <!-- Menu Filters & Search -->
-        <div
-          class="flex flex-col gap-6 items-stretch mb-12 bg-white p-6 rounded-xl shadow-lg"
-        >
-          <div class="relative w-full">
-            <input
-              type="text"
-              id="search-bar"
-              placeholder="Search for an item..."
-              class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base bg-gray-50"
-            />
-            <i
-              data-lucide="search"
-              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-            ></i>
-          </div>
-          <div
-            id="filter-container"
-            class="filter-container flex flex-wrap gap-3 justify-center"
-          >
-            <!-- Filter buttons will be generated by JS -->
-          </div>
-        </div>
-
-        <div
-          id="menu-grid"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
-        >
-          <!-- Menu items will be generated here by JS -->
         </div>
       </section>
 
@@ -413,17 +362,9 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-20">
-        <div class="text-center mb-16">
-          <h2
-            class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
-          >
-            Contact Us
-          </h2>
-          <div class="w-24 h-0.5 bg-forest-green mx-auto"></div>
-        </div>
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <!-- Visit Us Section -->
+      <section class="py-20">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div class="rounded-xl overflow-hidden shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.471988894957!2d-74.3808189845963!3d40.66360327933718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3b88b0b54131b%3A0x5f3f0e1f0e2d3d3!2s512%20Springfield%20Ave%2C%20Berkeley%20Heights%2C%20NJ%2007922!5e0!3m2!1sen!2sus!4v1626815320508!5m2!1sen!2sus"
@@ -436,14 +377,14 @@
             ></iframe>
           </div>
           <div class="bg-white p-8 lg:p-12 rounded-xl shadow-lg">
-            <h3 class="text-3xl font-display font-bold text-gray-900 mb-8">
-              Get In Touch
-            </h3>
+            <h2 class="text-3xl font-display font-bold text-gray-900 mb-8">
+              Visit Our Location
+            </h2>
             <div class="space-y-6 text-lg text-gray-700">
               <div class="flex items-start">
                 <i
                   data-lucide="map-pin"
-                  class="w-6 h-6 mr-4 mt-1 text-forest-green flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
                 ></i>
                 <div>
                   <p class="font-medium text-gray-900">512 Springfield Ave</p>
@@ -453,29 +394,29 @@
               <div class="flex items-center">
                 <i
                   data-lucide="phone"
-                  class="w-6 h-6 mr-4 text-forest-green flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
                 ></i>
                 <a
                   href="tel:908-933-0123"
-                  class="hover:text-forest-green transition"
+                  class="hover:text-amber-700 transition"
                   >(908) 933-0123</a
                 >
               </div>
               <div class="flex items-center">
                 <i
                   data-lucide="mail"
-                  class="w-6 h-6 mr-4 text-forest-green flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
                 ></i>
                 <a
                   href="mailto:breadnbrew512@gmail.com"
-                  class="hover:text-forest-green transition"
+                  class="hover:text-amber-700 transition"
                   >breadnbrew512@gmail.com</a
                 >
               </div>
               <div class="flex items-start">
                 <i
                   data-lucide="clock"
-                  class="w-6 h-6 mr-4 mt-1 text-forest-green flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
                 ></i>
                 <div>
                   <p class="font-medium text-gray-900 mb-2">Hours</p>
@@ -486,55 +427,14 @@
                 </div>
               </div>
             </div>
-
-            <!-- Contact Form -->
-            <form class="mt-8 space-y-4">
-              <div>
-                <label
-                  for="contact-name"
-                  class="block text-gray-800 font-semibold mb-2"
-                  >Name</label
-                >
-                <input
-                  type="text"
-                  id="contact-name"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  for="contact-email"
-                  class="block text-gray-800 font-semibold mb-2"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="contact-email"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  for="contact-message"
-                  class="block text-gray-800 font-semibold mb-2"
-                  >Message</label
-                >
-                <textarea
-                  id="contact-message"
-                  rows="4"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green resize-y"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-forest-green text-white font-semibold py-3 px-6 rounded-full hover:bg-forest-green-dark transition shadow-lg"
-              >
-                Send Message
-              </button>
-            </form>
+            <div class="mt-8">
+              <p class="text-gray-600 leading-relaxed">
+                Come experience the warmth and aroma of fresh-baked goods in our
+                cozy cafe. Whether you're meeting friends, working remotely, or
+                just enjoying a quiet moment, we provide the perfect atmosphere
+                for any occasion.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -569,14 +469,14 @@
             <ul class="space-y-2">
               <li>
                 <a
-                  href="#featured"
+                  href="index.html"
                   class="text-gray-300 hover:text-pink-400 transition"
-                  >Featured</a
+                  >Home</a
                 >
               </li>
               <li>
                 <a
-                  href="#menu"
+                  href="menu.html"
                   class="text-gray-300 hover:text-pink-400 transition"
                   >Menu</a
                 >
@@ -597,7 +497,7 @@
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="contact.html"
                   class="text-gray-300 hover:text-pink-400 transition"
                   >Contact</a
                 >
