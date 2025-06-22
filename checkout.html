@@ -243,6 +243,10 @@
                 <span>Subtotal:</span>
                 <span id="checkout-subtotal">$0.00</span>
               </div>
+              <div class="flex justify-between text-lg">
+                <span>Tax (6.625%):</span>
+                <span id="checkout-tax">$0.00</span>
+              </div>
               <div
                 class="flex justify-between text-lg"
                 id="tip-row"
@@ -250,10 +254,6 @@
               >
                 <span>Tip (<span id="tip-percentage">0</span>%):</span>
                 <span id="checkout-tip">$0.00</span>
-              </div>
-              <div class="flex justify-between text-lg">
-                <span>Tax (6.625%):</span>
-                <span id="checkout-tax">$0.00</span>
               </div>
               <div class="flex justify-between text-xl font-bold border-t pt-2">
                 <span>Total:</span>
@@ -664,12 +664,14 @@
           (sum, item) => sum + item.price * item.quantity,
           0,
         );
+        const tax = subtotal * 0.06625; // Tax only on subtotal, not tip
         const tipAmount = subtotal * (currentTipPercentage / 100);
-        const tax = (subtotal + tipAmount) * 0.06625;
-        const total = subtotal + tipAmount + tax;
+        const total = subtotal + tax + tipAmount;
 
         document.getElementById("checkout-subtotal").textContent =
           `$${subtotal.toFixed(2)}`;
+        document.getElementById("checkout-tax").textContent =
+          `$${tax.toFixed(2)}`;
 
         // Show/hide tip row
         const tipRow = document.getElementById("tip-row");
@@ -683,8 +685,6 @@
           tipRow.style.display = "none";
         }
 
-        document.getElementById("checkout-tax").textContent =
-          `$${tax.toFixed(2)}`;
         document.getElementById("checkout-total").textContent =
           `$${total.toFixed(2)}`;
       }
@@ -759,9 +759,9 @@
           (sum, item) => sum + item.price * item.quantity,
           0,
         );
+        const tax = subtotal * 0.06625; // Tax only on subtotal, not tip
         const tipAmount = subtotal * (currentTipPercentage / 100);
-        const tax = (subtotal + tipAmount) * 0.06625;
-        const total = subtotal + tipAmount + tax;
+        const total = subtotal + tax + tipAmount;
 
         const orderData = {
           name: formData.get("name"),
