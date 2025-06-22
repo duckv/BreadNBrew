@@ -215,7 +215,7 @@ function renderFeaturedItems() {
   if (!featuredGrid) return;
 
   featuredGrid.innerHTML = "";
-  const featuredItems = menuItems.filter((item) => item.featured);
+  const featuredItems = menuItems.filter(item => item.featured);
 
   featuredItems.forEach((item) => {
     const card = createFeaturedItemCard(item);
@@ -940,8 +940,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Menu grid event listener
-  menuGrid.addEventListener("click", (e) => {
+  // Menu grid event listener (only if menuGrid exists)
+  if (menuGrid) {
+    menuGrid.addEventListener("click", (e) => {
     const button = e.target.closest("button");
     if (!button) return;
 
@@ -1030,28 +1031,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Add test options if they exist
       if (item.customizations && item.customizations.test) {
-        modalBody +=
-          '<div class="border-b border-gray-200 pb-4"><h4 class="font-semibold text-gray-900 mb-3">Test Options:</h4>';
+        modalBody += '<div class="border-b border-gray-200 pb-4"><h4 class="font-semibold text-gray-900 mb-3">Test Options:</h4>';
         item.customizations.test.forEach((option, index) => {
           modalBody += `<label class="flex items-center space-x-3 mb-2">
-                          <input type="radio" name="test-option" class="test-radio h-5 w-5 text-amber-600 focus:ring-amber-500" data-value="${option}" ${index === 0 ? "checked" : ""}>
+                          <input type="radio" name="test-option" class="test-radio h-5 w-5 text-amber-600 focus:ring-amber-500" data-value="${option}" ${index === 0 ? 'checked' : ''}>
                           <span>${option} (+$0.00)</span>
                        </label>`;
         });
-        modalBody += "</div>";
+        modalBody += '</div>';
       }
 
       // Add toppings if they exist
       if (item.customizations && item.customizations.toppings) {
-        modalBody +=
-          '<div><h4 class="font-semibold text-gray-900 mb-3">Add Toppings:</h4>';
+        modalBody += '<div><h4 class="font-semibold text-gray-900 mb-3">Add Toppings:</h4>';
         item.customizations.toppings.forEach((topping) => {
           modalBody += `<label class="flex items-center space-x-3 mb-2">
                           <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
                           <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
                        </label>`;
         });
-        modalBody += "</div>";
+        modalBody += '</div>';
       }
 
       modalBody += "</div>";
@@ -1088,9 +1087,11 @@ document.addEventListener("DOMContentLoaded", function () {
       hideModal();
     }
   });
+  }
 
-  // Cart event listener
-  cartElement.addEventListener("click", (e) => {
+  // Search functionality (only if searchBar exists)
+  if (searchBar) {
+    searchBar.addEventListener("input", (e) => {
     const button = e.target.closest("button");
     if (!button) return;
 
@@ -1282,12 +1283,14 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "fixed",
         value: value >= 0 ? value : 0,
         isCustom: true,
-      };
-      updateCartTotals();
-    }
+    );
+    renderMenuItems(filteredItems);
   });
+  }
 
-  // Filter container event listener
+  // Filter container event listener (only if filterContainer exists)
+  if (filterContainer) {
+    filterContainer.addEventListener("click", (e) => {
   filterContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("filter-btn")) {
       currentFilter = e.target.dataset.category;
@@ -1315,6 +1318,7 @@ document.addEventListener("DOMContentLoaded", function () {
   floatingCartBtn.addEventListener("click", () => {
     cartElement.classList.remove("cart-hidden");
   });
+  }
 
   // Header cart button event listeners
   const headerCartBtn = document.getElementById("header-cart-btn");
@@ -1350,9 +1354,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Initialize the application
-  renderFeaturedItems();
-  renderMenuFilters();
-  renderMenuItems();
+  if (featuredGrid) {
+    renderFeaturedItems();
+  }
+  if (filterContainer && menuGrid) {
+    renderMenuFilters();
+    renderMenuItems();
+  }
   renderCart();
   lucide.createIcons();
 });
