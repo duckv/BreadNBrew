@@ -581,8 +581,10 @@ function showCheckoutModal() {
   `;
 
   const actions = `
-    <button type="button" class="modal-close-btn bg-gray-500 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-gray-600 transition">Cancel</button>
-    <button type="button" id="confirm-order-btn" class="bg-amber-700 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-amber-800 transition">Confirm Order</button>
+    <div class="flex justify-end gap-3">
+      <button type="button" class="modal-close-btn bg-gray-500 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-gray-600 transition">Cancel</button>
+      <button type="button" id="confirm-order-btn" class="bg-amber-700 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-amber-800 transition">Confirm Order</button>
+    </div>
   `;
 
   showModal("Checkout", modalBody, actions);
@@ -707,8 +709,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         modalBody += "</div>";
-        const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
-                                   <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target">Add to Cart</button>`;
+        const actions = `<div class="flex justify-end gap-3">
+                                   <button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target hover:bg-gray-600 transition">Cancel</button>
+                                   <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target hover:bg-amber-900 transition">Add to Cart</button>
+                                 </div>`;
         showModal(`Customize ${item.name}`, modalBody, actions);
       } else if (button.classList.contains("allergens-btn")) {
         const itemId = parseInt(button.dataset.itemId);
