@@ -1137,7 +1137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       cleanupScrollButtons();
       closeCart();
-    }
     } else if (button.classList.contains("cart-quantity-change")) {
       const uniqueId = button.dataset.uniqueId;
       const change = parseInt(button.dataset.change);
