@@ -240,6 +240,8 @@ function renderMenuItems(items = menuItems) {
       "Breads",
       "Coffee",
       "Sweets",
+      "Gelato",
+      "Ice Cream",
       "Tea",
       "Seasonal",
       "Breakfast",
