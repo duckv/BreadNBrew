@@ -949,9 +949,10 @@ document.addEventListener("DOMContentLoaded", function () {
         Math.min(APP_CONFIG.MAX_QUANTITY_PER_ITEM, currentValue + change),
       );
       input.value = currentValue;
-    if (button.classList.contains("close-cart-btn")) {
-      cartElement.classList.add("cart-hidden");
-    }
+    } else if (button.classList.contains("add-to-cart-btn")) {
+      const itemId = parseInt(button.dataset.itemId);
+      const item = menuItems.find((i) => i.id === itemId);
+      const quantity = parseInt(
         document.getElementById(`quantity-${itemId}`).value,
       );
       const customizations = { toppings: [] };
