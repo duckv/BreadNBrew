@@ -780,6 +780,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
         addToCart(item, quantity, customizations);
         hideModal();
+      } else if (e.target.id === "confirm-order-btn") {
+        const form = document.getElementById("checkout-form");
+        if (form && form.checkValidity()) {
+          const formData = new FormData(form);
+          const orderData = {
+            name: formData.get("name"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            pickupTime: formData.get("pickupTime"),
+            instructions: formData.get("instructions"),
+            items: cartItems,
+            timestamp: new Date().toLocaleString(),
+          };
+
+          console.log("Order submitted:", orderData);
+
+          // Clear cart
+          cartItems = [];
+          renderCart();
+          updateFloatingCartButton();
+
+          // Show confirmation
+          hideModal();
+          showModal(
+            "Order Confirmed!",
+            `<div class="text-center">
+              <div class="text-green-600 mb-4">
+                <i data-lucide="check-circle" class="w-16 h-16 mx-auto mb-2"></i>
+              </div>
+              <p class="mb-4">Thank you <strong>${orderData.name}</strong>! Your order has been received.</p>
+              <p class="text-sm text-gray-600 mb-4">We'll call you at <strong>${orderData.phone}</strong> when your order is ready for pickup.</p>
+              <div class="bg-amber-50 p-3 rounded-lg text-sm">
+                <strong>Estimated pickup time:</strong> ${orderData.pickupTime === "asap" ? "15-20 minutes" : orderData.pickupTime}
+              </div>
+            </div>`,
+            '<button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button>',
+          );
+
+          // Re-create icons for the new modal content
+          if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+          }
+        } else {
+          form.reportValidity();
+        }
       }
     });
   }
