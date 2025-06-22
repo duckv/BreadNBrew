@@ -513,89 +513,14 @@ function updateCartItemQuantity(uniqueId, action) {
   }
 }
 
-function showCheckoutModal() {
+function goToCheckout() {
   if (cartItems.length === 0) return;
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const tax = subtotal * 0.06625;
-  const total = subtotal + tax;
+  // Save cart items to localStorage for checkout page
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-  const modalBody = `
-    <div class="space-y-4 text-left">
-      <div class="bg-gray-50 p-4 rounded-lg">
-        <h4 class="font-semibold mb-3">Order Summary</h4>
-        <div class="space-y-2 text-sm">
-          ${cartItems
-            .map(
-              (item) => `
-            <div class="flex justify-between">
-              <span>${item.name} x${item.quantity}</span>
-              <span>$${(item.price * item.quantity).toFixed(2)}</span>
-            </div>
-          `,
-            )
-            .join("")}
-          <hr class="my-2">
-          <div class="flex justify-between">
-            <span>Subtotal:</span>
-            <span>$${subtotal.toFixed(2)}</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Tax:</span>
-            <span>$${tax.toFixed(2)}</span>
-          </div>
-          <div class="flex justify-between font-bold">
-            <span>Total:</span>
-            <span>$${total.toFixed(2)}</span>
-          </div>
-        </div>
-      </div>
-
-      <form id="checkout-form" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-          <input type="text" name="name" required class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-1 focus:ring-amber-700">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
-          <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-1 focus:ring-amber-700">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input type="email" name="email" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-1 focus:ring-amber-700">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Pickup Time</label>
-          <select name="pickupTime" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-1 focus:ring-amber-700">
-            <option value="asap">As soon as possible (15-20 min)</option>
-            <option value="30min">30 minutes</option>
-            <option value="1hour">1 hour</option>
-            <option value="2hours">2 hours</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Special Instructions</label>
-          <textarea name="instructions" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-1 focus:ring-amber-700" placeholder="Any special requests or dietary considerations..."></textarea>
-        </div>
-      </form>
-
-      <div class="bg-blue-50 p-3 rounded-lg text-sm text-blue-800">
-        <strong>Pickup Only:</strong> Please pay in-store when you arrive. We accept cash, card, and contactless payments.
-      </div>
-    </div>
-  `;
-
-  const actions = `
-    <div class="flex justify-end gap-3">
-      <button type="button" class="modal-close-btn bg-gray-500 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-gray-600 transition">Cancel</button>
-      <button type="button" id="confirm-order-btn" class="bg-amber-700 text-white font-semibold py-3 px-6 rounded-full touch-target hover:bg-amber-800 transition">Confirm Order</button>
-    </div>
-  `;
-
-  showModal("Checkout", modalBody, actions);
+  // Redirect to checkout page
+  window.location.href = "checkout.html";
 }
 
 function showModal(title, body, actions) {
@@ -651,7 +576,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Checkout button
     if (button.id === "checkout-btn") {
-      showCheckoutModal();
+      goToCheckout();
       return;
     }
 
@@ -673,53 +598,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Modal buttons
     if (button.classList.contains("modal-close-btn")) {
       hideModal();
-      return;
-    }
-
-    if (button.id === "confirm-order-btn") {
-      const form = document.getElementById("checkout-form");
-      if (form && form.checkValidity()) {
-        const formData = new FormData(form);
-        const orderData = {
-          name: formData.get("name"),
-          phone: formData.get("phone"),
-          email: formData.get("email"),
-          pickupTime: formData.get("pickupTime"),
-          instructions: formData.get("instructions"),
-          items: cartItems,
-          timestamp: new Date().toLocaleString(),
-        };
-
-        console.log("Order submitted:", orderData);
-
-        // Clear cart
-        cartItems = [];
-        renderCart();
-        updateCartCounts();
-
-        // Show confirmation
-        hideModal();
-        showModal(
-          "Order Confirmed!",
-          `<div class="text-center">
-            <div class="text-green-600 mb-4">
-              <i data-lucide="check-circle" class="w-16 h-16 mx-auto mb-2"></i>
-            </div>
-            <p class="mb-4">Thank you <strong>${orderData.name}</strong>! Your order has been received.</p>
-            <p class="text-sm text-gray-600 mb-4">We'll call you at <strong>${orderData.phone}</strong> when your order is ready for pickup.</p>
-            <div class="bg-amber-50 p-3 rounded-lg text-sm">
-              <strong>Estimated pickup time:</strong> ${orderData.pickupTime === "asap" ? "15-20 minutes" : orderData.pickupTime}
-            </div>
-          </div>`,
-          '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
-        );
-
-        if (typeof lucide !== "undefined") {
-          lucide.createIcons();
-        }
-      } else {
-        form.reportValidity();
-      }
       return;
     }
 
