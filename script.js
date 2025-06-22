@@ -856,6 +856,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Cart backdrop event listener
+  const cartBackdrop = document.getElementById("cart-backdrop");
+  if (cartBackdrop) {
+    cartBackdrop.addEventListener("click", () => {
+      closeCart();
+    });
+  }
+
   // Initialize the application
   console.log("Initializing application...", {
     featuredGrid,
