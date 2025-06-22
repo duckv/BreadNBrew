@@ -10,9 +10,7 @@ const menuItems = [
     description:
       "Flaky, buttery, and baked to golden perfection. A classic favorite made with European butter and traditional techniques.",
     allergens: ["Wheat", "Dairy", "Eggs"],
-    customizations: {
-      toast: ["Untoasted", "Toasted"],
-    },
+    customizations: {},
   },
   {
     id: 3,
@@ -176,9 +174,7 @@ const menuItems = [
     description:
       "A classic black tea blend, fragrant with bergamot oil and cornflower petals. Served with honey and lemon.",
     allergens: [],
-    customizations: {
-      temperature: ["Hot", "Cold"],
-    },
+    customizations: {},
   },
   {
     id: 13,
@@ -189,9 +185,7 @@ const menuItems = [
     description:
       "A soothing herbal tea with a delicate, floral aroma. Perfect for relaxation and naturally caffeine-free.",
     allergens: [],
-    customizations: {
-      temperature: ["Hot", "Cold"],
-    },
+    customizations: {},
   },
   {
     id: 14,
@@ -287,7 +281,6 @@ const menuItems = [
       "Roasted turkey breast, Swiss cheese, fresh lettuce, and ripe tomato on our house-made sourdough bread.",
     allergens: ["Wheat", "Dairy"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
       toppings: [
         { name: "Add Bacon", price: 1.5 },
         { name: "Add Avocado", price: 2.5 },
