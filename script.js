@@ -724,7 +724,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showModal(
           `${item.name} - Allergen Information`,
           `<p class="text-gray-700"><strong>Contains:</strong> ${allergensList}</p>`,
-          '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+          '<div class="flex justify-center"><button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target hover:bg-amber-900 transition">OK</button></div>',
         );
       }
     });
@@ -845,8 +845,8 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="bg-amber-50 p-3 rounded-lg text-sm">
                 <strong>Estimated pickup time:</strong> ${orderData.pickupTime === "asap" ? "15-20 minutes" : orderData.pickupTime}
               </div>
-            </div>`,
-            '<button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button>',
+            '</div>`,
+            '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
           );
 
           // Re-create icons for the new modal content
@@ -868,7 +868,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showModal(
         "Thank You!",
         "Your catering inquiry has been submitted. We'll be in touch with you soon!",
-        '<button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button>',
+        '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
       );
       e.target.reset();
     });
