@@ -425,18 +425,31 @@ function renderCart() {
 }
 
 function updateFloatingCartButton() {
-  if (!floatingCartBtn || !cartItemCount) return;
-
   const totalItems = cartItems.reduce(
     (sum, item) => sum + (item.quantity || 1),
     0,
   );
-  cartItemCount.textContent = totalItems;
 
-  if (totalItems > 0) {
-    floatingCartBtn.classList.add("visible");
-  } else {
-    floatingCartBtn.classList.remove("visible");
+  // Update floating cart button
+  if (floatingCartBtn && cartItemCount) {
+    cartItemCount.textContent = totalItems;
+    if (totalItems > 0) {
+      floatingCartBtn.classList.add("visible");
+    } else {
+      floatingCartBtn.classList.remove("visible");
+    }
+  }
+
+  // Update header cart count
+  const headerCartCount = document.getElementById("cart-item-count");
+  if (headerCartCount) {
+    headerCartCount.textContent = totalItems;
+  }
+
+  // Update mobile cart count
+  const mobileCartCount = document.getElementById("mobile-cart-count");
+  if (mobileCartCount) {
+    mobileCartCount.textContent = totalItems;
   }
 }
 
