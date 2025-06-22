@@ -597,6 +597,16 @@ select:focus {
     max-width: 100% !important;
   }
 
+  .cart-item-card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .cart-item-image {
+    width: 14;
+    height: 14;
+  }
+
   .filter-btn {
     font-size: 14px;
     padding: 10px 16px;
