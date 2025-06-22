@@ -501,8 +501,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (button.id === "close-cart") {
         closeCart();
-      } else if (button.id === "continue-shopping-empty") {
+      } else if (
+        button.id === "continue-shopping-empty" ||
+        button.id === "continue-shopping"
+      ) {
         closeCart();
+      } else if (button.id === "checkout-btn") {
+        showCheckoutModal();
+      } else if (button.classList.contains("remove-item-btn")) {
+        const uniqueId = button.dataset.uniqueId;
+        removeFromCart(uniqueId);
+      } else if (button.classList.contains("quantity-btn-cart")) {
+        const uniqueId = button.dataset.uniqueId;
+        const change = parseInt(button.dataset.change);
+        updateCartItemQuantity(uniqueId, change);
       }
     });
   }
