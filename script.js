@@ -949,10 +949,9 @@ document.addEventListener("DOMContentLoaded", function () {
         Math.min(APP_CONFIG.MAX_QUANTITY_PER_ITEM, currentValue + change),
       );
       input.value = currentValue;
-    } else if (button.classList.contains("add-to-cart-btn")) {
-      const itemId = parseInt(button.dataset.itemId);
-      const item = menuItems.find((i) => i.id === itemId);
-      const quantity = parseInt(
+    if (button.classList.contains("close-cart-btn")) {
+      cartElement.classList.add("cart-hidden");
+    }
         document.getElementById(`quantity-${itemId}`).value,
       );
       const customizations = { toppings: [] };
@@ -1070,7 +1069,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       cleanupScrollButtons();
       cartElement.classList.add("cart-hidden");
-      unlockBodyScroll();
     } else if (button.classList.contains("cart-quantity-change")) {
       const uniqueId = button.dataset.uniqueId;
       const change = parseInt(button.dataset.change);
@@ -1195,7 +1193,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       cleanupScrollButtons();
       cartElement.classList.add("cart-hidden");
-      unlockBodyScroll();
       // Scroll to menu section
       document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
     } else if (button.id === "apply-promo-btn") {
@@ -1282,7 +1279,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Floating cart button event listener
   floatingCartBtn.addEventListener("click", () => {
     cartElement.classList.remove("cart-hidden");
-    lockBodyScroll();
   });
 
   // Header cart button event listeners
@@ -1292,14 +1288,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (headerCartBtn) {
     headerCartBtn.addEventListener("click", () => {
       cartElement.classList.remove("cart-hidden");
-      lockBodyScroll();
     });
   }
 
   if (mobileCartBtn) {
     mobileCartBtn.addEventListener("click", () => {
       cartElement.classList.remove("cart-hidden");
-      lockBodyScroll();
       // Close mobile menu
       mobileMenu.classList.add("mobile-menu-hidden");
       mobileMenu.classList.remove("mobile-menu-visible");
