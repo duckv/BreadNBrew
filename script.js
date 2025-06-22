@@ -25,6 +25,38 @@ const modal = document.getElementById("custom-modal");
 const mobileMenuButton = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
 
+// Cart Management Functions
+function openCart() {
+  if (!cartElement) return;
+
+  // Create backdrop if it doesn't exist
+  let backdrop = document.getElementById('cart-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'cart-backdrop';
+    backdrop.className = 'cart-backdrop';
+    document.body.appendChild(backdrop);
+
+    // Close cart when backdrop is clicked
+    backdrop.addEventListener('click', closeCart);
+  }
+
+  cartElement.classList.remove("cart-hidden");
+  backdrop.classList.add('visible');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeCart() {
+  if (!cartElement) return;
+
+  const backdrop = document.getElementById('cart-backdrop');
+  cartElement.classList.add("cart-hidden");
+  if (backdrop) {
+    backdrop.classList.remove('visible');
+  }
+  document.body.style.overflow = ''; // Restore background scrolling
+}
+
 // Utility Functions
 function calculateAndRoundPickupTime() {
   const now = new Date();
@@ -215,7 +247,7 @@ function renderFeaturedItems() {
   if (!featuredGrid) return;
 
   featuredGrid.innerHTML = "";
-  const featuredItems = menuItems.filter((item) => item.featured);
+  const featuredItems = menuItems.filter(item => item.featured);
 
   featuredItems.forEach((item) => {
     const card = createFeaturedItemCard(item);
@@ -943,407 +975,405 @@ document.addEventListener("DOMContentLoaded", function () {
   // Menu grid event listener (only if menuGrid exists)
   if (menuGrid) {
     menuGrid.addEventListener("click", (e) => {
-      const button = e.target.closest("button");
-      if (!button) return;
+    const button = e.target.closest("button");
+    if (!button) return;
 
-      const card = e.target.closest(".bg-white");
+    const card = e.target.closest(".bg-white");
 
-      if (button.classList.contains("quantity-btn")) {
-        const itemId = parseInt(button.dataset.itemId);
-        const change = parseInt(button.dataset.change);
-        const input = document.getElementById(`quantity-${itemId}`);
-        let currentValue = parseInt(input.value);
-        currentValue = Math.max(
-          1,
-          Math.min(APP_CONFIG.MAX_QUANTITY_PER_ITEM, currentValue + change),
+    if (button.classList.contains("quantity-btn")) {
+      const itemId = parseInt(button.dataset.itemId);
+      const change = parseInt(button.dataset.change);
+      const input = document.getElementById(`quantity-${itemId}`);
+      let currentValue = parseInt(input.value);
+      currentValue = Math.max(
+        1,
+        Math.min(APP_CONFIG.MAX_QUANTITY_PER_ITEM, currentValue + change),
+      );
+      input.value = currentValue;
+    } else if (button.classList.contains("add-to-cart-btn")) {
+      const itemId = parseInt(button.dataset.itemId);
+      const item = menuItems.find((i) => i.id === itemId);
+      const quantity = parseInt(
+        document.getElementById(`quantity-${itemId}`).value,
+      );
+      const customizations = { toppings: [] };
+
+      card.querySelectorAll(".custom-btn.selected").forEach((btn) => {
+        customizations[btn.dataset.type] = btn.dataset.value;
+      });
+
+      const cardImage = card.querySelector(".menu-item-img");
+      if (
+        customizations.toppings &&
+        customizations.toppings.includes("Add Bacon") &&
+        item.customizations &&
+        item.customizations.toppings &&
+        item.customizations.toppings[0].img
+      ) {
+        cardImage.src = item.customizations.toppings[0].img;
+      }
+
+      addToCart(item, quantity, customizations);
+    } else if (button.classList.contains("custom-btn")) {
+      const type = button.dataset.type;
+      const value = button.dataset.value;
+      const parent = button.parentElement;
+      parent
+        .querySelectorAll(`.custom-btn[data-type="${type}"]`)
+        .forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+
+      // Update price display for slice customization
+      if (type === "slice") {
+        const itemId = parseInt(
+          card.querySelector(".add-to-cart-btn").dataset.itemId,
         );
-        input.value = currentValue;
-      } else if (button.classList.contains("add-to-cart-btn")) {
-        const itemId = parseInt(button.dataset.itemId);
         const item = menuItems.find((i) => i.id === itemId);
-        const quantity = parseInt(
-          document.getElementById(`quantity-${itemId}`).value,
-        );
-        const customizations = { toppings: [] };
+        const priceElement = document.getElementById(`price-${itemId}`);
 
-        card.querySelectorAll(".custom-btn.selected").forEach((btn) => {
-          customizations[btn.dataset.type] = btn.dataset.value;
-        });
-
-        const cardImage = card.querySelector(".menu-item-img");
         if (
-          customizations.toppings &&
-          customizations.toppings.includes("Add Bacon") &&
+          item &&
           item.customizations &&
-          item.customizations.toppings &&
-          item.customizations.toppings[0].img
+          item.customizations.slice &&
+          priceElement
         ) {
-          cardImage.src = item.customizations.toppings[0].img;
-        }
-
-        addToCart(item, quantity, customizations);
-      } else if (button.classList.contains("custom-btn")) {
-        const type = button.dataset.type;
-        const value = button.dataset.value;
-        const parent = button.parentElement;
-        parent
-          .querySelectorAll(`.custom-btn[data-type="${type}"]`)
-          .forEach((btn) => btn.classList.remove("selected"));
-        button.classList.add("selected");
-
-        // Update price display for slice customization
-        if (type === "slice") {
-          const itemId = parseInt(
-            card.querySelector(".add-to-cart-btn").dataset.itemId,
+          const sliceOption = item.customizations.slice.find(
+            (option) => option.name === value,
           );
-          const item = menuItems.find((i) => i.id === itemId);
-          const priceElement = document.getElementById(`price-${itemId}`);
-
-          if (
-            item &&
-            item.customizations &&
-            item.customizations.slice &&
-            priceElement
-          ) {
-            const sliceOption = item.customizations.slice.find(
-              (option) => option.name === value,
-            );
-            if (sliceOption) {
-              const newPrice = item.price + sliceOption.price;
-              priceElement.textContent = `$${newPrice.toFixed(2)}`;
-            }
+          if (sliceOption) {
+            const newPrice = item.price + sliceOption.price;
+            priceElement.textContent = `$${newPrice.toFixed(2)}`;
           }
         }
-      } else if (button.classList.contains("allergens-btn")) {
-        const item = menuItems.find((i) => i.id == button.dataset.itemId);
-        const allergensList =
-          item.allergens.length > 0
-            ? item.allergens.join(", ")
-            : "No common allergens listed.";
-        showModal(
-          "Allergen Information",
-          `Contains: ${allergensList}`,
-          '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-        );
-      } else if (button.classList.contains("customize-btn")) {
-        const item = menuItems.find((i) => i.id == button.dataset.itemId);
-        let modalBody = '<div class="space-y-4 text-left">';
+      }
+    } else if (button.classList.contains("allergens-btn")) {
+      const item = menuItems.find((i) => i.id == button.dataset.itemId);
+      const allergensList =
+        item.allergens.length > 0
+          ? item.allergens.join(", ")
+          : "No common allergens listed.";
+      showModal(
+        "Allergen Information",
+        `Contains: ${allergensList}`,
+        '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+      );
+    } else if (button.classList.contains("customize-btn")) {
+      const item = menuItems.find((i) => i.id == button.dataset.itemId);
+      let modalBody = '<div class="space-y-4 text-left">';
 
-        // Add test options if they exist
-        if (item.customizations && item.customizations.test) {
-          modalBody +=
-            '<div class="border-b border-gray-200 pb-4"><h4 class="font-semibold text-gray-900 mb-3">Test Options:</h4>';
-          item.customizations.test.forEach((option, index) => {
-            modalBody += `<label class="flex items-center space-x-3 mb-2">
-                          <input type="radio" name="test-option" class="test-radio h-5 w-5 text-amber-600 focus:ring-amber-500" data-value="${option}" ${index === 0 ? "checked" : ""}>
+      // Add test options if they exist
+      if (item.customizations && item.customizations.test) {
+        modalBody += '<div class="border-b border-gray-200 pb-4"><h4 class="font-semibold text-gray-900 mb-3">Test Options:</h4>';
+        item.customizations.test.forEach((option, index) => {
+          modalBody += `<label class="flex items-center space-x-3 mb-2">
+                          <input type="radio" name="test-option" class="test-radio h-5 w-5 text-amber-600 focus:ring-amber-500" data-value="${option}" ${index === 0 ? 'checked' : ''}>
                           <span>${option} (+$0.00)</span>
                        </label>`;
-          });
-          modalBody += "</div>";
-        }
+        });
+        modalBody += '</div>';
+      }
 
-        // Add toppings if they exist
-        if (item.customizations && item.customizations.toppings) {
-          modalBody +=
-            '<div><h4 class="font-semibold text-gray-900 mb-3">Add Toppings:</h4>';
-          item.customizations.toppings.forEach((topping) => {
-            modalBody += `<label class="flex items-center space-x-3 mb-2">
+      // Add toppings if they exist
+      if (item.customizations && item.customizations.toppings) {
+        modalBody += '<div><h4 class="font-semibold text-gray-900 mb-3">Add Toppings:</h4>';
+        item.customizations.toppings.forEach((topping) => {
+          modalBody += `<label class="flex items-center space-x-3 mb-2">
                           <input type="checkbox" class="topping-checkbox h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500" data-name="${topping.name}" data-price="${topping.price}">
                           <span>${topping.name} (+$${topping.price.toFixed(2)})</span>
                        </label>`;
-          });
-          modalBody += "</div>";
-        }
+        });
+        modalBody += '</div>';
+      }
 
-        modalBody += "</div>";
-        const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
+      modalBody += "</div>";
+      const actions = `<button class="modal-close-btn bg-gray-500 text-white font-bold py-2 px-6 rounded-full touch-target">Cancel</button>
                                  <button id="save-customizations-btn" data-item-id="${item.id}" class="bg-amber-800 text-white font-bold py-2 px-6 rounded-full touch-target">Add to Cart</button>`;
-        showModal(`Customize ${item.name}`, modalBody, actions);
+      showModal(`Customize ${item.name}`, modalBody, actions);
+    }
+  });
+
+  // Modal event listener
+  modal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal-close-btn")) {
+      hideModal();
+    } else if (e.target.id === "save-customizations-btn") {
+      const itemId = parseInt(e.target.dataset.itemId);
+      const item = menuItems.find((i) => i.id === itemId);
+      const quantity = 1;
+      const customizations = { toppings: [] };
+
+      // Get test option
+      const selectedTest = document.querySelector(".test-radio:checked");
+      if (selectedTest) {
+        customizations.test = selectedTest.dataset.value;
       }
-    });
 
-    // Modal event listener
-    modal.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal-close-btn")) {
-        hideModal();
-      } else if (e.target.id === "save-customizations-btn") {
-        const itemId = parseInt(e.target.dataset.itemId);
-        const item = menuItems.find((i) => i.id === itemId);
-        const quantity = 1;
-        const customizations = { toppings: [] };
+      // Get toppings
+      document
+        .querySelectorAll(".topping-checkbox:checked")
+        .forEach((checkbox) => {
+          customizations.toppings.push(checkbox.dataset.name);
+        });
 
-        // Get test option
-        const selectedTest = document.querySelector(".test-radio:checked");
-        if (selectedTest) {
-          customizations.test = selectedTest.dataset.value;
-        }
-
-        // Get toppings
-        document
-          .querySelectorAll(".topping-checkbox:checked")
-          .forEach((checkbox) => {
-            customizations.toppings.push(checkbox.dataset.name);
-          });
-
-        addToCart(item, quantity, customizations);
-        hideModal();
-      }
-    });
+      addToCart(item, quantity, customizations);
+      hideModal();
+    }
+  });
   }
 
   // Search functionality (only if searchBar exists)
   if (searchBar) {
     searchBar.addEventListener("input", (e) => {
-      const button = e.target.closest("button");
-      if (!button) return;
+    const button = e.target.closest("button");
+    if (!button) return;
 
-      // Prevent any default behavior and stop propagation for all cart buttons
-      e.preventDefault();
-      e.stopPropagation();
+    // Prevent any default behavior and stop propagation for all cart buttons
+    e.preventDefault();
+    e.stopPropagation();
 
-      if (
-        button.closest("#close-cart") ||
-        button.closest("#close-cart-payment")
-      ) {
-        cleanupScrollButtons();
-        cartElement.classList.add("cart-hidden");
-      } else if (button.classList.contains("cart-quantity-change")) {
-        const uniqueId = button.dataset.uniqueId;
-        const change = parseInt(button.dataset.change);
-        const itemInCart = cartItems.find((item) => item.uniqueId === uniqueId);
-        if (itemInCart) {
-          itemInCart.quantity += change;
-          if (itemInCart.quantity <= 0) {
-            cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
-          }
+    if (
+      button.closest("#close-cart") ||
+      button.closest("#close-cart-payment")
+    ) {
+      cleanupScrollButtons();
+      closeCart();
+    }
+    } else if (button.classList.contains("cart-quantity-change")) {
+      const uniqueId = button.dataset.uniqueId;
+      const change = parseInt(button.dataset.change);
+      const itemInCart = cartItems.find((item) => item.uniqueId === uniqueId);
+      if (itemInCart) {
+        itemInCart.quantity += change;
+        if (itemInCart.quantity <= 0) {
+          cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
         }
-        renderCart();
-      } else if (button.classList.contains("cart-remove-item")) {
-        const uniqueId = button.dataset.uniqueId;
-        cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
-        renderCart();
-      } else if (button.classList.contains("delivery-btn")) {
-        document.getElementById("delivery-options").classList.remove("hidden");
-        document.getElementById("pickup-options").classList.add("hidden");
-        document
-          .querySelectorAll(".delivery-btn, .pickup-btn")
-          .forEach((btn) => {
-            btn.classList.remove("bg-amber-800", "text-white");
-            btn.classList.add("bg-gray-200", "text-gray-800");
-          });
-        button.classList.remove("bg-gray-200", "text-gray-800");
-        button.classList.add("bg-amber-800", "text-white");
-      } else if (button.classList.contains("pickup-btn")) {
-        document.getElementById("delivery-options").classList.add("hidden");
-        document.getElementById("pickup-options").classList.remove("hidden");
-        document
-          .querySelectorAll(".delivery-btn, .pickup-btn")
-          .forEach((btn) => {
-            btn.classList.remove("bg-amber-800", "text-white");
-            btn.classList.add("bg-gray-200", "text-gray-800");
-          });
-        button.classList.remove("bg-gray-200", "text-gray-800");
-        button.classList.add("bg-amber-800", "text-white");
-      } else if (button.classList.contains("date-btn")) {
-        selectedPickupDay = button.dataset.day;
-        document.querySelectorAll(".date-btn").forEach((btn) => {
-          btn.classList.remove("bg-amber-800", "text-white");
-          btn.classList.add(
-            "bg-white",
-            "border-2",
-            "border-amber-600",
-            "text-amber-800",
-          );
-        });
-        button.classList.add("bg-amber-800", "text-white");
-        button.classList.remove(
+      }
+      renderCart();
+    } else if (button.classList.contains("cart-remove-item")) {
+      const uniqueId = button.dataset.uniqueId;
+      cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
+      renderCart();
+    } else if (button.classList.contains("delivery-btn")) {
+      document.getElementById("delivery-options").classList.remove("hidden");
+      document.getElementById("pickup-options").classList.add("hidden");
+      document.querySelectorAll(".delivery-btn, .pickup-btn").forEach((btn) => {
+        btn.classList.remove("bg-amber-800", "text-white");
+        btn.classList.add("bg-gray-200", "text-gray-800");
+      });
+      button.classList.remove("bg-gray-200", "text-gray-800");
+      button.classList.add("bg-amber-800", "text-white");
+    } else if (button.classList.contains("pickup-btn")) {
+      document.getElementById("delivery-options").classList.add("hidden");
+      document.getElementById("pickup-options").classList.remove("hidden");
+      document.querySelectorAll(".delivery-btn, .pickup-btn").forEach((btn) => {
+        btn.classList.remove("bg-amber-800", "text-white");
+        btn.classList.add("bg-gray-200", "text-gray-800");
+      });
+      button.classList.remove("bg-gray-200", "text-gray-800");
+      button.classList.add("bg-amber-800", "text-white");
+    } else if (button.classList.contains("date-btn")) {
+      selectedPickupDay = button.dataset.day;
+      document.querySelectorAll(".date-btn").forEach((btn) => {
+        btn.classList.remove("bg-amber-800", "text-white");
+        btn.classList.add(
           "bg-white",
           "border-2",
           "border-amber-600",
           "text-amber-800",
         );
-        generateTimeSlotButtons(selectedPickupDay);
-      } else if (button.classList.contains("time-slot-btn")) {
-        document
-          .querySelectorAll(".time-slot-btn")
-          .forEach((btn) => btn.classList.remove("selected"));
-        button.classList.add("selected");
-        selectedPickupTime = button.dataset.time;
-      } else if (button.classList.contains("show-later-btn")) {
-        generateTimeSlotButtons(selectedPickupDay, true);
-      } else if (button.classList.contains("tip-btn")) {
-        const tipValue = button.dataset.tip;
-        document
-          .querySelectorAll(".tip-btn")
-          .forEach((b) => b.classList.remove("selected"));
-        button.classList.add("selected");
-        const customTipContainer = document.getElementById(
-          "custom-tip-container",
-        );
-        const customTipInput = document.getElementById("custom-tip-input");
-        if (tipValue === "custom") {
-          customTipContainer.classList.remove("hidden");
-          tipInfo = {
-            type: "fixed",
-            value: parseFloat(customTipInput.value) || 0,
-            isCustom: true,
-          };
-        } else {
-          customTipContainer.classList.add("hidden");
-          customTipInput.value = "";
-          tipInfo = {
-            type: "percent",
-            value: parseInt(tipValue),
-            isCustom: false,
-          };
-        }
-        updateCartTotals();
-      } else if (button.classList.contains("checkout-continue-btn")) {
-        const subtotal = cartItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0,
-        );
-        if (subtotal > APP_CONFIG.MAX_ORDER_AMOUNT) {
-          showModal(
-            "Order Limit Exceeded",
-            `Our max online order amount is $${APP_CONFIG.MAX_ORDER_AMOUNT} before taxes & tips. Please call us at <a href="tel:${CONTACT_INFO.phone}" class="text-amber-800 font-bold hover:underline">${CONTACT_INFO.phone}</a> to place a larger order.`,
-            '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-          );
-          return;
-        }
-        updatePaymentOrderSummary();
-        document.getElementById("checkout-view").classList.add("hidden");
-        document.getElementById("payment-view").classList.remove("hidden");
-      } else if (button.classList.contains("back-to-checkout-btn")) {
-        document.getElementById("checkout-view").classList.remove("hidden");
-        document.getElementById("payment-view").classList.add("hidden");
-      } else if (button.classList.contains("payment-btn")) {
-        showModal(
-          "Online Ordering",
-          "Our full online ordering system is launching soon! Please call us or visit in person to place an order.",
-          '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-        );
-      } else if (button.classList.contains("express-payment-btn")) {
-        showModal(
-          "Express Payment",
-          "Express payment options are coming soon! Please use the regular checkout for now.",
-          '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-        );
-      } else if (
-        button.id === "continue-shopping-btn" ||
-        button.id === "continue-shopping-empty"
-      ) {
-        cleanupScrollButtons();
-        cartElement.classList.add("cart-hidden");
-        // Scroll to menu section
-        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
-      } else if (button.id === "apply-promo-btn") {
-        const promoInput = document.getElementById("promo-code-input");
-        const promoMessage = document.getElementById("promo-message");
-        const promoCode = promoInput.value.trim().toUpperCase();
-
-        // Simple promo code validation (you can expand this)
-        const validPromoCodes = {
-          WELCOME10: {
-            type: "percent",
-            value: 10,
-            message: "10% off your order!",
-          },
-          FIRST5: { type: "fixed", value: 5, message: "$5 off your order!" },
-          STUDENT: {
-            type: "percent",
-            value: 15,
-            message: "15% student discount!",
-          },
-        };
-
-        if (promoCode && validPromoCodes[promoCode]) {
-          window.appliedPromo = validPromoCodes[promoCode];
-          promoMessage.textContent = validPromoCodes[promoCode].message;
-          promoMessage.className = "mt-2 text-sm text-green-600 font-medium";
-          promoMessage.classList.remove("hidden");
-          promoInput.disabled = true;
-          button.textContent = "Applied";
-          button.disabled = true;
-          button.classList.add("bg-green-600", "hover:bg-green-600");
-          button.classList.remove("bg-amber-800", "hover:bg-amber-900");
-        } else if (promoCode) {
-          promoMessage.textContent = "Invalid promo code. Please try again.";
-          promoMessage.className = "mt-2 text-sm text-red-600 font-medium";
-          promoMessage.classList.remove("hidden");
-        } else {
-          promoMessage.textContent = "Please enter a promo code.";
-          promoMessage.className = "mt-2 text-sm text-gray-600 font-medium";
-          promoMessage.classList.remove("hidden");
-        }
-
-        updateCartTotals();
-      }
-    });
-
-    // Cart input event listener
-    cartElement.addEventListener("input", (e) => {
-      if (e.target.id === "custom-tip-input") {
-        const value = parseFloat(e.target.value) || 0;
+      });
+      button.classList.add("bg-amber-800", "text-white");
+      button.classList.remove(
+        "bg-white",
+        "border-2",
+        "border-amber-600",
+        "text-amber-800",
+      );
+      generateTimeSlotButtons(selectedPickupDay);
+    } else if (button.classList.contains("time-slot-btn")) {
+      document
+        .querySelectorAll(".time-slot-btn")
+        .forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+      selectedPickupTime = button.dataset.time;
+    } else if (button.classList.contains("show-later-btn")) {
+      generateTimeSlotButtons(selectedPickupDay, true);
+    } else if (button.classList.contains("tip-btn")) {
+      const tipValue = button.dataset.tip;
+      document
+        .querySelectorAll(".tip-btn")
+        .forEach((b) => b.classList.remove("selected"));
+      button.classList.add("selected");
+      const customTipContainer = document.getElementById(
+        "custom-tip-container",
+      );
+      const customTipInput = document.getElementById("custom-tip-input");
+      if (tipValue === "custom") {
+        customTipContainer.classList.remove("hidden");
         tipInfo = {
           type: "fixed",
-          value: value >= 0 ? value : 0,
+          value: parseFloat(customTipInput.value) || 0,
           isCustom: true,
         };
-        updateCartTotals();
+      } else {
+        customTipContainer.classList.add("hidden");
+        customTipInput.value = "";
+        tipInfo = {
+          type: "percent",
+          value: parseInt(tipValue),
+          isCustom: false,
+        };
+      }
+      updateCartTotals();
+    } else if (button.classList.contains("checkout-continue-btn")) {
+      const subtotal = cartItems.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0,
+      );
+      if (subtotal > APP_CONFIG.MAX_ORDER_AMOUNT) {
+        showModal(
+          "Order Limit Exceeded",
+          `Our max online order amount is $${APP_CONFIG.MAX_ORDER_AMOUNT} before taxes & tips. Please call us at <a href="tel:${CONTACT_INFO.phone}" class="text-amber-800 font-bold hover:underline">${CONTACT_INFO.phone}</a> to place a larger order.`,
+          '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+        );
+        return;
+      }
+      updatePaymentOrderSummary();
+      document.getElementById("checkout-view").classList.add("hidden");
+      document.getElementById("payment-view").classList.remove("hidden");
+    } else if (button.classList.contains("back-to-checkout-btn")) {
+      document.getElementById("checkout-view").classList.remove("hidden");
+      document.getElementById("payment-view").classList.add("hidden");
+    } else if (button.classList.contains("payment-btn")) {
+      showModal(
+        "Online Ordering",
+        "Our full online ordering system is launching soon! Please call us or visit in person to place an order.",
+        '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+      );
+    } else if (button.classList.contains("express-payment-btn")) {
+      showModal(
+        "Express Payment",
+        "Express payment options are coming soon! Please use the regular checkout for now.",
+        '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
+      );
+    } else if (
+      button.id === "continue-shopping-btn" ||
+      button.id === "continue-shopping-empty"
+    ) {
+      cleanupScrollButtons();
+      closeCart();
+      // Scroll to menu section
+      document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+    } else if (button.id === "apply-promo-btn") {
+      const promoInput = document.getElementById("promo-code-input");
+      const promoMessage = document.getElementById("promo-message");
+      const promoCode = promoInput.value.trim().toUpperCase();
+
+      // Simple promo code validation (you can expand this)
+      const validPromoCodes = {
+        WELCOME10: {
+          type: "percent",
+          value: 10,
+          message: "10% off your order!",
+        },
+        FIRST5: { type: "fixed", value: 5, message: "$5 off your order!" },
+        STUDENT: {
+          type: "percent",
+          value: 15,
+          message: "15% student discount!",
+        },
+      };
+
+      if (promoCode && validPromoCodes[promoCode]) {
+        window.appliedPromo = validPromoCodes[promoCode];
+        promoMessage.textContent = validPromoCodes[promoCode].message;
+        promoMessage.className = "mt-2 text-sm text-green-600 font-medium";
+        promoMessage.classList.remove("hidden");
+        promoInput.disabled = true;
+        button.textContent = "Applied";
+        button.disabled = true;
+        button.classList.add("bg-green-600", "hover:bg-green-600");
+        button.classList.remove("bg-amber-800", "hover:bg-amber-900");
+      } else if (promoCode) {
+        promoMessage.textContent = "Invalid promo code. Please try again.";
+        promoMessage.className = "mt-2 text-sm text-red-600 font-medium";
+        promoMessage.classList.remove("hidden");
+      } else {
+        promoMessage.textContent = "Please enter a promo code.";
+        promoMessage.className = "mt-2 text-sm text-gray-600 font-medium";
+        promoMessage.classList.remove("hidden");
+      }
+
+      updateCartTotals();
+    }
+  });
+
+  // Cart input event listener
+  cartElement.addEventListener("input", (e) => {
+    if (e.target.id === "custom-tip-input") {
+      const value = parseFloat(e.target.value) || 0;
+      tipInfo = {
+        type: "fixed",
+        value: value >= 0 ? value : 0,
+        isCustom: true,
+      };
+      updateCartTotals();
+    }
+  });
+
+  // Filter container event listener (only if filterContainer exists)
+  if (filterContainer) {
+    filterContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("filter-btn")) {
+        currentFilter = e.target.dataset.category;
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((btn) => btn.classList.remove("selected"));
+        e.target.classList.add("selected");
+        renderMenuItems();
       }
     });
 
-    // Filter container event listener (only if filterContainer exists)
-    if (filterContainer) {
-      filterContainer.addEventListener("click", (e) => {
-        if (e.target.classList.contains("filter-btn")) {
-          currentFilter = e.target.dataset.category;
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach((btn) => btn.classList.remove("selected"));
-          e.target.classList.add("selected");
-          renderMenuItems();
-        }
-      });
-    }
+  }
 
-    // Search bar event listener (only if searchBar exists)
-    if (searchBar) {
-      searchBar.addEventListener("input", (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredItems = menuItems.filter(
-          (item) =>
-            item.name.toLowerCase().includes(searchTerm) ||
-            item.description.toLowerCase().includes(searchTerm) ||
-            item.category.toLowerCase().includes(searchTerm),
-        );
-        renderMenuItems(filteredItems);
-      });
-    }
-
-    // Floating cart button event listener
-    floatingCartBtn.addEventListener("click", () => {
-      cartElement.classList.remove("cart-hidden");
+  // Search bar event listener (only if searchBar exists)
+  if (searchBar) {
+    searchBar.addEventListener("input", (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredItems = menuItems.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm) ||
+          item.description.toLowerCase().includes(searchTerm) ||
+          item.category.toLowerCase().includes(searchTerm),
+      );
+      renderMenuItems(filteredItems);
     });
   }
 
+  // Floating cart button event listener
+  if (floatingCartBtn) {
+    floatingCartBtn.addEventListener("click", () => {
+      openCart();
+    });
+  }
   // Header cart button event listeners
   const headerCartBtn = document.getElementById("header-cart-btn");
   const mobileCartBtn = document.getElementById("mobile-cart-btn");
 
   if (headerCartBtn) {
     headerCartBtn.addEventListener("click", () => {
-      cartElement.classList.remove("cart-hidden");
+      openCart();
     });
   }
 
   if (mobileCartBtn) {
     mobileCartBtn.addEventListener("click", () => {
-      cartElement.classList.remove("cart-hidden");
+      openCart();
       // Close mobile menu
-      mobileMenu.classList.add("mobile-menu-hidden");
-      mobileMenu.classList.remove("mobile-menu-visible");
+      if (mobileMenu) {
+        mobileMenu.classList.add("mobile-menu-hidden");
+        mobileMenu.classList.remove("mobile-menu-visible");
+      }
     });
   }
 
