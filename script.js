@@ -1306,16 +1306,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Catering form event listener
-  document.getElementById("catering-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    showModal(
-      "Thank You!",
-      "Your catering inquiry has been submitted. We'll be in touch with you soon!",
-      '<button class="modal-close-btn bg-amber-800 text-white font-bold py-2 px-8 rounded-full touch-target">OK</button>',
-    );
-    e.target.reset();
-  });
+  // Catering form event listener (if it exists)
+  const cateringForm = document.getElementById("catering-form");
+  if (cateringForm) {
+    cateringForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showModal(
+        "Thank You!",
+        "Your catering inquiry has been submitted. We'll be in touch with you soon!",
+        '<button class="modal-close-btn bg-gold text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-gold-dark transition">OK</button>',
+      );
+      e.target.reset();
+    });
+  }
 
   // Initialize the application
   renderMenuFilters();
