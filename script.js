@@ -142,30 +142,14 @@ function createFeaturedItemCard(item) {
   card.className =
     "featured-item-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform flex flex-col h-full";
 
-  let customizationOptions = "";
-  if (item.customizations && item.customizations.test) {
-    customizationOptions += `
-            <div class="test-options">
-                <span class="text-xs text-gray-500 font-medium">Test Options:</span>
-                ${item.customizations.test
-                  .map(
-                    (option, index) =>
-                      `<button class="test-option-btn ${index === 0 ? "selected" : ""}" data-type="test" data-value="${option}">${option}</button>`,
-                  )
-                  .join("")}
-            </div>
-        `;
-  }
-
   card.innerHTML = `
         <img src="${item.img}" alt="${item.name}" class="menu-item-img w-full h-48 sm:h-56">
         <div class="p-4 sm:p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-start mb-2">
                 <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
-                <span class="text-lg sm:text-xl font-bold text-forest-green">$${item.price.toFixed(2)}</span>
+                <span class="text-lg sm:text-xl font-bold text-amber-700">$${item.price.toFixed(2)}</span>
             </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
-            ${customizationOptions}
             <div class="flex-grow"></div>
             <div class="mt-4 text-center">
                 <span class="text-sm text-gray-500 font-medium">Available in Full Menu</span>
@@ -182,32 +166,17 @@ function createMenuItemCard(item) {
     "bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform flex flex-col h-full";
 
   let customizationOptions = "";
-  if (item.customizations) {
-    if (item.customizations.slice) {
-      customizationOptions += `
-              <div class="flex gap-2 mt-2">
-                  ${item.customizations.slice
-                    .map(
-                      (option, index) =>
-                        `<button class="custom-btn px-3 py-1 border border-forest-green text-forest-green rounded-full text-sm touch-target ${index === 0 ? "selected" : ""}" data-type="slice" data-value="${option.name}">${option.name} ($${(item.price + option.price).toFixed(2)})</button>`,
-                    )
-                    .join("")}
-              </div>
-          `;
-    }
-    if (item.customizations.test) {
-      customizationOptions += `
-              <div class="test-options">
-                  <span class="text-xs text-gray-500 font-medium">Test Options:</span>
-                  ${item.customizations.test
-                    .map(
-                      (option, index) =>
-                        `<button class="test-option-btn ${index === 0 ? "selected" : ""}" data-type="test" data-value="${option}">${option}</button>`,
-                    )
-                    .join("")}
-              </div>
-          `;
-    }
+  if (item.customizations && item.customizations.slice) {
+    customizationOptions += `
+            <div class="flex gap-2 mt-2">
+                ${item.customizations.slice
+                  .map(
+                    (option, index) =>
+                      `<button class="custom-btn px-3 py-1 border border-forest-green text-forest-green rounded-full text-sm touch-target ${index === 0 ? "selected" : ""}" data-type="slice" data-value="${option.name}">${option.name} ($${(item.price + option.price).toFixed(2)})</button>`,
+                  )
+                  .join("")}
+            </div>
+        `;
   }
 
   const quantityButtons = `
@@ -226,7 +195,7 @@ function createMenuItemCard(item) {
         <div class="p-4 sm:p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-start mb-2">
                 <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
-                <span id="price-${item.id}" class="text-lg sm:text-xl font-bold text-amber-800">$${item.price.toFixed(2)}</span>
+                <span id="price-${item.id}" class="text-lg sm:text-xl font-bold text-amber-700">$${item.price.toFixed(2)}</span>
             </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
             ${customizationOptions}
