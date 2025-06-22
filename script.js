@@ -949,14 +949,15 @@ function addToCart(item, quantity, customizations) {
 // Event Listeners
 document.addEventListener("DOMContentLoaded", function () {
   // Mobile menu toggle
-  mobileMenuButton.addEventListener("click", () => {
-    mobileMenu.classList.toggle("mobile-menu-hidden");
-    mobileMenu.classList.toggle("mobile-menu-visible");
-  });
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("mobile-menu-hidden");
+      mobileMenu.classList.toggle("mobile-menu-visible");
+    });
 
-  // Close mobile menu when clicking on a link
-  mobileMenu.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
+    // Close mobile menu when clicking on a link
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
       mobileMenu.classList.add("mobile-menu-hidden");
       mobileMenu.classList.remove("mobile-menu-visible");
     }
