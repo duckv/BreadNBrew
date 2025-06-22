@@ -329,7 +329,15 @@ function renderCart() {
     return;
   }
 
-  // Cart with items would go here
+  // Calculate totals
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+  const tax = subtotal * 0.06625; // NJ tax rate
+  const total = subtotal + tax;
+
+  // Cart with items
   cartElement.innerHTML = `
     <div class="cart-header flex items-center justify-between p-4 sm:p-6 border-b-2 border-amber-700">
       <h2 class="text-xl sm:text-2xl font-bold font-display text-gray-900">Your Cart (${cartItems.length})</h2>
@@ -337,17 +345,77 @@ function renderCart() {
         <i data-lucide="x" class="w-6 h-6"></i>
       </button>
     </div>
-    <div class="cart-items-container flex-1 p-4">
+    <div class="cart-items-container flex-1 p-4 overflow-y-auto">
       ${cartItems
         .map(
           (item) => `
-        <div class="cart-item-card mb-4 p-4 border rounded-lg">
-          <h4 class="font-semibold">${item.name}</h4>
-          <p class="text-amber-700 font-bold">$${item.price.toFixed(2)}</p>
+        <div class="cart-item-card mb-4 p-4 border rounded-lg bg-white">
+          <div class="flex justify-between items-start mb-2">
+            <h4 class="font-semibold text-gray-900">${item.name}</h4>
+            <button class="remove-item-btn text-red-500 hover:text-red-700 p-1" data-unique-id="${item.uniqueId}">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">${item.description}</p>
+          ${
+            item.customizations && Object.keys(item.customizations).length > 0
+              ? `
+            <div class="text-xs text-gray-500 mb-2">
+              ${Object.entries(item.customizations)
+                .map(([key, value]) => {
+                  if (
+                    key === "toppings" &&
+                    Array.isArray(value) &&
+                    value.length > 0
+                  ) {
+                    return `Toppings: ${value.join(", ")}`;
+                  } else if (key === "test" && value) {
+                    return `Test: ${value}`;
+                  }
+                  return "";
+                })
+                .filter(Boolean)
+                .join(" • ")}
+            </div>
+          `
+              : ""
+          }
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <button class="quantity-btn-cart bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600" data-unique-id="${item.uniqueId}" data-change="-1">−</button>
+              <span class="font-semibold w-8 text-center">${item.quantity}</span>
+              <button class="quantity-btn-cart bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-600" data-unique-id="${item.uniqueId}" data-change="1">+</button>
+            </div>
+            <p class="text-amber-700 font-bold">$${(item.price * item.quantity).toFixed(2)}</p>
+          </div>
         </div>
       `,
         )
         .join("")}
+    </div>
+    <div class="cart-footer p-4 sm:p-6 border-t-2 border-amber-700 bg-gray-50">
+      <div class="space-y-2 mb-4">
+        <div class="flex justify-between text-sm">
+          <span>Subtotal:</span>
+          <span>$${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span>Tax:</span>
+          <span>$${tax.toFixed(2)}</span>
+        </div>
+        <div class="flex justify-between font-bold text-lg border-t pt-2">
+          <span>Total:</span>
+          <span class="text-amber-700">$${total.toFixed(2)}</span>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <button id="continue-shopping" class="w-full bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition touch-target">
+          Continue Shopping
+        </button>
+        <button id="checkout-btn" class="w-full bg-amber-700 text-white font-semibold py-3 px-6 rounded-full hover:bg-amber-800 transition touch-target">
+          Proceed to Checkout
+        </button>
+      </div>
     </div>
   `;
 
