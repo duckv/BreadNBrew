@@ -1,4 +1,4 @@
-// Main Application Script for Bread N' Brew
+// Main Application Script for Bread N' Brew - REBUILT CART SYSTEM
 
 // Application State
 let cartItems = [];
@@ -308,8 +308,9 @@ function renderMenuFilters() {
   });
 }
 
+// COMPLETELY NEW CART FUNCTIONALITY
 function renderCart() {
-  updateFloatingCartButton();
+  updateCartCounts();
   if (!cartElement) return;
 
   if (cartItems.length === 0) {
@@ -357,7 +358,7 @@ function renderCart() {
       ${cartItems
         .map(
           (item) => `
-        <div class="cart-item-card mb-4 p-4 border rounded-lg bg-white">
+        <div class="cart-item-card mb-4 p-4 border rounded-lg bg-white" data-unique-id="${item.uniqueId}">
           <div class="flex gap-3 mb-3">
             <img src="${item.img}" alt="${item.name}" class="cart-item-image w-16 h-16 object-cover rounded-lg flex-shrink-0">
             <div class="flex-1 min-w-0">
@@ -396,9 +397,9 @@ function renderCart() {
           </div>
           <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
-              <button class="quantity-btn-cart bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600 transition" data-unique-id="${item.uniqueId}" data-change="-1">−</button>
+              <button class="cart-quantity-btn bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600 transition" data-unique-id="${item.uniqueId}" data-action="decrease">−</button>
               <span class="font-semibold w-8 text-center">${item.quantity}</span>
-              <button class="quantity-btn-cart bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-600 transition" data-unique-id="${item.uniqueId}" data-change="1">+</button>
+              <button class="cart-quantity-btn bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-600 transition" data-unique-id="${item.uniqueId}" data-action="increase">+</button>
             </div>
             <p class="text-amber-700 font-bold">$${(item.price * item.quantity).toFixed(2)}</p>
           </div>
@@ -438,7 +439,7 @@ function renderCart() {
   }
 }
 
-function updateFloatingCartButton() {
+function updateCartCounts() {
   const totalItems = cartItems.reduce(
     (sum, item) => sum + (item.quantity || 1),
     0,
@@ -477,7 +478,7 @@ function addToCart(item, quantity = 1, customizations = {}) {
 
   cartItems.push(cartItem);
   renderCart();
-  updateFloatingCartButton();
+  updateCartCounts();
 
   // Show toast
   if (toastWrapper && toastMessage) {
@@ -491,17 +492,24 @@ function addToCart(item, quantity = 1, customizations = {}) {
 }
 
 function removeFromCart(uniqueId) {
-  cartItems = cartItems.filter((item) => item.uniqueId !== uniqueId);
-  renderCart();
-  updateFloatingCartButton();
+  const itemIndex = cartItems.findIndex((item) => item.uniqueId == uniqueId);
+  if (itemIndex > -1) {
+    cartItems.splice(itemIndex, 1);
+    renderCart();
+    updateCartCounts();
+  }
 }
 
-function updateCartItemQuantity(uniqueId, change) {
-  const item = cartItems.find((item) => item.uniqueId === uniqueId);
+function updateCartItemQuantity(uniqueId, action) {
+  const item = cartItems.find((item) => item.uniqueId == uniqueId);
   if (item) {
-    item.quantity = Math.max(1, item.quantity + change);
+    if (action === "increase") {
+      item.quantity += 1;
+    } else if (action === "decrease") {
+      item.quantity = Math.max(1, item.quantity - 1);
+    }
     renderCart();
-    updateFloatingCartButton();
+    updateCartCounts();
   }
 }
 
@@ -621,33 +629,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Cart event listeners
-  if (cartElement) {
-    cartElement.addEventListener("click", (e) => {
-      const button = e.target.closest("button");
-      if (!button) return;
+  // NEW CART EVENT DELEGATION SYSTEM
+  document.addEventListener("click", (e) => {
+    const button = e.target.closest("button");
+    if (!button) return;
 
-      if (button.id === "close-cart") {
-        closeCart();
-      } else if (
-        button.id === "continue-shopping-empty" ||
-        button.id === "continue-shopping"
-      ) {
-        closeCart();
-      } else if (button.id === "checkout-btn") {
-        showCheckoutModal();
-      } else if (button.classList.contains("remove-item-btn")) {
-        const uniqueId = button.dataset.uniqueId;
-        removeFromCart(uniqueId);
-      } else if (button.classList.contains("quantity-btn-cart")) {
-        const uniqueId = button.dataset.uniqueId;
-        const change = parseInt(button.dataset.change);
-        updateCartItemQuantity(uniqueId, change);
+    // Cart close buttons
+    if (button.id === "close-cart") {
+      closeCart();
+      return;
+    }
+
+    // Continue shopping buttons
+    if (
+      button.id === "continue-shopping-empty" ||
+      button.id === "continue-shopping"
+    ) {
+      closeCart();
+      return;
+    }
+
+    // Checkout button
+    if (button.id === "checkout-btn") {
+      showCheckoutModal();
+      return;
+    }
+
+    // Cart quantity buttons - NEW WORKING SYSTEM
+    if (button.classList.contains("cart-quantity-btn")) {
+      const uniqueId = button.dataset.uniqueId;
+      const action = button.dataset.action;
+      updateCartItemQuantity(uniqueId, action);
+      return;
+    }
+
+    // Remove item buttons - NEW WORKING SYSTEM
+    if (button.classList.contains("remove-item-btn")) {
+      const uniqueId = button.dataset.uniqueId;
+      removeFromCart(uniqueId);
+      return;
+    }
+
+    // Modal buttons
+    if (button.classList.contains("modal-close-btn")) {
+      hideModal();
+      return;
+    }
+
+    if (button.id === "confirm-order-btn") {
+      const form = document.getElementById("checkout-form");
+      if (form && form.checkValidity()) {
+        const formData = new FormData(form);
+        const orderData = {
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          pickupTime: formData.get("pickupTime"),
+          instructions: formData.get("instructions"),
+          items: cartItems,
+          timestamp: new Date().toLocaleString(),
+        };
+
+        console.log("Order submitted:", orderData);
+
+        // Clear cart
+        cartItems = [];
+        renderCart();
+        updateCartCounts();
+
+        // Show confirmation
+        hideModal();
+        showModal(
+          "Order Confirmed!",
+          `<div class="text-center">
+            <div class="text-green-600 mb-4">
+              <i data-lucide="check-circle" class="w-16 h-16 mx-auto mb-2"></i>
+            </div>
+            <p class="mb-4">Thank you <strong>${orderData.name}</strong>! Your order has been received.</p>
+            <p class="text-sm text-gray-600 mb-4">We'll call you at <strong>${orderData.phone}</strong> when your order is ready for pickup.</p>
+            <div class="bg-amber-50 p-3 rounded-lg text-sm">
+              <strong>Estimated pickup time:</strong> ${orderData.pickupTime === "asap" ? "15-20 minutes" : orderData.pickupTime}
+            </div>
+          </div>`,
+          '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
+        );
+
+        if (typeof lucide !== "undefined") {
+          lucide.createIcons();
+        }
+      } else {
+        form.reportValidity();
       }
-    });
-  }
+      return;
+    }
 
-  // Menu grid event listener
+    // Cart open buttons
+    if (
+      button.id === "floating-cart-btn" ||
+      button.id === "header-cart-btn" ||
+      button.id === "mobile-cart-btn"
+    ) {
+      openCart();
+      if (button.id === "mobile-cart-btn" && mobileMenu) {
+        mobileMenu.classList.add("mobile-menu-hidden");
+        mobileMenu.classList.remove("mobile-menu-visible");
+      }
+      return;
+    }
+  });
+
+  // Menu grid event listener for add to cart
   if (menuGrid) {
     menuGrid.addEventListener("click", (e) => {
       const button = e.target.closest("button");
@@ -730,6 +821,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Save customizations button
+  document.addEventListener("click", (e) => {
+    if (e.target.id === "save-customizations-btn") {
+      const itemId = parseInt(e.target.dataset.itemId);
+      const item = menuItems.find((i) => i.id === itemId);
+      const quantity = 1;
+      const customizations = { toppings: [] };
+
+      // Get test option
+      const selectedTest = document.querySelector(".test-radio:checked");
+      if (selectedTest) {
+        customizations.test = selectedTest.dataset.value;
+      }
+
+      // Get toppings
+      document
+        .querySelectorAll(".topping-checkbox:checked")
+        .forEach((checkbox) => {
+          customizations.toppings.push(checkbox.dataset.name);
+        });
+
+      addToCart(item, quantity, customizations);
+      hideModal();
+    }
+  });
+
   // Filter container event listener
   if (filterContainer) {
     filterContainer.addEventListener("click", (e) => {
@@ -758,122 +875,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Floating cart button event listener
-  if (floatingCartBtn) {
-    floatingCartBtn.addEventListener("click", () => {
-      openCart();
-    });
-  }
-
-  // Header cart button event listeners
-  const headerCartBtn = document.getElementById("header-cart-btn");
-  const mobileCartBtn = document.getElementById("mobile-cart-btn");
-
-  if (headerCartBtn) {
-    headerCartBtn.addEventListener("click", () => {
-      openCart();
-    });
-  }
-
-  if (mobileCartBtn) {
-    mobileCartBtn.addEventListener("click", () => {
-      openCart();
-      if (mobileMenu) {
-        mobileMenu.classList.add("mobile-menu-hidden");
-        mobileMenu.classList.remove("mobile-menu-visible");
-      }
-    });
-  }
-
-  // Modal event listener
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal-close-btn")) {
-        hideModal();
-      } else if (e.target.id === "save-customizations-btn") {
-        const itemId = parseInt(e.target.dataset.itemId);
-        const item = menuItems.find((i) => i.id === itemId);
-        const quantity = 1;
-        const customizations = { toppings: [] };
-
-        // Get test option
-        const selectedTest = document.querySelector(".test-radio:checked");
-        if (selectedTest) {
-          customizations.test = selectedTest.dataset.value;
-        }
-
-        // Get toppings
-        document
-          .querySelectorAll(".topping-checkbox:checked")
-          .forEach((checkbox) => {
-            customizations.toppings.push(checkbox.dataset.name);
-          });
-
-        addToCart(item, quantity, customizations);
-        hideModal();
-      } else if (e.target.id === "confirm-order-btn") {
-        const form = document.getElementById("checkout-form");
-        if (form && form.checkValidity()) {
-          const formData = new FormData(form);
-          const orderData = {
-            name: formData.get("name"),
-            phone: formData.get("phone"),
-            email: formData.get("email"),
-            pickupTime: formData.get("pickupTime"),
-            instructions: formData.get("instructions"),
-            items: cartItems,
-            timestamp: new Date().toLocaleString(),
-          };
-
-          console.log("Order submitted:", orderData);
-
-          // Clear cart
-          cartItems = [];
-          renderCart();
-          updateFloatingCartButton();
-
-          // Show confirmation
-          hideModal();
-          showModal(
-            "Order Confirmed!",
-            `<div class="text-center">
-              <div class="text-green-600 mb-4">
-                <i data-lucide="check-circle" class="w-16 h-16 mx-auto mb-2"></i>
-              </div>
-              <p class="mb-4">Thank you <strong>${orderData.name}</strong>! Your order has been received.</p>
-              <p class="text-sm text-gray-600 mb-4">We'll call you at <strong>${orderData.phone}</strong> when your order is ready for pickup.</p>
-              <div class="bg-amber-50 p-3 rounded-lg text-sm">
-                <strong>Estimated pickup time:</strong> ${orderData.pickupTime === "asap" ? "15-20 minutes" : orderData.pickupTime}
-              </div>
-            '</div>`,
-            '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
-          );
-
-          // Re-create icons for the new modal content
-          if (typeof lucide !== "undefined") {
-            lucide.createIcons();
-          }
-        } else {
-          form.reportValidity();
-        }
-      }
-    });
-  }
-
-  // Catering form event listener
-  const cateringForm = document.getElementById("catering-form");
-  if (cateringForm) {
-    cateringForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      showModal(
-        "Thank You!",
-        "Your catering inquiry has been submitted. We'll be in touch with you soon!",
-        '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
-      );
-      e.target.reset();
-    });
-  }
-
   // Cart backdrop event listener
   const cartBackdrop = document.getElementById("cart-backdrop");
   if (cartBackdrop) {
@@ -892,6 +893,20 @@ document.addEventListener("DOMContentLoaded", function () {
       closeCart();
     }
   });
+
+  // Catering form event listener
+  const cateringForm = document.getElementById("catering-form");
+  if (cateringForm) {
+    cateringForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showModal(
+        "Thank You!",
+        "Your catering inquiry has been submitted. We'll be in touch with you soon!",
+        '<div class="flex justify-center"><button class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition">OK</button></div>',
+      );
+      e.target.reset();
+    });
+  }
 
   // Initialize the application
   console.log("Initializing application...", {
