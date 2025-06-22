@@ -1385,10 +1385,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Initialize the application
+  console.log('Script is running!', { featuredGrid, filterContainer, menuGrid });
   if (featuredGrid) {
+    console.log('Rendering featured items...');
     renderFeaturedItems();
   }
   if (filterContainer && menuGrid) {
+    console.log('Rendering menu items...');
     renderMenuFilters();
     renderMenuItems();
   }
