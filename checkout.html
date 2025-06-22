@@ -548,12 +548,13 @@
     <script src="script.js"></script>
     <script>
       // Checkout page specific functionality
-      let currentTipPercentage = 0;
+      let currentTipPercentage = 18; // Default to 18%
       let cartItemsData = [];
 
       document.addEventListener("DOMContentLoaded", function () {
         loadCheckoutData();
         setupTipHandlers();
+        setDefaultTip(); // Set 18% as default
 
         // Handle back to menu button
         document
@@ -570,6 +571,23 @@
             submitOrder();
           });
       });
+
+      function setDefaultTip() {
+        // Find and auto-select the 18% button
+        const tip18Button = document.querySelector('[data-tip="18"]');
+        if (tip18Button) {
+          // Apply selected styling
+          tip18Button.classList.remove("border-gray-200", "text-gray-700");
+          tip18Button.classList.add(
+            "border-amber-700",
+            "text-amber-700",
+            "bg-amber-50",
+          );
+
+          // Update totals with default tip
+          updateTotals();
+        }
+      }
 
       function setupTipHandlers() {
         // Handle tip button clicks
