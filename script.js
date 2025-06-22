@@ -13,6 +13,7 @@ window.appliedPromo = null;
 
 // DOM Elements
 const menuGrid = document.getElementById("menu-grid");
+const featuredGrid = document.getElementById("featured-grid");
 const filterContainer = document.getElementById("filter-container");
 const searchBar = document.getElementById("search-bar");
 const cartElement = document.getElementById("cart");
@@ -136,6 +137,45 @@ function renderMenuFilters() {
   });
 }
 
+function createFeaturedItemCard(item) {
+  const card = document.createElement("div");
+  card.className =
+    "featured-item-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform flex flex-col h-full";
+
+  let customizationOptions = "";
+  if (item.customizations && item.customizations.test) {
+    customizationOptions += `
+            <div class="test-options">
+                <span class="text-xs text-gray-500 font-medium">Test Options:</span>
+                ${item.customizations.test
+                  .map(
+                    (option, index) =>
+                      `<button class="test-option-btn ${index === 0 ? "selected" : ""}" data-type="test" data-value="${option}">${option}</button>`,
+                  )
+                  .join("")}
+            </div>
+        `;
+  }
+
+  card.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" class="menu-item-img w-full h-48 sm:h-56">
+        <div class="p-4 sm:p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-lg sm:text-xl font-display">${item.name}</h3>
+                <span class="text-lg sm:text-xl font-bold text-forest-green">$${item.price.toFixed(2)}</span>
+            </div>
+            <p class="text-gray-600 text-sm sm:text-base mb-3">${item.description}</p>
+            ${customizationOptions}
+            <div class="flex-grow"></div>
+            <div class="mt-4 text-center">
+                <span class="text-sm text-gray-500 font-medium">Available in Full Menu</span>
+            </div>
+        </div>
+    `;
+
+  return card;
+}
+
 function createMenuItemCard(item) {
   const card = document.createElement("div");
   card.className =
@@ -200,6 +240,18 @@ function createMenuItemCard(item) {
     `;
 
   return card;
+}
+
+function renderFeaturedItems() {
+  if (!featuredGrid) return;
+
+  featuredGrid.innerHTML = "";
+  const featuredItems = menuItems.filter((item) => item.featured);
+
+  featuredItems.forEach((item) => {
+    const card = createFeaturedItemCard(item);
+    featuredGrid.appendChild(card);
+  });
 }
 
 function renderMenuItems(items = menuItems) {
@@ -926,7 +978,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const card = e.target.closest(".bg-white");
 
-    if (button.classList.contains("quantity-change")) {
+    if (button.classList.contains("quantity-btn")) {
       const itemId = parseInt(button.dataset.itemId);
       const change = parseInt(button.dataset.change);
       const input = document.getElementById(`quantity-${itemId}`);
@@ -1303,6 +1355,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Initialize the application
+  renderFeaturedItems();
   renderMenuFilters();
   renderMenuItems();
   renderCart();
