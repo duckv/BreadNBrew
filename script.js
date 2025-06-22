@@ -1071,6 +1071,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const quantity = 1;
       const customizations = { toppings: [] };
 
+      // Get test option
+      const selectedTest = document.querySelector(".test-radio:checked");
+      if (selectedTest) {
+        customizations.test = selectedTest.dataset.value;
+      }
+
+      // Get toppings
       document
         .querySelectorAll(".topping-checkbox:checked")
         .forEach((checkbox) => {
