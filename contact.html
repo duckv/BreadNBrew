@@ -385,6 +385,19 @@
       </div>
     </footer>
 
+    <!-- Cart Backdrop -->
+    <div id="cart-backdrop" class="cart-backdrop"></div>
+
+    <!-- Shopping Cart -->
+    <div
+      id="cart"
+      class="cart cart-hidden fixed right-0 top-0 h-full w-full sm:max-w-md bg-white shadow-2xl z-50 flex flex-col"
+    >
+      <!-- Cart will be rendered here by JS -->
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
     <script>
       // Handle contact form submission
       document
@@ -394,9 +407,6 @@
           alert("Thank you for your message! We'll get back to you soon.");
           this.reset();
         });
-
-      // Initialize Lucide icons
-      lucide.createIcons();
     </script>
   </body>
 </html>
