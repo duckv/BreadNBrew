@@ -377,20 +377,116 @@
                 ></textarea>
               </div>
 
-              <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                <button
-                  type="button"
-                  id="back-to-menu"
-                  class="flex-1 bg-gray-200 text-gray-800 font-semibold py-4 px-6 rounded-full hover:bg-gray-300 transition text-lg touch-target"
-                >
-                  Back to Menu
-                </button>
+              <!-- Payment Methods Section -->
+              <div class="pt-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                  <i
+                    data-lucide="credit-card"
+                    class="w-5 h-5 inline mr-2 text-amber-700"
+                  ></i>
+                  Choose Payment Method
+                </h3>
+                <div class="space-y-3 mb-6">
+                  <!-- Credit/Debit Card -->
+                  <button
+                    type="button"
+                    id="card-payment-btn"
+                    class="payment-method-btn w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 text-gray-800 font-semibold py-4 px-6 rounded-xl hover:border-amber-700 hover:bg-amber-50 transition text-lg touch-target"
+                  >
+                    <i
+                      data-lucide="credit-card"
+                      class="w-6 h-6 text-amber-700"
+                    ></i>
+                    <span>Credit / Debit Card</span>
+                    <div class="flex gap-2 ml-auto">
+                      <div
+                        class="w-8 h-5 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold"
+                      >
+                        VISA
+                      </div>
+                      <div
+                        class="w-8 h-5 bg-red-500 rounded text-white text-xs flex items-center justify-center font-bold"
+                      >
+                        MC
+                      </div>
+                      <div
+                        class="w-8 h-5 bg-blue-400 rounded text-white text-xs flex items-center justify-center font-bold"
+                      >
+                        AMEX
+                      </div>
+                    </div>
+                  </button>
+
+                  <!-- Apple Pay -->
+                  <button
+                    type="button"
+                    id="apple-pay-btn"
+                    class="payment-method-btn w-full flex items-center justify-center gap-3 bg-black text-white font-semibold py-4 px-6 rounded-xl hover:bg-gray-800 transition text-lg touch-target"
+                  >
+                    <svg
+                      class="w-6 h-6"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                      />
+                    </svg>
+                    <span>Apple Pay</span>
+                  </button>
+
+                  <!-- Google Pay -->
+                  <button
+                    type="button"
+                    id="google-pay-btn"
+                    class="payment-method-btn w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 text-gray-800 font-semibold py-4 px-6 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition text-lg touch-target"
+                  >
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                    <span>Google Pay</span>
+                  </button>
+                </div>
+
+                <div class="text-center mb-4">
+                  <span
+                    class="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full"
+                    >OR</span
+                  >
+                </div>
+
+                <!-- Traditional Order Button -->
                 <button
                   type="submit"
                   id="place-order-btn"
-                  class="flex-1 bg-amber-700 text-white font-semibold py-4 px-6 rounded-full hover:bg-amber-800 transition text-lg touch-target"
+                  class="w-full bg-amber-700 text-white font-semibold py-4 px-6 rounded-xl hover:bg-amber-800 transition text-lg touch-target mb-4"
                 >
-                  Place Order
+                  <i data-lucide="shopping-bag" class="w-5 h-5 inline mr-2"></i>
+                  Place Order (Pay In-Store)
+                </button>
+
+                <button
+                  type="button"
+                  id="back-to-menu"
+                  class="w-full bg-gray-200 text-gray-800 font-semibold py-4 px-6 rounded-xl hover:bg-gray-300 transition text-lg touch-target"
+                >
+                  <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>
+                  Back to Menu
                 </button>
               </div>
             </form>
@@ -570,6 +666,9 @@
             e.preventDefault();
             submitOrder();
           });
+
+        // Handle payment method buttons
+        setupPaymentHandlers();
       });
 
       function setDefaultTip() {
@@ -687,6 +786,82 @@
 
         document.getElementById("checkout-total").textContent =
           `$${total.toFixed(2)}`;
+      }
+
+      function setupPaymentHandlers() {
+        // Credit/Debit Card Payment
+        document
+          .getElementById("card-payment-btn")
+          .addEventListener("click", () => {
+            if (validateOrderDetails()) {
+              showModal(
+                "Card Payment",
+                `<div class="text-center">
+                <div class="text-blue-600 mb-4">
+                  <i data-lucide="credit-card" class="w-16 h-16 mx-auto mb-2"></i>
+                </div>
+                <p class="mb-4">Card payment processing is not yet available.</p>
+                <p class="text-sm text-gray-600">Please use "Place Order (Pay In-Store)" option to complete your order and pay when you pick up.</p>
+              </div>`,
+                '<div class="flex justify-center"><button class="modal-close-btn bg-blue-600 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-blue-700 transition">OK</button></div>',
+              );
+              if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+              }
+            }
+          });
+
+        // Apple Pay
+        document
+          .getElementById("apple-pay-btn")
+          .addEventListener("click", () => {
+            if (validateOrderDetails()) {
+              showModal(
+                "Apple Pay",
+                `<div class="text-center">
+                <div class="text-gray-800 mb-4">
+                  <svg class="w-16 h-16 mx-auto mb-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  </svg>
+                </div>
+                <p class="mb-4">Apple Pay is not yet available.</p>
+                <p class="text-sm text-gray-600">Please use "Place Order (Pay In-Store)" option to complete your order and pay when you pick up.</p>
+              </div>`,
+                '<div class="flex justify-center"><button class="modal-close-btn bg-gray-800 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-gray-700 transition">OK</button></div>',
+              );
+            }
+          });
+
+        // Google Pay
+        document
+          .getElementById("google-pay-btn")
+          .addEventListener("click", () => {
+            if (validateOrderDetails()) {
+              showModal(
+                "Google Pay",
+                `<div class="text-center">
+                <div class="text-blue-600 mb-4">
+                  <svg class="w-16 h-16 mx-auto mb-2" viewBox="0 0 24 24" fill="none">
+                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+                  </svg>
+                </div>
+                <p class="mb-4">Google Pay is not yet available.</p>
+                <p class="text-sm text-gray-600">Please use "Place Order (Pay In-Store)" option to complete your order and pay when you pick up.</p>
+              </div>`,
+                '<div class="flex justify-center"><button class="modal-close-btn bg-blue-600 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-blue-700 transition">OK</button></div>',
+              );
+            }
+          });
+      }
+
+      function validateOrderDetails() {
+        const form = document.getElementById("checkout-form");
+        const isValid = form.checkValidity();
+        if (!isValid) {
+          form.reportValidity();
+          return false;
+        }
+        return true;
       }
 
       function loadCheckoutData() {
