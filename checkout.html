@@ -177,10 +177,79 @@
             <div id="checkout-cart-items" class="space-y-4 mb-6">
               <!-- Cart items will be populated here -->
             </div>
+            <!-- Tipping Section -->
+            <div class="border-t pt-4 mb-4">
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                <i
+                  data-lucide="heart"
+                  class="w-5 h-5 inline mr-2 text-pink-500"
+                ></i>
+                Add a Tip for Our Team
+              </h3>
+              <div class="grid grid-cols-4 gap-2 mb-3">
+                <button
+                  type="button"
+                  class="tip-btn bg-white border-2 border-gray-200 text-gray-700 py-2 px-3 rounded-lg font-semibold hover:border-amber-700 hover:text-amber-700 transition"
+                  data-tip="15"
+                >
+                  15%
+                </button>
+                <button
+                  type="button"
+                  class="tip-btn bg-white border-2 border-gray-200 text-gray-700 py-2 px-3 rounded-lg font-semibold hover:border-amber-700 hover:text-amber-700 transition"
+                  data-tip="18"
+                >
+                  18%
+                </button>
+                <button
+                  type="button"
+                  class="tip-btn bg-white border-2 border-gray-200 text-gray-700 py-2 px-3 rounded-lg font-semibold hover:border-amber-700 hover:text-amber-700 transition"
+                  data-tip="23"
+                >
+                  23%
+                </button>
+                <button
+                  type="button"
+                  class="tip-btn bg-white border-2 border-gray-200 text-gray-700 py-2 px-3 rounded-lg font-semibold hover:border-amber-700 hover:text-amber-700 transition"
+                  data-tip="custom"
+                >
+                  Custom
+                </button>
+              </div>
+              <div id="custom-tip-input" class="hidden mb-3">
+                <div class="flex items-center gap-2">
+                  <input
+                    type="number"
+                    id="custom-tip-percentage"
+                    placeholder="Enter %"
+                    min="0"
+                    max="50"
+                    class="flex-1 border-2 border-gray-200 rounded-lg px-3 py-2 focus:border-amber-700 focus:ring-2 focus:ring-amber-700 focus:ring-opacity-20 transition"
+                  />
+                  <span class="text-gray-600">%</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                id="no-tip-btn"
+                class="text-sm text-gray-500 hover:text-gray-700 transition underline"
+              >
+                No tip
+              </button>
+            </div>
+
             <div class="border-t pt-4 space-y-2">
               <div class="flex justify-between text-lg">
                 <span>Subtotal:</span>
                 <span id="checkout-subtotal">$0.00</span>
+              </div>
+              <div
+                class="flex justify-between text-lg"
+                id="tip-row"
+                style="display: none"
+              >
+                <span>Tip (<span id="tip-percentage">0</span>%):</span>
+                <span id="checkout-tip">$0.00</span>
               </div>
               <div class="flex justify-between text-lg">
                 <span>Tax (6.625%):</span>
@@ -479,8 +548,12 @@
     <script src="script.js"></script>
     <script>
       // Checkout page specific functionality
+      let currentTipPercentage = 0;
+      let cartItemsData = [];
+
       document.addEventListener("DOMContentLoaded", function () {
         loadCheckoutData();
+        setupTipHandlers();
 
         // Handle back to menu button
         document
@@ -498,6 +571,106 @@
           });
       });
 
+      function setupTipHandlers() {
+        // Handle tip button clicks
+        document.querySelectorAll(".tip-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const tipValue = e.target.dataset.tip;
+
+            // Remove selected class from all buttons
+            document.querySelectorAll(".tip-btn").forEach((b) => {
+              b.classList.remove(
+                "border-amber-700",
+                "text-amber-700",
+                "bg-amber-50",
+              );
+              b.classList.add("border-gray-200", "text-gray-700");
+            });
+
+            if (tipValue === "custom") {
+              // Show custom input
+              document
+                .getElementById("custom-tip-input")
+                .classList.remove("hidden");
+              e.target.classList.add(
+                "border-amber-700",
+                "text-amber-700",
+                "bg-amber-50",
+              );
+              document.getElementById("custom-tip-percentage").focus();
+            } else {
+              // Hide custom input and set tip percentage
+              document
+                .getElementById("custom-tip-input")
+                .classList.add("hidden");
+              currentTipPercentage = parseInt(tipValue);
+              e.target.classList.add(
+                "border-amber-700",
+                "text-amber-700",
+                "bg-amber-50",
+              );
+              updateTotals();
+            }
+          });
+        });
+
+        // Handle custom tip input
+        document
+          .getElementById("custom-tip-percentage")
+          .addEventListener("input", (e) => {
+            const value = parseFloat(e.target.value) || 0;
+            currentTipPercentage = Math.max(0, Math.min(50, value)); // Limit between 0-50%
+            updateTotals();
+          });
+
+        // Handle no tip button
+        document.getElementById("no-tip-btn").addEventListener("click", () => {
+          currentTipPercentage = 0;
+          document.getElementById("custom-tip-input").classList.add("hidden");
+          document.querySelectorAll(".tip-btn").forEach((b) => {
+            b.classList.remove(
+              "border-amber-700",
+              "text-amber-700",
+              "bg-amber-50",
+            );
+            b.classList.add("border-gray-200", "text-gray-700");
+          });
+          updateTotals();
+        });
+      }
+
+      function updateTotals() {
+        if (cartItemsData.length === 0) return;
+
+        const subtotal = cartItemsData.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0,
+        );
+        const tipAmount = subtotal * (currentTipPercentage / 100);
+        const tax = (subtotal + tipAmount) * 0.06625;
+        const total = subtotal + tipAmount + tax;
+
+        document.getElementById("checkout-subtotal").textContent =
+          `$${subtotal.toFixed(2)}`;
+
+        // Show/hide tip row
+        const tipRow = document.getElementById("tip-row");
+        if (currentTipPercentage > 0) {
+          tipRow.style.display = "flex";
+          document.getElementById("tip-percentage").textContent =
+            currentTipPercentage.toFixed(0);
+          document.getElementById("checkout-tip").textContent =
+            `$${tipAmount.toFixed(2)}`;
+        } else {
+          tipRow.style.display = "none";
+        }
+
+        document.getElementById("checkout-tax").textContent =
+          `$${tax.toFixed(2)}`;
+        document.getElementById("checkout-total").textContent =
+          `$${total.toFixed(2)}`;
+      }
+
       function loadCheckoutData() {
         // Get cart data from localStorage
         const savedCartItems = localStorage.getItem("cartItems");
@@ -507,15 +680,15 @@
           return;
         }
 
-        const cartItems = JSON.parse(savedCartItems);
-        if (cartItems.length === 0) {
+        cartItemsData = JSON.parse(savedCartItems);
+        if (cartItemsData.length === 0) {
           window.location.href = "menu.html";
           return;
         }
 
         // Display cart items
         const cartContainer = document.getElementById("checkout-cart-items");
-        cartContainer.innerHTML = cartItems
+        cartContainer.innerHTML = cartItemsData
           .map(
             (item) => `
           <div class="flex gap-3 py-3 border-b border-gray-100 last:border-b-0">
@@ -556,28 +729,21 @@
           )
           .join("");
 
-        // Calculate totals
-        const subtotal = cartItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0,
-        );
-        const tax = subtotal * 0.06625;
-        const total = subtotal + tax;
-
-        document.getElementById("checkout-subtotal").textContent =
-          `$${subtotal.toFixed(2)}`;
-        document.getElementById("checkout-tax").textContent =
-          `$${tax.toFixed(2)}`;
-        document.getElementById("checkout-total").textContent =
-          `$${total.toFixed(2)}`;
+        // Initial totals calculation (without tip)
+        updateTotals();
       }
 
       function submitOrder() {
         const form = document.getElementById("checkout-form");
         const formData = new FormData(form);
 
-        const savedCartItems = localStorage.getItem("cartItems");
-        const cartItems = JSON.parse(savedCartItems || "[]");
+        const subtotal = cartItemsData.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0,
+        );
+        const tipAmount = subtotal * (currentTipPercentage / 100);
+        const tax = (subtotal + tipAmount) * 0.06625;
+        const total = subtotal + tipAmount + tax;
 
         const orderData = {
           name: formData.get("name"),
@@ -585,13 +751,18 @@
           email: formData.get("email"),
           pickupTime: formData.get("pickupTime"),
           instructions: formData.get("instructions"),
-          items: cartItems,
+          items: cartItemsData,
+          tip: {
+            percentage: currentTipPercentage,
+            amount: tipAmount,
+          },
+          pricing: {
+            subtotal: subtotal,
+            tip: tipAmount,
+            tax: tax,
+            total: total,
+          },
           timestamp: new Date().toLocaleString(),
-          total:
-            cartItems.reduce(
-              (sum, item) => sum + item.price * item.quantity,
-              0,
-            ) * 1.06625,
         };
 
         console.log("Order submitted:", orderData);
