@@ -3,73 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Artisan Boulangerie - Berkeley Heights</title>
+    <title>Bread N' Brew - Berkeley Heights</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-cream text-charcoal">
+  <body class="bg-gray-50 text-gray-900">
     <!-- Header & Navigation -->
     <header
       id="header"
-      class="bg-white shadow-elegant sticky top-0 z-50 transition-all duration-300"
+      class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300"
     >
       <nav
-        class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <a href="#" class="text-2xl sm:text-3xl font-serif font-bold text-gold">
-          <div class="flex flex-col">
-            <span class="text-charcoal font-light tracking-wide">ARTISAN</span>
-            <span class="text-gold -mt-2 font-bold">Boulangerie</span>
+        <a
+          href="#"
+          class="text-2xl sm:text-3xl font-bold text-pink-600 font-display"
+        >
+          <div>
+            Bread N' Br☕︎w
             <span
-              class="hidden sm:block text-xs font-normal text-charcoal-light tracking-wider mt-1 font-sans"
-              >Handcrafted French Pastries & Artisan Breads</span
+              class="hidden sm:block text-xs font-normal text-gray-600 tracking-wider"
+              >Artisan Breads, Perfect Brews, & Fine Patisseries</span
             >
           </div>
         </a>
         <div class="hidden md:flex items-center space-x-8">
           <a
             href="#menu"
-            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
             >Menu</a
           >
           <a
-            href="#patisserie"
-            class="text-charcoal hover:text-gold transition text-lg font-medium"
-            >Patisserie</a
+            href="#catering"
+            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
+            >Catering</a
           >
           <a
             href="#about"
-            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
             >About</a
           >
           <a
             href="#location"
-            class="text-charcoal hover:text-gold transition text-lg font-medium"
+            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
             >Visit</a
           >
           <button
             id="header-cart-btn"
-            class="hidden md:flex items-center gap-2 text-charcoal hover:text-gold transition text-lg touch-target"
+            class="hidden md:flex items-center gap-2 text-gray-700 hover:text-amber-700 transition text-lg touch-target"
           >
             <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="header-cart-count"
-              class="bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-amber-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="hidden lg:inline-block bg-gold text-white font-semibold py-3 px-8 rounded-full hover:bg-gold-dark transition shadow-elegant"
-            >Order Now</a
+            class="hidden lg:inline-block bg-amber-700 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-800 transition shadow-lg"
+            >Order Online</a
           >
         </div>
         <button
@@ -82,45 +84,45 @@
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="mobile-menu-transition mobile-menu-hidden md:hidden bg-white border-t border-cream"
+        class="mobile-menu-transition mobile-menu-hidden md:hidden bg-white border-t border-gray-100"
       >
-        <div class="px-4 sm:px-6 pb-6 space-y-3">
+        <div class="px-6 pb-6 space-y-3">
           <a
             href="#menu"
-            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
             >Menu</a
           >
           <a
-            href="#patisserie"
-            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
-            >Patisserie</a
+            href="#catering"
+            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
+            >Catering</a
           >
           <a
             href="#about"
-            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
             >About</a
           >
           <a
             href="#location"
-            class="block py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
             >Visit</a
           >
           <button
             id="mobile-cart-btn"
-            class="flex items-center justify-center gap-2 w-full py-3 text-charcoal hover:text-gold text-lg touch-target font-medium"
+            class="flex items-center justify-center gap-2 w-full py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
           >
             <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="mobile-cart-count"
-              class="bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-amber-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="block mt-6 bg-gold text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-gold-dark transition touch-target shadow-elegant"
-            >Order Now</a
+            class="block mt-6 bg-amber-700 text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-amber-800 transition touch-target shadow-lg"
+            >Order Online</a
           >
         </div>
       </div>
@@ -131,148 +133,67 @@
       class="hero-section text-white min-h-screen flex items-center relative overflow-hidden"
     >
       <div
-        class="absolute inset-0 bg-gradient-to-r from-charcoal/80 to-charcoal/40"
+        class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/40"
       ></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h1
-          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light mb-6 leading-tight"
+          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight"
         >
-          <span class="block">L'Art de la</span>
-          <span class="block text-gold font-bold">Boulangerie</span>
+          Perfect Brews, Fine Patisseries
         </h1>
         <p
           class="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto mb-10 font-light leading-relaxed"
         >
-          Experience the authentic flavors of French artisan baking, where
-          time-honored techniques meet the finest ingredients to create
-          extraordinary moments.
+          Freshly baked pastries and specialty coffee in the heart of Berkeley
+          Heights. Experience artisan quality with every bite and sip.
         </p>
         <div
           class="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
             href="#menu"
-            class="bg-gold text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-gold-dark transition touch-target inline-block shadow-elegant transform hover:scale-105"
-            >Explore Our Collection</a
+            class="bg-amber-700 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-amber-800 transition touch-target inline-block shadow-lg transform hover:scale-105"
+            >Start Your Order</a
           >
           <a
             href="#about"
-            class="border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-charcoal transition touch-target inline-block transform hover:scale-105"
-            >Our Story</a
+            class="border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-gray-900 transition touch-target inline-block transform hover:scale-105"
+            >Learn More</a
           >
         </div>
       </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6">
-      <!-- Featured Section -->
-      <section class="py-16 sm:py-24">
-        <div class="text-center mb-16">
-          <h2
-            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
-          >
-            Today's Signature Creations
-          </h2>
-          <div class="w-24 h-0.5 bg-gold mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="text-center group">
-            <div
-              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600"
-                alt="Fresh Brioche"
-                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
-              ></div>
-            </div>
-            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
-              Fresh Daily Brioche
-            </h3>
-            <p class="text-charcoal-light leading-relaxed">
-              Rich, buttery brioche made with premium European ingredients,
-              baked fresh every morning.
-            </p>
-          </div>
-          <div class="text-center group">
-            <div
-              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
-                alt="French Pastries"
-                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
-              ></div>
-            </div>
-            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
-              Classic Patisserie
-            </h3>
-            <p class="text-charcoal-light leading-relaxed">
-              Delicate French pastries crafted with precision, showcasing
-              traditional techniques and seasonal flavors.
-            </p>
-          </div>
-          <div class="text-center group">
-            <div
-              class="relative overflow-hidden rounded-lg mb-6 shadow-elegant"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600"
-                alt="Artisan Bread"
-                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition"
-              ></div>
-            </div>
-            <h3 class="text-2xl font-serif font-semibold text-charcoal mb-2">
-              Artisan Breads
-            </h3>
-            <p class="text-charcoal-light leading-relaxed">
-              Hand-shaped loaves using wild yeast starters and stone-ground
-              flours for exceptional flavor and texture.
-            </p>
-          </div>
-        </div>
-      </section>
-
+    <main class="max-w-7xl mx-auto px-6">
       <!-- Menu Section -->
-      <section id="menu" class="py-16 sm:py-24">
+      <section id="menu" class="py-20">
         <div class="text-center mb-16">
           <h2
-            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
+            class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
           >
-            Our Collection
+            Our Menu
           </h2>
-          <div class="w-24 h-0.5 bg-gold mx-auto mb-8"></div>
-          <p
-            class="text-lg text-charcoal-light max-w-3xl mx-auto leading-relaxed"
-          >
-            Each creation is handcrafted using traditional French techniques and
-            the finest ingredients, sourced locally when possible.
+          <div class="w-24 h-0.5 bg-amber-700 mx-auto mb-8"></div>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            From fresh-baked breads to expertly crafted coffee, every item is
+            made with care and the finest ingredients.
           </p>
         </div>
 
         <!-- Menu Filters & Search -->
         <div
-          class="flex flex-col gap-6 items-stretch mb-12 bg-white p-6 rounded-xl shadow-elegant"
+          class="flex flex-col gap-6 items-stretch mb-12 bg-white p-6 rounded-xl shadow-lg"
         >
           <div class="relative w-full">
             <input
               type="text"
               id="search-bar"
-              placeholder="Search our collection..."
-              class="w-full pl-12 pr-4 py-4 border border-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold text-base bg-cream/30"
+              placeholder="Search for an item..."
+              class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base bg-gray-50"
             />
             <i
               data-lucide="search"
-              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-light"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
             ></i>
           </div>
           <div
@@ -291,35 +212,122 @@
         </div>
       </section>
 
+      <!-- Catering Section -->
+      <section id="catering" class="py-20">
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <h2
+              class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-8"
+            >
+              Catering for Any Event
+            </h2>
+            <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <p>
+                Bring the taste of Bread N' Brew to your next meeting, party, or
+                special event. We offer customizable platters of our finest
+                pastries, breads, and coffee service.
+              </p>
+              <p>
+                From corporate breakfast meetings to special celebrations, our
+                catering menu features all your favorites in convenient,
+                shareable portions.
+              </p>
+              <p class="font-medium text-gray-800">
+                Fill out the form to get started, and our catering specialist
+                will get in touch with you shortly.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white p-8 lg:p-12 rounded-xl shadow-lg">
+            <form id="catering-form">
+              <div class="mb-6">
+                <label for="name" class="block text-gray-800 font-semibold mb-2"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  required
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="email"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  required
+                />
+              </div>
+              <div class="mb-6">
+                <label for="date" class="block text-gray-800 font-semibold mb-2"
+                  >Event Date</label
+                >
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  required
+                />
+              </div>
+              <div class="mb-8">
+                <label
+                  for="message"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Tell Us About Your Event</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base resize-y"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-amber-700 text-white font-semibold py-4 px-6 rounded-full hover:bg-amber-800 transition text-lg touch-target shadow-lg"
+              >
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <!-- About Section -->
-      <section id="about" class="py-16 sm:py-24">
+      <section id="about" class="py-20">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <h2
-              class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-8"
+              class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-8"
             >
               Our Story
             </h2>
-            <div class="space-y-6 text-lg text-charcoal-light leading-relaxed">
+            <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>
-                Founded on a passion for authentic French baking, Artisan
-                Boulangerie brings centuries-old techniques to Berkeley Heights.
-                Our master baker trained in Lyon, France, where he learned the
-                sacred art of bread making from fourth-generation bakers.
+                Founded with a passion for exceptional coffee and artisan
+                baking, Bread N' Brew has become Berkeley Heights' beloved
+                destination for quality and community.
               </p>
               <p>
-                Every morning before dawn, our artisans begin the careful
-                process of shaping, proofing, and baking. We use only the finest
-                ingredients: European butter, organic stone-ground flours, and
-                wild yeast starters that have been lovingly maintained for over
-                a decade.
+                Our skilled bakers start early each morning, hand-crafting fresh
+                breads, pastries, and treats using time-honored techniques and
+                premium ingredients. Every cup of coffee is expertly brewed from
+                carefully selected beans.
               </p>
               <p>
-                From our signature heritage sourdough to delicate French
-                pastries, each creation reflects our commitment to excellence
-                and our respect for tradition. We believe that great baking is
-                both an art and a science—requiring patience, skill, and an
-                unwavering dedication to quality.
+                Whether you're grabbing your morning coffee, enjoying a
+                leisurely breakfast, or picking up fresh bread for dinner, we're
+                here to make every visit special.
               </p>
             </div>
           </div>
@@ -327,13 +335,141 @@
             <div class="grid grid-cols-2 gap-4">
               <img
                 src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
-                alt="Baker at work"
-                class="rounded-lg shadow-elegant transform rotate-3 hover:rotate-0 transition duration-500"
+                alt="Fresh baked goods"
+                class="rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition duration-500"
               />
               <img
                 src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"
-                alt="Fresh pastries"
-                class="rounded-lg shadow-elegant transform -rotate-3 hover:rotate-0 transition duration-500 mt-8"
+                alt="Coffee and pastries"
+                class="rounded-lg shadow-lg transform -rotate-3 hover:rotate-0 transition duration-500 mt-8"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Reviews -->
+      <section id="reviews" class="py-20">
+        <h2
+          class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-center mb-16 text-gray-900"
+        >
+          What Our Customers Are Saying
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-4 text-yellow-500">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-gray-600 italic mb-4">
+              "The best coffee in Berkeley Heights! Their croissants are
+              absolutely divine, and the staff is always so friendly."
+            </p>
+            <p class="font-semibold text-amber-800">- Sarah M.</p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-4 text-yellow-500">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-gray-600 italic mb-4">
+              "Their sourdough bread is incredible - perfectly crusty outside
+              and soft inside. We come here every weekend!"
+            </p>
+            <p class="font-semibold text-amber-800">- Mike D.</p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-4 text-yellow-500">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <p class="text-gray-600 italic mb-4">
+              "Perfect spot for working remotely. Great atmosphere, excellent
+              coffee, and their pastries are made fresh daily."
+            </p>
+            <p class="font-semibold text-amber-800">- Jennifer L.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Photo Gallery -->
+      <section id="gallery" class="py-20">
+        <h2
+          class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-center mb-16 text-gray-900"
+        >
+          A Glimpse Inside
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="grid gap-4">
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400"
+                alt="Cafe interior"
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400"
+                alt="Latte art close-up"
+              />
+            </div>
+          </div>
+          <div class="grid gap-4">
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400"
+                alt="Coffee beans"
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"
+                alt="Pastry display case"
+              />
+            </div>
+          </div>
+          <div class="grid gap-4">
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400"
+                alt="Barista making coffee"
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
+                alt="Loaf of bread"
+              />
+            </div>
+          </div>
+          <div class="grid gap-4">
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400"
+                alt="Customers enjoying coffee"
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400"
+                alt="Espresso machine"
               />
             </div>
           </div>
@@ -341,17 +477,17 @@
       </section>
 
       <!-- Location Section -->
-      <section id="location" class="py-16 sm:py-24">
+      <section id="location" class="py-20">
         <div class="text-center mb-16">
           <h2
-            class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-charcoal mb-4"
+            class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
           >
-            Visit Our Boulangerie
+            Visit Us
           </h2>
-          <div class="w-24 h-0.5 bg-gold mx-auto"></div>
+          <div class="w-24 h-0.5 bg-amber-700 mx-auto"></div>
         </div>
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <div class="rounded-xl overflow-hidden shadow-elegant">
+          <div class="rounded-xl overflow-hidden shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.471988894957!2d-74.3808189845963!3d40.66360327933718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3b88b0b54131b%3A0x5f3f0e1f0e2d3d3!2s512%20Springfield%20Ave%2C%20Berkeley%20Heights%2C%20NJ%2007922!5e0!3m2!1sen!2sus!4v1626815320508!5m2!1sen!2sus"
               width="100%"
@@ -362,50 +498,55 @@
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-          <div class="bg-white p-8 lg:p-12 rounded-xl shadow-elegant">
-            <h3 class="text-3xl font-serif font-semibold text-charcoal mb-8">
-              Come Experience Our Craft
+          <div class="bg-white p-8 lg:p-12 rounded-xl shadow-lg">
+            <h3 class="text-3xl font-display font-bold text-gray-900 mb-8">
+              Contact & Hours
             </h3>
-            <div class="space-y-6 text-lg text-charcoal-light">
+            <div class="space-y-6 text-lg text-gray-700">
               <div class="flex items-start">
                 <i
                   data-lucide="map-pin"
-                  class="w-6 h-6 mr-4 mt-1 text-gold flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
                 ></i>
                 <div>
-                  <p class="font-medium text-charcoal">512 Springfield Ave</p>
+                  <p class="font-medium text-gray-900">512 Springfield Ave</p>
                   <p>Berkeley Heights, NJ 07922</p>
                 </div>
               </div>
               <div class="flex items-center">
                 <i
                   data-lucide="phone"
-                  class="w-6 h-6 mr-4 text-gold flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
                 ></i>
-                <a href="tel:908-555-BAKE" class="hover:text-gold transition"
-                  >(908) 555-BAKE</a
+                <a
+                  href="tel:908-933-0123"
+                  class="hover:text-amber-700 transition"
+                  >(908) 933-0123</a
                 >
               </div>
               <div class="flex items-center">
                 <i
                   data-lucide="mail"
-                  class="w-6 h-6 mr-4 text-gold flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
                 ></i>
                 <a
-                  href="mailto:hello@artisanboulangerie.com"
-                  class="hover:text-gold transition"
-                  >hello@artisanboulangerie.com</a
+                  href="mailto:breadnbrew512@gmail.com"
+                  class="hover:text-amber-700 transition"
+                  >breadnbrew512@gmail.com</a
                 >
               </div>
               <div class="flex items-start">
                 <i
                   data-lucide="clock"
-                  class="w-6 h-6 mr-4 mt-1 text-gold flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
                 ></i>
                 <div>
-                  <p class="font-medium text-charcoal">Hours</p>
-                  <p>Tuesday - Sunday: 7:00 AM - 6:00 PM</p>
-                  <p>Monday: Closed</p>
+                  <p class="font-medium text-gray-900 mb-2">Hours</p>
+                  <div class="space-y-1 text-gray-700">
+                    <p>Monday - Friday: 6:30 AM - 6:00 PM</p>
+                    <p>Saturday: 7:00 AM - 7:00 PM</p>
+                    <p>Sunday: 7:00 AM - 5:00 PM</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -415,25 +556,25 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-charcoal text-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <footer class="bg-gray-800 text-white py-16">
+      <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-4 gap-8">
           <div class="md:col-span-2">
-            <h3 class="text-2xl font-serif font-bold text-gold mb-4">
-              Artisan Boulangerie
+            <h3 class="text-2xl font-display font-bold text-pink-400 mb-4">
+              Bread N' Brew
             </h3>
             <p class="text-gray-300 leading-relaxed mb-6">
-              Bringing authentic French baking traditions to Berkeley Heights,
-              where every creation is crafted with passion and precision.
+              Your neighborhood destination for fresh-baked goods and expertly
+              crafted coffee. Made with care, served with pride.
             </p>
             <div class="flex space-x-4">
-              <a href="#" class="text-gray-400 hover:text-gold transition">
+              <a href="#" class="text-gray-400 hover:text-pink-400 transition">
                 <i data-lucide="instagram" class="w-6 h-6"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-gold transition">
+              <a href="#" class="text-gray-400 hover:text-pink-400 transition">
                 <i data-lucide="facebook" class="w-6 h-6"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-gold transition">
+              <a href="#" class="text-gray-400 hover:text-pink-400 transition">
                 <i data-lucide="twitter" class="w-6 h-6"></i>
               </a>
             </div>
@@ -442,27 +583,31 @@
             <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
             <ul class="space-y-2">
               <li>
-                <a href="#menu" class="text-gray-300 hover:text-gold transition"
+                <a
+                  href="#menu"
+                  class="text-gray-300 hover:text-pink-400 transition"
                   >Menu</a
                 >
               </li>
               <li>
                 <a
+                  href="#catering"
+                  class="text-gray-300 hover:text-pink-400 transition"
+                  >Catering</a
+                >
+              </li>
+              <li>
+                <a
                   href="#about"
-                  class="text-gray-300 hover:text-gold transition"
+                  class="text-gray-300 hover:text-pink-400 transition"
                   >About</a
                 >
               </li>
               <li>
                 <a
                   href="#location"
-                  class="text-gray-300 hover:text-gold transition"
+                  class="text-gray-300 hover:text-pink-400 transition"
                   >Location</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-300 hover:text-gold transition"
-                  >Catering</a
                 >
               </li>
             </ul>
@@ -470,8 +615,8 @@
           <div>
             <h4 class="text-lg font-semibold mb-4">Contact</h4>
             <ul class="space-y-2 text-gray-300">
-              <li>(908) 555-BAKE</li>
-              <li>hello@artisanboulangerie.com</li>
+              <li>(908) 933-0123</li>
+              <li>breadnbrew512@gmail.com</li>
               <li>512 Springfield Ave<br />Berkeley Heights, NJ</li>
             </ul>
           </div>
@@ -479,7 +624,7 @@
         <div
           class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"
         >
-          <p>&copy; 2025 Artisan Boulangerie. All rights reserved.</p>
+          <p>&copy; 2025 Bread N' Brew. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -487,12 +632,12 @@
     <!-- Floating Cart Button -->
     <button
       id="floating-cart-btn"
-      class="floating-cart-btn fixed bottom-6 right-6 bg-gold text-white w-16 h-16 rounded-full shadow-elegant flex items-center justify-center z-40 touch-target hover:bg-gold-dark transition transform hover:scale-110"
+      class="floating-cart-btn fixed bottom-6 right-6 bg-amber-700 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center z-40 touch-target hover:bg-amber-800 transition transform hover:scale-110"
     >
       <i data-lucide="shopping-bag" class="w-7 h-7"></i>
       <span
         id="cart-item-count"
-        class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold"
+        class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold"
         >0</span
       >
     </button>
@@ -512,7 +657,7 @@
     >
       <div
         id="toast-message"
-        class="inline-block bg-charcoal text-white py-3 px-6 rounded-full shadow-elegant"
+        class="inline-block bg-gray-900 text-white py-3 px-6 rounded-full shadow-lg"
       >
         Item added to your cart!
       </div>
@@ -524,21 +669,19 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4"
     >
       <div
-        class="bg-white p-8 rounded-xl shadow-elegant text-center max-w-sm mx-auto w-full"
+        class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm mx-auto w-full"
       >
         <div id="modal-content">
           <h3
             id="modal-title"
-            class="text-xl sm:text-2xl font-serif font-semibold mb-4 text-charcoal"
+            class="text-xl sm:text-2xl font-display font-bold mb-4 text-gray-900"
           >
             Notice
           </h3>
-          <div id="modal-body" class="text-charcoal-light mb-6">
-            Message here.
-          </div>
+          <div id="modal-body" class="text-gray-600 mb-6">Message here.</div>
           <div id="modal-actions">
             <button
-              class="modal-close-btn bg-gold text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-gold-dark transition"
+              class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition"
             >
               OK
             </button>
