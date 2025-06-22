@@ -29,20 +29,11 @@ const mobileMenu = document.getElementById("mobile-menu");
 function openCart() {
   if (!cartElement) return;
 
-  // Create backdrop if it doesn't exist
-  let backdrop = document.getElementById('cart-backdrop');
-  if (!backdrop) {
-    backdrop = document.createElement('div');
-    backdrop.id = 'cart-backdrop';
-    backdrop.className = 'cart-backdrop';
-    document.body.appendChild(backdrop);
-
-    // Close cart when backdrop is clicked
-    backdrop.addEventListener('click', closeCart);
-  }
-
+  const backdrop = document.getElementById('cart-backdrop');
   cartElement.classList.remove("cart-hidden");
-  backdrop.classList.add('visible');
+  if (backdrop) {
+    backdrop.classList.add('visible');
+  }
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
 }
 
