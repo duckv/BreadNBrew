@@ -958,10 +958,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close mobile menu when clicking on a link
     mobileMenu.addEventListener("click", (e) => {
       if (e.target.tagName === "A") {
-      mobileMenu.classList.add("mobile-menu-hidden");
-      mobileMenu.classList.remove("mobile-menu-visible");
-    }
-  });
+        mobileMenu.classList.add("mobile-menu-hidden");
+        mobileMenu.classList.remove("mobile-menu-visible");
+      }
+    });
+  }
 
   // Handle clicks on cart overlay to close cart
   cartElement.addEventListener("click", (e) => {
