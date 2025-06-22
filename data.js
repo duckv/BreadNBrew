@@ -27,7 +27,6 @@ const menuItems = [
     customizations: {
       test: ["Option 1", "Option 2", "Option 3"],
     },
-    featured: true,
   },
   {
     id: 4,
@@ -129,7 +128,6 @@ const menuItems = [
     customizations: {
       test: ["Option 1", "Option 2", "Option 3"],
     },
-    featured: true,
   },
   {
     id: 7,
@@ -184,7 +182,6 @@ const menuItems = [
     customizations: {
       test: ["Option 1", "Option 2", "Option 3"],
     },
-    featured: true,
   },
   {
     id: 27,
@@ -386,6 +383,86 @@ const menuItems = [
     description:
       "Tomato sauce, mozzarella, spicy pepperoni, pickled long hot peppers, and a drizzle of hot honey for the perfect kick.",
     allergens: ["Wheat", "Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+
+  // Gelato
+  {
+    id: 28,
+    name: "Vanilla Bean Gelato",
+    price: 6.5,
+    category: "Gelato",
+    img: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600",
+    description:
+      "Creamy Italian-style gelato made with real Madagascar vanilla beans.",
+    allergens: ["Dairy", "Eggs"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+  {
+    id: 29,
+    name: "Pistachio Gelato",
+    price: 7.0,
+    category: "Gelato",
+    img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600",
+    description: "Rich and nutty gelato made with Sicilian pistachios.",
+    allergens: ["Dairy", "Tree Nuts"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+  {
+    id: 30,
+    name: "Chocolate Hazelnut Gelato",
+    price: 6.75,
+    category: "Gelato",
+    img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+    description: "Decadent chocolate gelato swirled with roasted hazelnuts.",
+    allergens: ["Dairy", "Tree Nuts"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+
+  // Ice Cream
+  {
+    id: 31,
+    name: "Strawberry Ice Cream",
+    price: 5.5,
+    category: "Ice Cream",
+    img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600",
+    description:
+      "Classic strawberry ice cream made with fresh strawberries and cream.",
+    allergens: ["Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+  {
+    id: 32,
+    name: "Cookies & Cream",
+    price: 5.75,
+    category: "Ice Cream",
+    img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600",
+    description:
+      "Rich vanilla ice cream loaded with chunks of chocolate sandwich cookies.",
+    allergens: ["Dairy", "Wheat", "Soy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+  },
+  {
+    id: 33,
+    name: "Mint Chocolate Chip",
+    price: 5.75,
+    category: "Ice Cream",
+    img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600",
+    description:
+      "Refreshing mint ice cream with dark chocolate chips throughout.",
+    allergens: ["Dairy", "Soy"],
     customizations: {
       test: ["Option 1", "Option 2", "Option 3"],
     },
