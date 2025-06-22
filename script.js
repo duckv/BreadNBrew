@@ -35,6 +35,14 @@ function openCart() {
     backdrop.classList.add("visible");
   }
   document.body.style.overflow = "hidden";
+
+  // Focus on cart for accessibility
+  setTimeout(() => {
+    const closeButton = cartElement.querySelector("#close-cart");
+    if (closeButton) {
+      closeButton.focus();
+    }
+  }, 100);
 }
 
 function closeCart() {
