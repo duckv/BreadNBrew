@@ -302,7 +302,11 @@
     </button>
 
     <!-- Cart Backdrop -->
-    <div id="cart-backdrop" class="cart-backdrop"></div>
+    <div
+      id="cart-backdrop"
+      class="cart-backdrop"
+      onclick="document.getElementById('cart').classList.add('cart-hidden'); this.classList.remove('visible'); document.body.style.overflow = '';"
+    ></div>
 
     <!-- Shopping Cart -->
     <div
