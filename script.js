@@ -878,6 +878,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Escape key to close cart
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      cartElement &&
+      !cartElement.classList.contains("cart-hidden")
+    ) {
+      closeCart();
+    }
+  });
+
   // Initialize the application
   console.log("Initializing application...", {
     featuredGrid,
