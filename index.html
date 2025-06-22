@@ -15,63 +15,92 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="bg-gray-50 text-gray-900">
+    <!-- Top Bar with Hours and Contact -->
+    <div class="bg-forest-green text-white py-2 text-sm">
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+          <span class="font-medium"
+            >Hours: Mon-Sat 7am-5:30pm | Sun 9am-4pm</span
+          >
+        </div>
+        <div class="flex items-center space-x-6">
+          <a
+            href="tel:908-933-0123"
+            class="hover:text-forest-green-light transition flex items-center"
+          >
+            <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
+            (908) 933-0123
+          </a>
+          <a
+            href="https://www.google.com/maps/place/512+Springfield+Ave,+Berkeley+Heights,+NJ+07922"
+            target="_blank"
+            class="hover:text-forest-green-light transition flex items-center"
+          >
+            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+            512 Springfield Ave, Berkeley Heights, NJ
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Header & Navigation -->
     <header
       id="header"
       class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300"
     >
       <nav
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center"
       >
-        <a
-          href="#"
-          class="text-2xl sm:text-3xl font-bold text-pink-600 font-display"
-        >
+        <a href="#" class="text-3xl font-bold text-pink-500 font-display">
           <div>
             Bread N' Br☕︎w
-            <span
-              class="hidden sm:block text-xs font-normal text-gray-600 tracking-wider"
+            <span class="block text-xs font-normal text-gray-600 tracking-wider"
               >Artisan Breads, Perfect Brews, & Fine Patisseries</span
             >
           </div>
         </a>
         <div class="hidden md:flex items-center space-x-8">
           <a
+            href="#featured"
+            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
+            >Featured</a
+          >
+          <a
             href="#menu"
-            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
-            >Menu</a
+            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
+            >Full Menu</a
           >
           <a
             href="#catering"
-            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
+            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
             >Catering</a
           >
           <a
             href="#about"
-            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
+            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
             >About</a
           >
           <a
-            href="#location"
-            class="text-gray-700 hover:text-amber-700 transition text-lg font-medium"
-            >Visit</a
+            href="#contact"
+            class="text-gray-700 hover:text-forest-green transition text-lg font-medium"
+            >Contact</a
           >
           <button
             id="header-cart-btn"
-            class="hidden md:flex items-center gap-2 text-gray-700 hover:text-amber-700 transition text-lg touch-target"
+            class="hidden md:flex items-center gap-2 text-gray-700 hover:text-forest-green transition text-lg touch-target"
           >
             <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="header-cart-count"
-              class="bg-amber-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-forest-green text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="hidden lg:inline-block bg-amber-700 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-800 transition shadow-lg"
-            >Order Online</a
+            class="hidden lg:inline-block bg-forest-green text-white font-semibold py-3 px-8 rounded-full hover:bg-forest-green-dark transition shadow-lg"
+            >Order Now</a
           >
         </div>
         <button
@@ -88,41 +117,46 @@
       >
         <div class="px-6 pb-6 space-y-3">
           <a
+            href="#featured"
+            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
+            >Featured</a
+          >
+          <a
             href="#menu"
-            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
-            >Menu</a
+            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
+            >Full Menu</a
           >
           <a
             href="#catering"
-            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
+            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
             >Catering</a
           >
           <a
             href="#about"
-            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
+            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
             >About</a
           >
           <a
-            href="#location"
-            class="block py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
-            >Visit</a
+            href="#contact"
+            class="block py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
+            >Contact</a
           >
           <button
             id="mobile-cart-btn"
-            class="flex items-center justify-center gap-2 w-full py-3 text-gray-700 hover:text-amber-700 text-lg touch-target font-medium"
+            class="flex items-center justify-center gap-2 w-full py-3 text-gray-700 hover:text-forest-green text-lg touch-target font-medium"
           >
             <i data-lucide="shopping-bag" class="w-5 h-5"></i>
             <span>Cart</span>
             <span
               id="mobile-cart-count"
-              class="bg-amber-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+              class="bg-forest-green text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
               >0</span
             >
           </button>
           <a
             href="#menu"
-            class="block mt-6 bg-amber-700 text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-amber-800 transition touch-target shadow-lg"
-            >Order Online</a
+            class="block mt-6 bg-forest-green text-white font-semibold py-3 px-8 rounded-full text-center hover:bg-forest-green-dark transition touch-target shadow-lg"
+            >Order Now</a
           >
         </div>
       </div>
@@ -152,28 +186,59 @@
         >
           <a
             href="#menu"
-            class="bg-amber-700 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-amber-800 transition touch-target inline-block shadow-lg transform hover:scale-105"
-            >Start Your Order</a
+            class="bg-forest-green text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-forest-green-dark transition touch-target inline-block shadow-lg transform hover:scale-105"
+            >View Menu</a
           >
           <a
-            href="#about"
+            href="#contact"
             class="border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-gray-900 transition touch-target inline-block transform hover:scale-105"
-            >Learn More</a
+            >Contact Us</a
           >
         </div>
       </div>
     </section>
 
     <main class="max-w-7xl mx-auto px-6">
-      <!-- Menu Section -->
+      <!-- Featured Items Section -->
+      <section id="featured" class="py-20">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
+          >
+            Featured Items
+          </h2>
+          <div class="w-24 h-0.5 bg-forest-green mx-auto mb-8"></div>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover our most popular items, handpicked for their exceptional
+            quality and taste.
+          </p>
+        </div>
+
+        <div
+          id="featured-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+        >
+          <!-- Featured items will be generated here by JS -->
+        </div>
+
+        <div class="text-center">
+          <a
+            href="#menu"
+            class="inline-block bg-forest-green text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-forest-green-dark transition shadow-lg"
+            >View Full Menu</a
+          >
+        </div>
+      </section>
+
+      <!-- Full Menu Section -->
       <section id="menu" class="py-20">
         <div class="text-center mb-16">
           <h2
             class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
           >
-            Our Menu
+            Our Full Menu
           </h2>
-          <div class="w-24 h-0.5 bg-amber-700 mx-auto mb-8"></div>
+          <div class="w-24 h-0.5 bg-forest-green mx-auto mb-8"></div>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             From fresh-baked breads to expertly crafted coffee, every item is
             made with care and the finest ingredients.
@@ -189,7 +254,7 @@
               type="text"
               id="search-bar"
               placeholder="Search for an item..."
-              class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base bg-gray-50"
+              class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base bg-gray-50"
             />
             <i
               data-lucide="search"
@@ -248,7 +313,7 @@
                   type="text"
                   id="name"
                   name="name"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base"
                   required
                 />
               </div>
@@ -262,7 +327,7 @@
                   type="email"
                   id="email"
                   name="email"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base"
                   required
                 />
               </div>
@@ -274,7 +339,7 @@
                   type="date"
                   id="date"
                   name="date"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base"
                   required
                 />
               </div>
@@ -288,13 +353,13 @@
                   id="message"
                   name="message"
                   rows="4"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-amber-700 text-base resize-y"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green text-base resize-y"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
-                class="w-full bg-amber-700 text-white font-semibold py-4 px-6 rounded-full hover:bg-amber-800 transition text-lg touch-target shadow-lg"
+                class="w-full bg-forest-green text-white font-semibold py-4 px-6 rounded-full hover:bg-forest-green-dark transition text-lg touch-target shadow-lg"
               >
                 Submit Inquiry
               </button>
@@ -348,143 +413,15 @@
         </div>
       </section>
 
-      <!-- Customer Reviews -->
-      <section id="reviews" class="py-20">
-        <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-center mb-16 text-gray-900"
-        >
-          What Our Customers Are Saying
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-gray-600 italic mb-4">
-              "The best coffee in Berkeley Heights! Their croissants are
-              absolutely divine, and the staff is always so friendly."
-            </p>
-            <p class="font-semibold text-amber-800">- Sarah M.</p>
-          </div>
-          <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-gray-600 italic mb-4">
-              "Their sourdough bread is incredible - perfectly crusty outside
-              and soft inside. We come here every weekend!"
-            </p>
-            <p class="font-semibold text-amber-800">- Mike D.</p>
-          </div>
-          <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-4 text-yellow-500">
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-            </div>
-            <p class="text-gray-600 italic mb-4">
-              "Perfect spot for working remotely. Great atmosphere, excellent
-              coffee, and their pastries are made fresh daily."
-            </p>
-            <p class="font-semibold text-amber-800">- Jennifer L.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Photo Gallery -->
-      <section id="gallery" class="py-20">
-        <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-center mb-16 text-gray-900"
-        >
-          A Glimpse Inside
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400"
-                alt="Cafe interior"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400"
-                alt="Latte art close-up"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400"
-                alt="Coffee beans"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"
-                alt="Pastry display case"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400"
-                alt="Barista making coffee"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
-                alt="Loaf of bread"
-              />
-            </div>
-          </div>
-          <div class="grid gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400"
-                alt="Customers enjoying coffee"
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400"
-                alt="Espresso machine"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Location Section -->
-      <section id="location" class="py-20">
+      <!-- Contact Section -->
+      <section id="contact" class="py-20">
         <div class="text-center mb-16">
           <h2
             class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-4"
           >
-            Visit Us
+            Contact Us
           </h2>
-          <div class="w-24 h-0.5 bg-amber-700 mx-auto"></div>
+          <div class="w-24 h-0.5 bg-forest-green mx-auto"></div>
         </div>
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div class="rounded-xl overflow-hidden shadow-lg">
@@ -500,13 +437,13 @@
           </div>
           <div class="bg-white p-8 lg:p-12 rounded-xl shadow-lg">
             <h3 class="text-3xl font-display font-bold text-gray-900 mb-8">
-              Contact & Hours
+              Get In Touch
             </h3>
             <div class="space-y-6 text-lg text-gray-700">
               <div class="flex items-start">
                 <i
                   data-lucide="map-pin"
-                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-forest-green flex-shrink-0"
                 ></i>
                 <div>
                   <p class="font-medium text-gray-900">512 Springfield Ave</p>
@@ -516,40 +453,88 @@
               <div class="flex items-center">
                 <i
                   data-lucide="phone"
-                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-forest-green flex-shrink-0"
                 ></i>
                 <a
                   href="tel:908-933-0123"
-                  class="hover:text-amber-700 transition"
+                  class="hover:text-forest-green transition"
                   >(908) 933-0123</a
                 >
               </div>
               <div class="flex items-center">
                 <i
                   data-lucide="mail"
-                  class="w-6 h-6 mr-4 text-amber-700 flex-shrink-0"
+                  class="w-6 h-6 mr-4 text-forest-green flex-shrink-0"
                 ></i>
                 <a
                   href="mailto:breadnbrew512@gmail.com"
-                  class="hover:text-amber-700 transition"
+                  class="hover:text-forest-green transition"
                   >breadnbrew512@gmail.com</a
                 >
               </div>
               <div class="flex items-start">
                 <i
                   data-lucide="clock"
-                  class="w-6 h-6 mr-4 mt-1 text-amber-700 flex-shrink-0"
+                  class="w-6 h-6 mr-4 mt-1 text-forest-green flex-shrink-0"
                 ></i>
                 <div>
                   <p class="font-medium text-gray-900 mb-2">Hours</p>
                   <div class="space-y-1 text-gray-700">
-                    <p>Monday - Friday: 6:30 AM - 6:00 PM</p>
-                    <p>Saturday: 7:00 AM - 7:00 PM</p>
-                    <p>Sunday: 7:00 AM - 5:00 PM</p>
+                    <p>Monday - Saturday: 7:00 AM - 5:30 PM</p>
+                    <p>Sunday: 9:00 AM - 4:00 PM</p>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Contact Form -->
+            <form class="mt-8 space-y-4">
+              <div>
+                <label
+                  for="contact-name"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="contact-name"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="contact-email"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="contact-email"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="contact-message"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Message</label
+                >
+                <textarea
+                  id="contact-message"
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-forest-green resize-y"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-forest-green text-white font-semibold py-3 px-6 rounded-full hover:bg-forest-green-dark transition shadow-lg"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
@@ -560,7 +545,7 @@
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-4 gap-8">
           <div class="md:col-span-2">
-            <h3 class="text-2xl font-display font-bold text-pink-400 mb-4">
+            <h3 class="text-2xl font-display font-bold text-pink-500 mb-4">
               Bread N' Brew
             </h3>
             <p class="text-gray-300 leading-relaxed mb-6">
@@ -584,6 +569,13 @@
             <ul class="space-y-2">
               <li>
                 <a
+                  href="#featured"
+                  class="text-gray-300 hover:text-pink-400 transition"
+                  >Featured</a
+                >
+              </li>
+              <li>
+                <a
                   href="#menu"
                   class="text-gray-300 hover:text-pink-400 transition"
                   >Menu</a
@@ -605,9 +597,9 @@
               </li>
               <li>
                 <a
-                  href="#location"
+                  href="#contact"
                   class="text-gray-300 hover:text-pink-400 transition"
-                  >Location</a
+                  >Contact</a
                 >
               </li>
             </ul>
@@ -632,12 +624,12 @@
     <!-- Floating Cart Button -->
     <button
       id="floating-cart-btn"
-      class="floating-cart-btn fixed bottom-6 right-6 bg-amber-700 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center z-40 touch-target hover:bg-amber-800 transition transform hover:scale-110"
+      class="floating-cart-btn fixed bottom-6 right-6 bg-forest-green text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center z-40 touch-target hover:bg-forest-green-dark transition transform hover:scale-110"
     >
       <i data-lucide="shopping-bag" class="w-7 h-7"></i>
       <span
         id="cart-item-count"
-        class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold"
+        class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold"
         >0</span
       >
     </button>
@@ -681,7 +673,7 @@
           <div id="modal-body" class="text-gray-600 mb-6">Message here.</div>
           <div id="modal-actions">
             <button
-              class="modal-close-btn bg-amber-700 text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-amber-800 transition"
+              class="modal-close-btn bg-forest-green text-white font-semibold py-3 px-8 rounded-full touch-target hover:bg-forest-green-dark transition"
             >
               OK
             </button>

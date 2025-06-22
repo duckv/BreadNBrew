@@ -10,7 +10,10 @@ const menuItems = [
     description:
       "Flaky, buttery, and baked to golden perfection. A classic favorite made with European butter and traditional techniques.",
     allergens: ["Wheat", "Dairy", "Eggs"],
-    customizations: {},
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+    featured: true,
   },
   {
     id: 3,
@@ -22,8 +25,9 @@ const menuItems = [
       "Sweet, gooey, and topped with a decadent cream cheese frosting. Made fresh daily with Madagascar cinnamon.",
     allergens: ["Wheat", "Dairy", "Eggs"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
+    featured: true,
   },
   {
     id: 4,
@@ -34,6 +38,9 @@ const menuItems = [
     description:
       "A rich, moist chocolate muffin packed with Belgian semi-sweet chocolate chips and finished with a subtle cocoa glaze.",
     allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 9,
@@ -45,7 +52,7 @@ const menuItems = [
       "Filled with a sweet almond paste and topped with toasted almonds. A French bakery classic.",
     allergens: ["Wheat", "Dairy", "Eggs", "Tree Nuts"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -58,7 +65,7 @@ const menuItems = [
       "A classic French pastry with two batons of premium dark chocolate wrapped in buttery, flaky pastry.",
     allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -70,6 +77,9 @@ const menuItems = [
     description:
       "A tender, crumbly scone bursting with fresh wild blueberries and finished with a light glaze.",
     allergens: ["Wheat", "Dairy", "Eggs"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
 
   // Breads
@@ -87,7 +97,9 @@ const menuItems = [
         { name: "Loaf", price: 0 },
         { name: "Slice", price: -14.5 },
       ],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
+    featured: true,
   },
 
   // Coffee
@@ -100,6 +112,10 @@ const menuItems = [
     description:
       "Rich espresso with perfectly steamed milk and a touch of latte art. Made with our signature house blend.",
     allergens: ["Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+    featured: true,
   },
   {
     id: 6,
@@ -110,6 +126,10 @@ const menuItems = [
     description:
       "Slow-steeped for 18 hours using premium beans for a smooth, bold, and naturally refreshing taste.",
     allergens: [],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+    featured: true,
   },
   {
     id: 7,
@@ -120,6 +140,9 @@ const menuItems = [
     description:
       "A perfect balance of espresso, steamed milk, and a thick layer of velvety foam. Traditional Italian style.",
     allergens: ["Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 8,
@@ -130,6 +153,9 @@ const menuItems = [
     description:
       "A double shot of our signature espresso, gently lengthened with hot water for a clean, bold flavor.",
     allergens: [],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
 
   // Sweets
@@ -142,6 +168,9 @@ const menuItems = [
     description:
       "A bite-sized treat of vanilla or chocolate cake mixed with frosting and dipped in colored chocolate coating.",
     allergens: ["Wheat", "Dairy", "Eggs", "Soy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 26,
@@ -152,6 +181,10 @@ const menuItems = [
     description:
       "Delicate French almond cookies with creamy ganache filling. Available in seasonal flavors that change daily.",
     allergens: ["Tree Nuts", "Dairy", "Eggs"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
+    featured: true,
   },
   {
     id: 27,
@@ -162,6 +195,9 @@ const menuItems = [
     description:
       "A crispy pastry shell filled with a sweet, creamy ricotta filling and finished with chocolate chips and powdered sugar.",
     allergens: ["Wheat", "Dairy", "Eggs"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
 
   // Tea
@@ -174,7 +210,9 @@ const menuItems = [
     description:
       "A classic black tea blend, fragrant with bergamot oil and cornflower petals. Served with honey and lemon.",
     allergens: [],
-    customizations: {},
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 13,
@@ -185,7 +223,9 @@ const menuItems = [
     description:
       "A soothing herbal tea with a delicate, floral aroma. Perfect for relaxation and naturally caffeine-free.",
     allergens: [],
-    customizations: {},
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 14,
@@ -197,7 +237,7 @@ const menuItems = [
       "A refreshing and vibrant green tea full of antioxidants. Light, grassy flavor with a clean finish.",
     allergens: [],
     customizations: {
-      temperature: ["Hot", "Cold"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
 
@@ -211,6 +251,9 @@ const menuItems = [
     description:
       "Made fresh daily with hand-squeezed lemons, pure cane sugar, and a hint of mint. Perfectly sweet and tart.",
     allergens: [],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 16,
@@ -222,7 +265,7 @@ const menuItems = [
       "Ceremonial grade matcha whisked to perfection with steamed milk and lightly sweetened with honey.",
     allergens: ["Dairy"],
     customizations: {
-      temperature: ["Hot", "Cold"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -234,6 +277,9 @@ const menuItems = [
     description:
       "A vibrant and fruity refresher with notes of strawberry and acai, topped with freeze-dried strawberries.",
     allergens: [],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
 
   // Breakfast
@@ -247,7 +293,7 @@ const menuItems = [
       "Crispy applewood bacon, fluffy scrambled egg, and melted cheddar cheese on a fresh brioche bun.",
     allergens: ["Wheat", "Dairy", "Eggs"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -267,6 +313,7 @@ const menuItems = [
           img: "https://i.ibb.co/hxBK09R/Bacon-Avocado.jpg",
         },
       ],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
 
@@ -285,6 +332,7 @@ const menuItems = [
         { name: "Add Bacon", price: 1.5 },
         { name: "Add Avocado", price: 2.5 },
       ],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -297,7 +345,7 @@ const menuItems = [
       "Fresh mozzarella, ripe heirloom tomatoes, basil leaves, and balsamic glaze on toasted focaccia bread.",
     allergens: ["Wheat", "Dairy"],
     customizations: {
-      toast: ["Untoasted", "Toasted"],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
 
@@ -311,6 +359,9 @@ const menuItems = [
     description:
       "Classic Neapolitan pizza with fresh mozzarella, San Marzano tomatoes, fresh basil, and extra virgin olive oil.",
     allergens: ["Wheat", "Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
   {
     id: 23,
@@ -323,6 +374,7 @@ const menuItems = [
     allergens: ["Wheat", "Dairy"],
     customizations: {
       toppings: [{ name: "Add Pepperoni", price: 2.0 }],
+      test: ["Option 1", "Option 2", "Option 3"],
     },
   },
   {
@@ -334,6 +386,9 @@ const menuItems = [
     description:
       "Tomato sauce, mozzarella, spicy pepperoni, pickled long hot peppers, and a drizzle of hot honey for the perfect kick.",
     allergens: ["Wheat", "Dairy"],
+    customizations: {
+      test: ["Option 1", "Option 2", "Option 3"],
+    },
   },
 ];
 
@@ -344,8 +399,8 @@ const APP_CONFIG = {
   MAX_ORDER_AMOUNT: 200,
   MIN_TIP_PERCENTAGE: 15,
   STORE_HOURS: {
-    open: 6.5, // 6:30 AM
-    close: 18, // 6:00 PM
+    weekday: { open: 7, close: 17.5 }, // 7:00 AM to 5:30 PM
+    sunday: { open: 9, close: 16 }, // 9:00 AM to 4:00 PM
   },
   PICKUP_TIME_INCREMENT: 15, // minutes
   MIN_PICKUP_TIME: 15, // minutes from now
